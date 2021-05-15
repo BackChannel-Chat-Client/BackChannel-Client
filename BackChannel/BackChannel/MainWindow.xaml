@@ -298,6 +298,42 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <!--
+            This styles the Send Image at the Bottom of the Right Panel
+        -->
+        <Style x:Key="SendImageButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Margin" Value="20,0,20,8"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ButtonBase}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Button.IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="Transparent"/>
+                                <Setter Property="FontSize" Value="26"/>
+                                <Setter Property="Margin" Value="19,0,18,6"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="Transparent"/>
+                                <Setter Property="FontSize" Value="24"/>
+                                <Setter Property="Margin" Value="20,0,20,8"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
     <Grid x:Name="MainGrid" Background="#151515" 
           MaxWidth="{Binding ActualWidth, ElementName=window, Mode=OneWay}">
@@ -541,17 +577,18 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid>
-                                
+                                <Image Source="/Icons/pfp.png" Height="50" HorizontalAlignment="Left" Margin="0,0,0,0"
+                                   RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Top" Visibility="{Binding IsSolo}"/>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{Binding Username}" Foreground="White" FontSize="20"
-                                       TextTrimming="CharacterEllipsis" Margin="60,0,10,0" 
+                                       TextTrimming="CharacterEllipsis" Margin="60,0,10,0"  Visibility="{Binding IsSolo}"
                                        FontFamily="Roboto Mono Thin" TextDecorations="None"/>
                                     <TextBlock Text="01/21/21 6:21pm" Foreground="Gray" FontSize="11"
-                                       TextTrimming="CharacterEllipsis" Margin="0,9,10,0" 
-                                       FontFamily="Roboto Mono Thin" TextDecorations="Underline"/>
+                                       TextTrimming="CharacterEllipsis" Margin="0,8,10,0" Visibility="{Binding IsSolo}"
+                                       FontFamily="Roboto Mono Thin"/>
                                 </StackPanel>
                                 <TextBlock Text="{Binding Content}" Foreground="White" FontSize="16"
-                                       TextWrapping="Wrap" Margin="60,40,50,0" 
+                                       TextWrapping="Wrap" Margin="{Binding TextMargin}" 
                                        FontFamily="Roboto Mono Thin" />
                             </Grid>
                         </DataTemplate>
@@ -570,7 +607,17 @@
                     This will hold the Message Box and the send button
                     It will also need to have buttons for sending images and files
                 -->
-                
+                <Button x:Name="SendImageButton" Style="{DynamicResource SendImageButtonStyle}" 
+                                Background="Transparent" BorderThickness="0"
+                                Click="ServerSettingsButton_Click" 
+                        HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                    <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE7C5;" Foreground="White"
+                            TextOptions.TextRenderingMode="Grayscale" RenderOptions.BitmapScalingMode="HighQuality"/>
+                </Button>
+                <Grid x:Name="InputFooter" VerticalAlignment="Bottom" >
+                    <TextBox Background="#171717" Foreground="White" Margin="65,10,10,10"
+                             FontSize="16" FontFamily="Roboto Mono Thin" TextWrapping="Wrap"/>
+                </Grid>
             </Grid>
         </Border>
     </Grid>

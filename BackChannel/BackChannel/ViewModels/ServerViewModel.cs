@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using BackChannel.Classes;
 
 namespace BackChannel.ViewModels
 {
@@ -16,6 +17,7 @@ namespace BackChannel.ViewModels
     /// </summary>
     public class Server
     {
+        public int ID { get; set; }
         public string Name { get; set; }
         public List<Channel> Channels { get; set; }
     }

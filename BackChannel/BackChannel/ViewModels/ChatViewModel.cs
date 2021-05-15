@@ -8,19 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using BackChannel.Classes;
 
 namespace BackChannel.ViewModels
 {
-    /// <summary>
-    /// Holds all the info about a message
-    /// </summary>
-    public class Message
-    {
-        public string Username { get; set; }
-        public string Content { get; set; }
-        public DateTime Date { get; set; }
-    }
-
     /// <summary>
     /// Holds and handles updating of the list of messages in the chat panel on the right
     /// </summary>

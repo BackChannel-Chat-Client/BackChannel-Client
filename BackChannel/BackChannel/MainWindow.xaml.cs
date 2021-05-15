@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BackChannel.ViewModels;
+using BackChannel.Classes;
 
 namespace BackChannel
 {
@@ -114,28 +115,31 @@ namespace BackChannel
         }
 
         
-        private void AddServerButton_Click(object sender, RoutedEventArgs e)
+        private async void AddServerButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                Random rnd = new Random();
-                //var mainwnd = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
-                Server s = new Server();
-                s.Name = CreateRandomName();
-                s.Channels = new List<Channel>();
-                int numOfChannels = rnd.Next(5, 40);
-                for (int i = 0; i < numOfChannels; i++)
+                await Task.Run(() =>
                 {
-                    if (rnd.Next(0, 2) == 1)
+                    Random rnd = new Random();
+                    //var mainwnd = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+                    Server s = new Server();
+                    s.Name = CreateRandomName();
+                    s.Channels = new List<Channel>();
+                    int numOfChannels = rnd.Next(5, 40);
+                    for (int i = 0; i < numOfChannels; i++)
                     {
-                        s.Channels.Add(new Channel { Name = CreateRandomName(), IsVoice = Visibility.Visible });
+                        if (rnd.Next(0, 2) == 1)
+                        {
+                            s.Channels.Add(new Channel { Name = CreateRandomName(), IsVoice = Visibility.Visible });
+                        }
+                        else
+                        {
+                            s.Channels.Add(new Channel { Name = CreateRandomName(), IsText = Visibility.Visible });
+                        }
                     }
-                    else
-                    {
-                        s.Channels.Add(new Channel { Name = CreateRandomName(), IsText = Visibility.Visible });
-                    }
-                }
-                serverViewModel.AddServer(s);
+                    serverViewModel.AddServer(s);
+                });
             }
             catch (Exception)
             {
@@ -145,7 +149,14 @@ namespace BackChannel
 
         private void MembersButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Packet pack = new Packet();
+            pack.PacketID = 384743;
+            pack.ChannelID = Convert.ToUInt32(ChannelTitle.Text);
+            pack.RequestType = Convert.ToByte('b');
+            pack.AuthKey = Packet.ToByteArray("F4k3K34");
+            pack.RequestBody = Packet.ToByteArray("fuck you");
+            pack.GetPacketSize();
+            pack.SendPacket();
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
@@ -208,7 +219,7 @@ namespace BackChannel
                 var item = (Channel)ChannelListView.SelectedItem;
                 if (item.IsText == Visibility.Visible)
                 {
-                    ChannelTitle.Text = item.Name;
+                    ChannelTitle.Text = item.ID.ToString();
                     RightColumnStack.Visibility = Visibility.Visible;
                     chatViewModel.Messages.Clear();
                     await Task.Run(() =>
@@ -216,12 +227,11 @@ namespace BackChannel
                         foreach (Message m in item.Messages)
                         {
                             chatViewModel.AddText(m);
-                            Application.Current.Dispatcher.Invoke(new Action(() =>
-                            {
-                                ChatListView.ScrollIntoView(m);
-                            }));
                         }
-
+                        Application.Current.Dispatcher.Invoke(new Action(() =>
+                        {
+                            ChatListView.ScrollIntoView(chatViewModel.Messages[chatViewModel.Messages.Count() - 1]);
+                        }));
                     });
                 }
                 else
