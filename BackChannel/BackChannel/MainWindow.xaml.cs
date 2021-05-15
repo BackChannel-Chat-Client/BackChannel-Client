@@ -153,8 +153,8 @@ namespace BackChannel
             pack.PacketID = 384743;
             pack.ChannelID = Convert.ToUInt32(ChannelTitle.Text);
             pack.RequestType = Convert.ToByte('b');
-            pack.AuthKey = Packet.ToByteArray("F4k3K34");
-            pack.RequestBody = Packet.ToByteArray("fuck you");
+            pack.AuthKey = Packet.ToByteArray("F4k3K34\x00");
+            pack.RequestBody = Packet.ToByteArray("fuck you\x00");
             pack.GetPacketSize();
             pack.SendPacket();
         }
