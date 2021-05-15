@@ -1,0 +1,122 @@
+{
+  "main": {
+    "id": "09c87e949c617d7c",
+    "type": "split",
+    "children": [
+      {
+        "id": "e3260a6a09776688",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "Index.md",
+            "mode": "source"
+          }
+        }
+      },
+      {
+        "id": "bef4314239dd2e3f",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "Index.md",
+            "mode": "preview"
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "52d45c55e32e6b03",
+    "type": "split",
+    "children": [
+      {
+        "id": "21333ca57218735d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d5ec958d8280c93b",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "19ab030ff1358381",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "44bb2c6c24fae96f",
+    "type": "split",
+    "children": [
+      {
+        "id": "ca0c9ef5642d83e6",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1f821400d80bbaa1",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Index.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "bc28fe0455367219",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4f77daae83db26c2",
+            "type": "leaf",
+            "state": {
+              "type": "todo",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "bef4314239dd2e3f",
+  "lastOpenFiles": [
+    "Index.md",
+    "ToDo.md",
+    "Untitled Kanban.md",
+    "Colors.md",
+    "Untitled.md"
+  ]
+}

@@ -1,0 +1,577 @@
+﻿<Window x:Name="window" x:Class="BackChannel.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BackChannel"
+        xmlns:VMs="clr-namespace:BackChannel.ViewModels"
+        mc:Ignorable="d"
+        Title="BackChannel" Height="900" Width="1600" MinHeight="300" MinWidth="900" Icon="/BackChannelIcon.png" SizeChanged="window_SizeChanged">
+    <Window.Resources>
+        <Style x:Key="RobotoMono">
+            <Setter Property="TextElement.FontFamily" Value="Resources/#ROBOTOMONO-VARIABLEFONT_WGHT" />
+
+        </Style>
+        <!-- 
+            This styles the Server List on the Left Panel
+        -->
+        <Style x:Key="ServerListItemStyle" TargetType="{x:Type ListViewItem}">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="Padding" Value="5,1"/>
+            <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+            <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Margin" Value="0,0,0,2"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Border x:Name="Bd" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsMouseOver" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Background" TargetName="Bd" Value="#383838"/>
+                                <Setter Property="BorderBrush" TargetName="Bd" Value="gray"/>
+                                <Setter Property="BorderThickness" TargetName="Bd" Value="3,0,0,0"/>
+                                <Setter Property="Padding" Value="3,2"/>
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Selector.IsSelectionActive" Value="False"/>
+                                    <Condition Property="IsSelected" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Background" TargetName="Bd" Value="#383838"/>
+                                <Setter Property="BorderBrush" TargetName="Bd" Value="White"/>
+                                <Setter Property="BorderThickness" TargetName="Bd" Value="3,0,0,0"/>
+                                <Setter Property="Padding" Value="3,2"/>
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Selector.IsSelectionActive" Value="True"/>
+                                    <Condition Property="IsSelected" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Background" TargetName="Bd" Value="#383838"/>
+                                <Setter Property="BorderBrush" TargetName="Bd" Value="White"/>
+                                <Setter Property="BorderThickness" TargetName="Bd" Value="3,0,0,0"/>
+                                <Setter Property="Padding" Value="3,2"/>
+                            </MultiTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- 
+            This styles the Chat List on the Right Panel
+        -->
+        <Style x:Key="ChatListItemStyle" TargetType="{x:Type ListViewItem}">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="Padding" Value="5,1"/>
+            <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+            <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Margin" Value="0,0,0,20"/>
+            <Setter Property="BorderThickness" Value="3,0,0,0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Border x:Name="Bd" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsMouseOver" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Background" TargetName="Bd" Value="#272727"/>
+                                <Setter Property="BorderBrush" TargetName="Bd" Value="gray"/>
+                                <Setter Property="BorderThickness" TargetName="Bd" Value="3,0,0,0"/>
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Selector.IsSelectionActive" Value="False"/>
+                                    <Condition Property="IsSelected" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Background" TargetName="Bd" Value="#272727"/>
+                                <Setter Property="BorderBrush" TargetName="Bd" Value="White"/>
+                                <Setter Property="BorderThickness" TargetName="Bd" Value="3,0,0,0"/>
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Selector.IsSelectionActive" Value="True"/>
+                                    <Condition Property="IsSelected" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Background" TargetName="Bd" Value="#272727"/>
+                                <Setter Property="BorderBrush" TargetName="Bd" Value="White"/>
+                                <Setter Property="BorderThickness" TargetName="Bd" Value="3,0,0,0"/>
+                            </MultiTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--
+            This styles the Add Server Button on the Left Panel
+        -->
+        <Style x:Key="AddButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Margin" Value="5,0,10,0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ButtonBase}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Button.IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#1E1E1E"/>
+                                <Setter Property="FontSize" Value="16"/>
+                                <Setter Property="Margin" Value="5,0,8,0"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#1E1E1E"/>
+                                <Setter Property="FontSize" Value="12"/>
+                                <Setter Property="Margin" Value="5,0,10,0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--
+            This styles the Settings Button at the bottom of the Middle Panel
+        -->
+        <Style x:Key="SettingsButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Margin" Value="5,0,10,0"/>
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ButtonBase}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Button.IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="Transparent"/>
+                                <Setter Property="FontSize" Value="26"/>
+                                <Setter Property="Margin" Value="5,0,8,0"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="Transparent"/>
+                                <Setter Property="FontSize" Value="22"/>
+                                <Setter Property="Margin" Value="5,0,10,0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--
+            This styles the Server Settings at the Top of the Middle Panel
+        -->
+        <Style x:Key="ServerSettingsButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Margin" Value="10,20,5,0"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ButtonBase}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Button.IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="Transparent"/>
+                                <Setter Property="FontSize" Value="22"/>
+                                <Setter Property="Margin" Value="10,19,4,0"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="Transparent"/>
+                                <Setter Property="FontSize" Value="20"/>
+                                <Setter Property="Margin" Value="10,20,5,0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--
+            This styles the Search Button at the Top of the Right Panel
+        -->
+        <Style x:Key="SearchButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Margin" Value="10,15,70,0"/>
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ButtonBase}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Button.IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="Transparent"/>
+                                <Setter Property="Height" Value="36"/>
+                                <Setter Property="Margin" Value="10,13,68,0"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="Transparent"/>
+                                <Setter Property="Height" Value="32"/>
+                                <Setter Property="Margin" Value="10,15,70,0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--
+            This styles the Member Button at the Top of the Right Panel
+        -->
+        <Style x:Key="MemberButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Margin" Value="10,15,20,0"/>
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ButtonBase}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Button.IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="Transparent"/>
+                                <Setter Property="Height" Value="36"/>
+                                <Setter Property="Margin" Value="10,13,18,0"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="Transparent"/>
+                                <Setter Property="Height" Value="32"/>
+                                <Setter Property="Margin" Value="10,15,20,0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid x:Name="MainGrid" Background="#151515" 
+          MaxWidth="{Binding ActualWidth, ElementName=window, Mode=OneWay}">
+        <!--
+            Defines the column Layout
+            The in-between columns with a Width of 5 are used for the GridSplitters
+        -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="LeftGridDef" Width="200" MinWidth="200"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition x:Name="MiddleGridDef" Width="250" MinWidth="250"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition x:Name="RightGridDef" Width="25*" MinWidth="300"/>
+        </Grid.ColumnDefinitions>
+
+        <!--
+            Layout of the Left Column
+            Holds the Title/Logo and the server list, as well as the button to add servers
+            The Add server button as well as the servers themselves do nothing currently. Use the debug dialog(Currently the Settings Button) to add and remove servers
+        -->
+        <StackPanel x:Name="LeftColumnStack" Background="#1E1E1E" Width="auto" SizeChanged="LeftColumnStack_SizeChanged">
+            <!-- 
+                This StackPanel contains the BackChannel Title/Logo
+            -->
+            <StackPanel  x:Name="TitleLogo" Background="#1E1E1E" Margin="4,10,0,0" Panel.ZIndex="1">
+                <Border BorderBrush="#1E1E1E"
+                BorderThickness="0">
+                    <Border.Effect>
+                        <DropShadowEffect ShadowDepth="8"/>
+                    </Border.Effect>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Image Source="/BackChannelIcon.png" Width="40" Height="40" RenderOptions.BitmapScalingMode="HighQuality"/>
+                        <TextBlock Text="BackChannel" Foreground="White" Margin="0,0,5,0"
+                                FontSize="18" VerticalAlignment="Center" FontFamily="Roboto Mono Thin"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+
+            <!-- 
+                Seperator Line 
+            -->
+            <Rectangle Height="2" Fill="White" Margin="20,8,20,5"/>
+
+            <!-- 
+                This Grid shows the "Server" text and the Add Server Button                
+            -->
+            <Grid Panel.ZIndex="10">
+                <TextBlock Text="Servers" Foreground="White" HorizontalAlignment="Center" 
+                           FontSize="18" Margin="0,0,0,2" FontFamily="Roboto Mono Thin"/>
+                <Button x:Name="AddServerButton" Style="{DynamicResource AddButtonStyle}" 
+                        Background="Transparent" BorderThickness="0" VerticalAlignment="Center" 
+                        HorizontalAlignment="Right" Click="AddServerButton_Click">
+                    <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xF8AA;" Foreground="White"
+                                TextOptions.TextRenderingMode="Grayscale" RenderOptions.BitmapScalingMode="HighQuality"/>
+                </Button>
+            </Grid>
+        </StackPanel>
+
+        <!-- 
+            This is the list of servers
+        -->
+        <ListView x:Name="ServerListView" Background="Transparent" BorderThickness="0" ItemsSource="{Binding}" Width="auto" Margin="0,88,0,0" ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemContainerStyle="{DynamicResource ServerListItemStyle}"
+                  MouseUp="ServerListView_MouseUp" SelectionChanged="ServerListView_SelectionChanged">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Image Source="/Icons/Error.png" Height="30" HorizontalAlignment="Left" RenderOptions.BitmapScalingMode="HighQuality"/>
+                        <TextBlock Text="{Binding Name}" Foreground="White" FontFamily="Roboto Mono Thin"
+                                   TextTrimming="CharacterEllipsis" Margin="35,3,0,0" FontSize="22"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.Template>
+                <ControlTemplate>
+                    <ScrollViewer>
+                        <ItemsPresenter/>
+                    </ScrollViewer>
+                </ControlTemplate>
+            </ListView.Template>
+        </ListView>
+
+        <!--
+            Layout of the Middle Column
+            This will hold server channels and the user profile/settings area
+        -->
+        <GridSplitter Grid.Column="1"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Stretch"
+                      Background="#1E1E1E"    
+                      ResizeDirection="Columns"
+                      ResizeBehavior="PreviousAndCurrent"
+                      Width="5" Panel.ZIndex="10"/>
+        <Grid Grid.Column="2" x:Name="MiddleColumnStack" SizeChanged="MiddleColumnStack_SizeChanged"
+                Background="#151515" Visibility="Collapsed">
+            <Border BorderBrush="#1E1E1E"
+                BorderThickness="2,0,0,0" >
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="5"/>
+                </Border.Effect>
+                <Grid>
+                    <!--
+                        This is the Server Info Section.
+                        Holds the server name and possibly banner image.
+                    -->
+                    <TextBlock x:Name="ServerTitle" TextTrimming="CharacterEllipsis" FontSize="24"
+                                Text="Test Community Server" Foreground="White" Margin="20,17,0,0"
+                               HorizontalAlignment="Left" Width="200" FontFamily="Roboto Mono Thin"/>
+
+                    <Button x:Name="ServerSettingsButton" Style="{DynamicResource ServerSettingsButtonStyle}" 
+                                    Background="Transparent" BorderThickness="0"
+                                    Click="ServerSettingsButton_Click" 
+                            HorizontalAlignment="Right" VerticalAlignment="Top">
+                        <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE70D;" Foreground="White"
+                                TextOptions.TextRenderingMode="Grayscale" RenderOptions.BitmapScalingMode="HighQuality"/>
+                    </Button>
+
+                    <!-- 
+                        Seperator Line 
+                    -->
+                    <Rectangle Height="2" Fill="White" Margin="20,58,20,5" VerticalAlignment="Top"/>
+
+                    <!--
+                        The List of Channels in a server
+                    -->
+                    <ListView x:Name="ChannelListView" VerticalAlignment="Top" ItemContainerStyle="{DynamicResource ServerListItemStyle}"
+                              Background="Transparent" Margin="10,65,0,70" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                              ScrollViewer.VerticalScrollBarVisibility="Hidden" SelectionChanged="ChannelListView_SelectionChanged">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Image Source="/Icons/Chat.png"  Height="18" HorizontalAlignment="Left" Margin="0,3,0,3"
+                                           RenderOptions.BitmapScalingMode="HighQuality" Visibility="{Binding IsText}"/>
+                                    <Image Source="/Icons/Voice.png" Height="18" HorizontalAlignment="Left" Margin="0,3,0,3"
+                                           RenderOptions.BitmapScalingMode="HighQuality" Visibility="{Binding IsVoice}"/>
+                                    <TextBlock Text="{Binding Name}" Foreground="White" FontSize="18"
+                                            TextTrimming="CharacterEllipsis" Margin="35,0,0,0" FontFamily="Roboto Mono Thin" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.Template>
+                            <ControlTemplate>
+                                <ScrollViewer>
+                                    <ItemsPresenter/>
+                                </ScrollViewer>
+                            </ControlTemplate>
+                        </ListView.Template>
+                    </ListView>
+                </Grid>
+            </Border>
+        </Grid>
+
+
+        <!--
+            This is the User Footer
+            This will be different per server, since your users is different in every server.
+            Displays your current pfp, username, and status.
+            Also hosts the settings button, which will lead to a page where you can change profiles settings as well as app settings
+        -->
+        <Grid Grid.Column="2" Background="#151515" Height="70"
+                    VerticalAlignment="Bottom" Margin="10,0,0,0">
+            <Border BorderBrush="#1E1E1E"
+                BorderThickness="0,0,0,0" >
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="8"/>
+                </Border.Effect>
+                <Grid>
+                    <!-- 
+                        User Info
+                    -->
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Icons/pfp.png" Height="50" Margin="10" RenderOptions.BitmapScalingMode="HighQuality"
+                   HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        <StackPanel>
+                            <TextBlock Text="Epsi" Foreground="White" FontSize="24" Margin="0,15,0,0" FontFamily="Roboto Mono Thin"/>
+                            <TextBlock Text="Grab life by the crack and lick the shit out of it" 
+                           Foreground="White" FontSize="12" Margin="0,0,0,0" FontFamily="Roboto Mono Thin"
+                           TextTrimming="CharacterEllipsis" Width="100"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <!--
+                        Settings Button
+                    -->
+                    <Button x:Name="SettingsButton" Style="{DynamicResource SettingsButtonStyle}" 
+                    Background="Transparent" BorderThickness="0" Click="SettingsButton_Click"
+                    VerticalAlignment="Center" HorizontalAlignment="Right">
+                        <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE713;" Foreground="White"
+                                    TextOptions.TextRenderingMode="Grayscale" RenderOptions.BitmapScalingMode="HighQuality"/>
+                    </Button>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <!--
+            Layout of the Right Column
+            This will hold the texts sent in a channel and an input area to send messages
+            Will Also need to display the channel name in full, and have a button to show members
+        -->
+        <GridSplitter Grid.Column="3"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Stretch"
+                      Background="#151515" 
+                      ResizeDirection="Columns"
+                      ResizeBehavior="PreviousAndNext"
+                      Width="5" Panel.ZIndex="10"/>
+        <Border BorderBrush="#151515" Grid.Column="4"
+                BorderThickness="2,0,0,0" >
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="4"/>
+            </Border.Effect>
+            <Grid x:Name="RightColumnStack" Background="#111111" Visibility="Collapsed">
+                <!--
+                    This is the top bar showing the channel name and controls
+                    Controls: Show Channel Members, Search, 
+                -->
+                <Grid x:Name="TextChannelGrid" Background="#171717" Height="60" VerticalAlignment="Top">
+                    <Image Source="/Icons/Chat.png"  Height="32" HorizontalAlignment="Left" Margin="20,15,0,0"
+                       RenderOptions.BitmapScalingMode="HighQuality" Visibility="{Binding IsText}"
+                       VerticalAlignment="Top"/>
+                    <TextBlock x:Name="ChannelTitle" Text="amet elit" Foreground="White" FontSize="32"
+                           Margin="70,10,10,10" VerticalAlignment="Top" FontFamily="Roboto Mono Thin"/>
+                    <Button x:Name="SearchButton" Style="{DynamicResource SearchButtonStyle}" 
+                                Background="Transparent" BorderThickness="0" Click="SearchButton_Click"
+                                VerticalAlignment="Top" HorizontalAlignment="Right">
+                            <Image Source="/Icons/Search.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                        </Button>
+                    <Button x:Name="MembersButton" Style="{DynamicResource MemberButtonStyle}" 
+                                Background="Transparent" BorderThickness="0" Click="MembersButton_Click"
+                                VerticalAlignment="Top" HorizontalAlignment="Right">
+                        <Image Source="/Icons/Members.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                    </Button>
+                </Grid>
+                
+                <!--
+                    This is the chat handler 
+                -->
+                <ListView x:Name="ChatListView" VerticalAlignment="Bottom" ItemContainerStyle="{DynamicResource ChatListItemStyle}"
+                              Background="Transparent" Margin="10,65,0,70" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                              ScrollViewer.VerticalScrollBarVisibility="Hidden" SelectedIndex="-1" ItemsSource="{Binding}" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Username}" Foreground="White" FontSize="20"
+                                       TextTrimming="CharacterEllipsis" Margin="60,0,10,0" 
+                                       FontFamily="Roboto Mono Thin" TextDecorations="None"/>
+                                    <TextBlock Text="01/21/21 6:21pm" Foreground="Gray" FontSize="11"
+                                       TextTrimming="CharacterEllipsis" Margin="0,9,10,0" 
+                                       FontFamily="Roboto Mono Thin" TextDecorations="Underline"/>
+                                </StackPanel>
+                                <TextBlock Text="{Binding Content}" Foreground="White" FontSize="16"
+                                       TextWrapping="Wrap" Margin="60,40,50,0" 
+                                       FontFamily="Roboto Mono Thin" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.Template>
+                        <ControlTemplate>
+                            <ScrollViewer>
+                                <ItemsPresenter/>
+                            </ScrollViewer>
+                        </ControlTemplate>
+                    </ListView.Template>
+                </ListView>
+
+                <!--
+                    This is the Right Panel footer
+                    This will hold the Message Box and the send button
+                    It will also need to have buttons for sending images and files
+                -->
+                
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
