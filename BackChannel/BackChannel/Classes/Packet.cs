@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BackChannel.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -17,6 +18,8 @@ namespace BackChannel.Classes
         public byte[] AuthKey { get; set; }
         public byte[] RequestBody { get; set; }
         public Socket PacketSocket { get; set; }
+
+        public static List<Packet> PacketQueue { get; set; }
 
         public static byte[] ToByteArray(string data)
         {
@@ -47,9 +50,35 @@ namespace BackChannel.Classes
             PacketSocket.Send(GetPacketAsByteArray());
         }
 
+        public static ServerError GetLastError(string AuthKey)
+        {
+            Packet pack = new Packet();
+            pack.ChannelID = 0;
+            pack.RequestType = 0x00;
+            pack.AuthKey = Packet.ToByteArray($"{AuthKey}\x00");
+            pack.RequestBody = Packet.ToByteArray("\x00");
+            pack.GetPacketSize();
+            PacketQueue.Add(pack);
+            pack.SendPacket();
+            string res = pack.RecvResponse();
+            return (ServerError)uint.Parse(res, System.Globalization.NumberStyles.AllowHexSpecifier);
+        }
+
+        public string RecvResponse()
+        {
+            byte[] buffer = new byte[sizeof(UInt32)];
+            PacketSocket.Receive(buffer);
+            PacketQueue.Remove(this);
+
+            return BitConverter.ToString(buffer).Replace("-", "");
+        }
+
         public Packet()
         {
             PacketSocket = new Socket(SocketType.Stream, ProtocolType.Tcp);
+            Random rand = new Random();
+
+            PacketID = (uint)rand.Next(sizeof(UInt32));
         }
     }
 }

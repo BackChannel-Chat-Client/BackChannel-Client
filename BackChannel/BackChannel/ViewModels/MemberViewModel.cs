@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BackChannel.Classes;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -7,25 +8,20 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using BackChannel.Classes;
 
 namespace BackChannel.ViewModels
 {
-    /// <summary>
-    /// Holds and handles updating of the list of joined servers on the left panel
-    /// </summary>
-    public class ServerViewModel : INotifyPropertyChanged
+    public class MemberViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        private ObservableCollection<Server> servers = new ObservableCollection<Server>();
-        public ObservableCollection<Server> Servers
+        private ObservableCollection<Member> members = new ObservableCollection<Member>();
+        public ObservableCollection<Member> Members
         {
-            get { return servers; }
+            get { return members; }
             set
             {
-                servers = value;
-                this.OnPropertyChanged("Servers");
+                members = value;
+                this.OnPropertyChanged("Members");
             }
         }
         protected void OnPropertyChanged([CallerMemberName] string name = null)
@@ -33,19 +29,19 @@ namespace BackChannel.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-        public void AddServer(Server s)
+        public void AddMember(Member m)
         {
             Application.Current.Dispatcher.Invoke(new Action(() =>
             {
-                Servers.Add(s);
+                Members.Add(m);
             }));
         }
 
-        public void RemoveServer(Server s)
+        public void RemoveMember(Member m)
         {
             Application.Current.Dispatcher.Invoke(new Action(() =>
             {
-                Servers.Remove(s);
+                Members.Remove(m);
             }));
         }
     }

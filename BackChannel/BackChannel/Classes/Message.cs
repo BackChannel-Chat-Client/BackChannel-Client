@@ -18,6 +18,7 @@ namespace BackChannel.Classes
         public Visibility IsSolo { get; set; }
         public Thickness TextMargin { get; set; }
         public DateTime Date { get; set; }
+        public Member User { get; set; }
 
         public Message()
         {

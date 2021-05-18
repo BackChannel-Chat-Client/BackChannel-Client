@@ -28,6 +28,7 @@ namespace BackChannel
         public ServerViewModel serverViewModel;
         public ChannelViewModel channelViewModel;
         public ChatViewModel chatViewModel;
+        public MemberViewModel memberViewModel;
 
         /// <summary>
         /// Holds the window that gets opened to display debug info and options
@@ -40,9 +41,11 @@ namespace BackChannel
             serverViewModel = new ServerViewModel(); // Instantiates the ViewModel
             channelViewModel = new ChannelViewModel(); // Instantiates the ViewModel
             chatViewModel = new ChatViewModel(); // Instantiates the ViewModel
+            memberViewModel = new MemberViewModel(); // Instantiates the ViewModel
             ServerListView.ItemsSource = serverViewModel.Servers; // Set the Server List's Source to the ViewModel
             ChannelListView.ItemsSource = channelViewModel.Channels; // Set the Channel List's Source to the ViewModel
-            ChatListView.ItemsSource = chatViewModel.Messages; // Set the Channel List's Source to the ViewModel
+            ChatListView.ItemsSource = chatViewModel.Messages; // Set the Cannel List's Source to the ViewModel
+            MemberListView.ItemsSource = memberViewModel.Members; // Set the Cannel List's Source to the ViewModel
         }
 
         /// <summary>
@@ -149,14 +152,16 @@ namespace BackChannel
 
         private void MembersButton_Click(object sender, RoutedEventArgs e)
         {
-            Packet pack = new Packet();
-            pack.PacketID = 384743;
-            pack.ChannelID = Convert.ToUInt32(ChannelTitle.Text);
-            pack.RequestType = Convert.ToByte('b');
-            pack.AuthKey = Packet.ToByteArray("F4k3K34\x00");
-            pack.RequestBody = Packet.ToByteArray("fuck you\x00");
-            pack.GetPacketSize();
-            pack.SendPacket();
+            if (MemberBar.Visibility == Visibility.Visible)
+            {
+                MemberBar.Visibility = Visibility.Collapsed;
+                ServerButtonsGrid.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                MemberBar.Visibility = Visibility.Visible;
+                ServerButtonsGrid.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
@@ -222,11 +227,16 @@ namespace BackChannel
                     ChannelTitle.Text = item.ID.ToString();
                     RightColumnStack.Visibility = Visibility.Visible;
                     chatViewModel.Messages.Clear();
+                    memberViewModel.Members.Clear();
                     await Task.Run(() =>
                     {
                         foreach (Message m in item.Messages)
                         {
                             chatViewModel.AddText(m);
+                        }
+                        foreach (Member m in item.Members)
+                        {
+                            memberViewModel.AddMember(m);
                         }
                         Application.Current.Dispatcher.Invoke(new Action(() =>
                         {
