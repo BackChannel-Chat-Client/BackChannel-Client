@@ -26,6 +26,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="CalcBinding" Version="2.5.2" />
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="4.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="BackChannelIcon.png" />
     <Resource Include="Fonts\RobotoMono-VariableFont_wght.ttf" />
     <Resource Include="Fonts\UbuntuMono-Regular.ttf" />

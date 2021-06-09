@@ -1,17 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using BackChannel.ViewModels;
 using BackChannel.Classes;
 
 namespace BackChannel
@@ -130,6 +120,36 @@ namespace BackChannel
             {
 
             }
+        }
+
+        public void AddTextToConsole(string text)
+        {
+            Application.Current.Dispatcher.Invoke(new Action(() =>
+            {
+                DebugConsole.AppendText(text + "\n");
+                DebugConsole.Focus();
+                DebugConsole.CaretIndex = DebugConsole.Text.Length;
+                DebugConsole.ScrollToEnd();
+            }));
+        }
+
+        private void TestRQButton_Click(object sender, RoutedEventArgs e)
+        {
+            PacketTester tester = new PacketTester();
+            tester.Show();
+            //Packet TestPacket = new Packet();
+            //TestPacket.PacketID = 11111;
+            //TestPacket.RequestType = 2;
+            //TestPacket.RequestBody = Encoding.ASCII.GetBytes("\x0");
+            //TestPacket.ChannelID = 001100;
+            //TestPacket.AuthKey = Encoding.ASCII.GetBytes("TestAuth"); ;
+            //TestPacket.GetPacketSize();
+            //TestPacket.SendPacket();
+            //
+            //Response res = TestPacket.RecvResponse();
+            //
+            //AddTextToConsole($"[+] New Server Response:");
+            //AddTextToConsole($"[Size] {res.PacketSize}\n[ID] {res.PacketID}\n[Status] {res.ResponseStatus}\n[Body] {res.ResponseBody}");
         }
     }
 }

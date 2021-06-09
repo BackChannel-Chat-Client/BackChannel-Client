@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Index.md",
+            "file": "ViewModels/ChannelViewModel.md",
             "mode": "source"
           }
         }
@@ -20,8 +20,8 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Index.md",
-            "mode": "preview"
+            "file": "Colors.md",
+            "mode": "source"
           }
         }
       }
@@ -79,7 +79,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Index.md",
+                "file": "ViewModels/ChannelViewModel.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -100,6 +100,20 @@
             "id": "4f77daae83db26c2",
             "type": "leaf",
             "state": {
+              "type": "empty",
+              "state": {}
+            }
+          }
+        ]
+      },
+      {
+        "id": "f4f75f4d2b4ee857",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "38979d63456df42c",
+            "type": "leaf",
+            "state": {
               "type": "todo",
               "state": {}
             }
@@ -111,12 +125,16 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "bef4314239dd2e3f",
+  "active": "e3260a6a09776688",
   "lastOpenFiles": [
-    "Index.md",
-    "ToDo.md",
-    "Untitled Kanban.md",
+    "ViewModels/ChannelViewModel.md",
+    "Classes.md",
+    "ViewModels/Untitled.md",
     "Colors.md",
-    "Untitled.md"
+    "Index.md",
+    "Classes.md.md",
+    "Untitled.md",
+    "ToDo.md",
+    "Untitled Kanban.md"
   ]
 }

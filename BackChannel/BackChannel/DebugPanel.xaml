@@ -88,6 +88,11 @@
                 <Button Style="{DynamicResource ButtonStyle1}" HorizontalAlignment="Right" Width="155"
                     Content="Receive Message" Background="#111111" Foreground="White"/>
             </Grid>
+            <Grid>
+                <Button x:Name="TestRQButton" Style="{DynamicResource ButtonStyle1}" 
+                        HorizontalAlignment="Left" Width="155" Click="TestRQButton_Click"
+                    Content="Send Test RQ" Background="#111111" Foreground="White"/>
+            </Grid>
             <StackPanel>
                 <TextBlock x:Name="LeftWidthText" Text="Left Width: " FontSize="24" Foreground="White" Margin="5,0,0,0"/>
                 <TextBlock x:Name="MiddleWidthText" Text="Middle Width: " FontSize="24" Foreground="White" Margin="5,0,0,0"/>
@@ -95,6 +100,8 @@
                 <TextBlock x:Name="LeftMaxText" Text="Left Max: " FontSize="24" Foreground="White" Margin="5,0,0,0"/>
                 <TextBlock x:Name="MiddleMaxText" Text="Middle Max: " FontSize="24" Foreground="White" Margin="5,0,0,0"/>
             </StackPanel>
+            <TextBox Background="Black" Foreground="White" FontSize="16" AcceptsReturn="True"
+                     x:Name="DebugConsole" Height="300"/>
         </StackPanel>
     </Grid>
 </Window>

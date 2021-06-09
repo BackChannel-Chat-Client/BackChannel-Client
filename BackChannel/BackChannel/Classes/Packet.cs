@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using System.Buffers.Binary;
 
 namespace BackChannel.Classes
 {
@@ -18,6 +19,9 @@ namespace BackChannel.Classes
         public byte[] AuthKey { get; set; }
         public byte[] RequestBody { get; set; }
         public Socket PacketSocket { get; set; }
+        public string ServerIP { get; set; }
+        public int ServerPort { get; set; }
+
 
         public static List<Packet> PacketQueue { get; set; }
 
@@ -44,33 +48,47 @@ namespace BackChannel.Classes
 
         public void SendPacket()
         {
-            IPAddress ip = IPAddress.Parse("127.0.0.1");
-            IPEndPoint localEndPoint = new IPEndPoint(ip, 3090);
+            IPAddress ip = IPAddress.Parse(ServerIP);
+            IPEndPoint localEndPoint = new IPEndPoint(ip, ServerPort);
             PacketSocket.Connect(localEndPoint);
             PacketSocket.Send(GetPacketAsByteArray());
         }
 
-        public static ServerError GetLastError(string AuthKey)
-        {
-            Packet pack = new Packet();
-            pack.ChannelID = 0;
-            pack.RequestType = 0x00;
-            pack.AuthKey = Packet.ToByteArray($"{AuthKey}\x00");
-            pack.RequestBody = Packet.ToByteArray("\x00");
-            pack.GetPacketSize();
-            PacketQueue.Add(pack);
-            pack.SendPacket();
-            string res = pack.RecvResponse();
-            return (ServerError)uint.Parse(res, System.Globalization.NumberStyles.AllowHexSpecifier);
-        }
+        //public static ServerError GetLastError(string AuthKey)
+        //{
+        //    Packet pack = new Packet();
+        //    pack.ChannelID = 0;
+        //    pack.RequestType = 0x00;
+        //    pack.AuthKey = Packet.ToByteArray($"{AuthKey}\x00");
+        //    pack.RequestBody = Packet.ToByteArray("\x00");
+        //    pack.GetPacketSize();
+        //    PacketQueue.Add(pack);
+        //    pack.SendPacket();
+        //    string res = pack.RecvResponse();
+        //    return (ServerError)uint.Parse(res, System.Globalization.NumberStyles.AllowHexSpecifier);
+        //}
 
-        public string RecvResponse()
+        public Response RecvResponse()
         {
-            byte[] buffer = new byte[sizeof(UInt32)];
-            PacketSocket.Receive(buffer);
-            PacketQueue.Remove(this);
+            byte[] Size = new byte[sizeof(UInt32)];
+            PacketSocket.Receive(Size);
+            byte[] ID = new byte[sizeof(UInt32)];
+            PacketSocket.Receive(ID);
+            byte[] Status = new byte[sizeof(UInt32)];
+            PacketSocket.Receive(Status);
+            byte[] Body = new byte[sizeof(UInt32)];
+            PacketSocket.Receive(Body);
+            //PacketQueue.Remove(this);
 
-            return BitConverter.ToString(buffer).Replace("-", "");
+            Response res = new Response();
+            res.PacketSize = (UInt32)BitConverter.ToUInt32(Size);
+            res.PacketID = (UInt32)BitConverter.ToUInt32(ID);
+            Array.Reverse(Status, 0, Status.Length);
+            res.ResponseStatus = BitConverter.ToString(Status);
+            Array.Reverse(Body, 0, Body.Length);
+            res.ResponseBody = BitConverter.ToString(Body);
+
+            return res;
         }
 
         public Packet()

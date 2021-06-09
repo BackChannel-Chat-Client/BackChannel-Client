@@ -52,19 +52,31 @@
 }
 
 .admonition-content {
-    margin: 0 0.6rem;
-    position: relative;
+  margin: 10px 15px;
+  padding-right: 25px;
+  position: relative;
 }
+
 .admonition-content-copy {
-    position: absolute;
-    top: 0;
-    right: 0;
     color: var(--text-faint);
     cursor: pointer;
-    margin: -10px -2px;
+    opacity: 0;
+    position: absolute;
+    right: 0px;
+    top: 0;
+    transition: 0.3s opacity ease-in;
 }
+
 .admonition-content-copy:hover {
     color: var(--text-normal);
+}
+
+.admonition:hover .admonition-content-copy,
+.admonition-content-copy:hover {
+    opacity: 1;
+}
+.admonition-title:hover + .admonition-content .admonition-content-copy {
+    opacity: 0;
 }
 
 details.admonition:not([open]) {
@@ -74,8 +86,9 @@ details.admonition:not([open]) {
 
 details.admonition > summary {
     outline: none;
-    list-style: none;
-    display: block;
+    display: block !important;
+    list-style: none !important;
+    list-style-type: none !important;
     min-height: 1rem;
     border-top-left-radius: 0.1rem;
     border-top-right-radius: 0.1rem;
@@ -84,7 +97,7 @@ details.admonition > summary {
 
 details.admonition > summary::-webkit-details-marker,
 details.admonition > summary::marker {
-    display: none;
+    display: none !important;
 }
 
 details.admonition > summary > .collapser {

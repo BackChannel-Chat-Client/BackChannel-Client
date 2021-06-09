@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BackChannel"
         xmlns:VMs="clr-namespace:BackChannel.ViewModels"
+        xmlns:c="clr-namespace:CalcBinding;assembly=CalcBinding"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="BackChannel" Height="900" Width="1600" MinHeight="300" MinWidth="900" Icon="/BackChannelIcon.png" SizeChanged="window_SizeChanged">
+        Title="BackChannel" Height="900" Width="1600" MinHeight="300" MinWidth="900" Icon="/BackChannelIcon.png" SizeChanged="window_SizeChanged"
+    xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" d:DataContext="{d:DesignInstance Type=VMs:ChatViewModel}">
     <Window.Resources>
         <Style x:Key="RobotoMono">
             <Setter Property="TextElement.FontFamily" Value="Resources/#ROBOTOMONO-VARIABLEFONT_WGHT" />
@@ -36,7 +39,7 @@
                                 <MultiTrigger.Conditions>
                                     <Condition Property="IsMouseOver" Value="True"/>
                                 </MultiTrigger.Conditions>
-                                <Setter Property="Background" TargetName="Bd" Value="#383838"/>
+                                <Setter Property="Background" TargetName="Bd" Value="#272727"/>
                                 <Setter Property="BorderBrush" TargetName="Bd" Value="gray"/>
                                 <Setter Property="BorderThickness" TargetName="Bd" Value="3,0,0,0"/>
                                 <Setter Property="Padding" Value="3,2"/>
@@ -100,7 +103,7 @@
                                     <Condition Property="Selector.IsSelectionActive" Value="False"/>
                                     <Condition Property="IsSelected" Value="True"/>
                                 </MultiTrigger.Conditions>
-                                <Setter Property="Background" TargetName="Bd" Value="#272727"/>
+                                <Setter Property="Background" TargetName="Bd" Value="#383838"/>
                                 <Setter Property="BorderBrush" TargetName="Bd" Value="White"/>
                                 <Setter Property="BorderThickness" TargetName="Bd" Value="3,0,0,0"/>
                             </MultiTrigger>
@@ -109,7 +112,7 @@
                                     <Condition Property="Selector.IsSelectionActive" Value="True"/>
                                     <Condition Property="IsSelected" Value="True"/>
                                 </MultiTrigger.Conditions>
-                                <Setter Property="Background" TargetName="Bd" Value="#272727"/>
+                                <Setter Property="Background" TargetName="Bd" Value="#383838"/>
                                 <Setter Property="BorderBrush" TargetName="Bd" Value="White"/>
                                 <Setter Property="BorderThickness" TargetName="Bd" Value="3,0,0,0"/>
                             </MultiTrigger>
@@ -152,7 +155,7 @@
                                     <Condition Property="Selector.IsSelectionActive" Value="False"/>
                                     <Condition Property="IsSelected" Value="True"/>
                                 </MultiTrigger.Conditions>
-                                <Setter Property="Background" TargetName="Bd" Value="#272727"/>
+                                <Setter Property="Background" TargetName="Bd" Value="#383838"/>
                                 <Setter Property="BorderBrush" TargetName="Bd" Value="White"/>
                                 <Setter Property="BorderThickness" TargetName="Bd" Value="3,0,0,0"/>
                             </MultiTrigger>
@@ -161,7 +164,59 @@
                                     <Condition Property="Selector.IsSelectionActive" Value="True"/>
                                     <Condition Property="IsSelected" Value="True"/>
                                 </MultiTrigger.Conditions>
+                                <Setter Property="Background" TargetName="Bd" Value="#383838"/>
+                                <Setter Property="BorderBrush" TargetName="Bd" Value="White"/>
+                                <Setter Property="BorderThickness" TargetName="Bd" Value="3,0,0,0"/>
+                            </MultiTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- 
+            This styles the Settings List
+        -->
+        <Style x:Key="SettingsListItemStyle" TargetType="{x:Type ListViewItem}">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="Padding" Value="8,5,5,5"/>
+            <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+            <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Margin" Value="0,5,0,0"/>
+            <Setter Property="BorderThickness" Value="3,0,0,0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Border x:Name="Bd" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsMouseOver" Value="True"/>
+                                </MultiTrigger.Conditions>
                                 <Setter Property="Background" TargetName="Bd" Value="#272727"/>
+                                <Setter Property="BorderBrush" TargetName="Bd" Value="Gray"/>
+                                <Setter Property="BorderThickness" TargetName="Bd" Value="3,0,0,0"/>
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Selector.IsSelectionActive" Value="False"/>
+                                    <Condition Property="IsSelected" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Background" TargetName="Bd" Value="#383838"/>
+                                <Setter Property="BorderBrush" TargetName="Bd" Value="White"/>
+                                <Setter Property="BorderThickness" TargetName="Bd" Value="3,0,0,0"/>
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Selector.IsSelectionActive" Value="True"/>
+                                    <Condition Property="IsSelected" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Background" TargetName="Bd" Value="#383838"/>
                                 <Setter Property="BorderBrush" TargetName="Bd" Value="White"/>
                                 <Setter Property="BorderThickness" TargetName="Bd" Value="3,0,0,0"/>
                             </MultiTrigger>
@@ -199,6 +254,184 @@
                                 <Setter Property="Background" TargetName="border" Value="#1E1E1E"/>
                                 <Setter Property="FontSize" Value="12"/>
                                 <Setter Property="Margin" Value="5,0,10,0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--
+            This styles the Close Server Button on the Left Panel
+        -->
+        <Style x:Key="CloseServerListButtonStyle2" TargetType="{x:Type Button}">
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Margin" Value="5,5,10,0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ButtonBase}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Button.IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#1E1E1E"/>
+                                <Setter Property="FontSize" Value="16"/>
+                                <Setter Property="Margin" Value="4,4,8,0"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#1E1E1E"/>
+                                <Setter Property="FontSize" Value="12"/>
+                                <Setter Property="Margin" Value="5,5,10,0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--
+            This styles the Close Settings Button on the Left Panel
+        -->
+        <Style x:Key="CloseSettingsButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Margin" Value="10,10,10,0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ButtonBase}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Button.IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="Black"/>
+                                <Setter Property="FontSize" Value="22"/>
+                                <Setter Property="Margin" Value="9,9,8,0"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="Black"/>
+                                <Setter Property="FontSize" Value="20"/>
+                                <Setter Property="Margin" Value="10,10,10,0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--
+            This styles the Open Debug Button on the Left Panel
+        -->
+        <Style x:Key="OpenDebugButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Margin" Value="10,10,10,0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ButtonBase}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Button.IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="Black"/>
+                                <Setter Property="FontSize" Value="22"/>
+                                <Setter Property="Margin" Value="9,9,9,0"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="Black"/>
+                                <Setter Property="FontSize" Value="20"/>
+                                <Setter Property="Margin" Value="10,10,10,0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <!--
+            This styles the Open Debug Button on the Left Panel
+        -->
+        <Style x:Key="OpenPacketTesterStyle" TargetType="{x:Type Button}">
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Margin" Value="10,10,40,0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ButtonBase}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Button.IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="Black"/>
+                                <Setter Property="FontSize" Value="22"/>
+                                <Setter Property="Margin" Value="9,9,39,0"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="Black"/>
+                                <Setter Property="FontSize" Value="20"/>
+                                <Setter Property="Margin" Value="10,10,40,0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--
+            This styles the Error popup buttons
+        -->
+        <Style x:Key="ErrorButtonsStyle" TargetType="{x:Type Button}">
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Margin" Value="10,10,40,0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ButtonBase}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Button.IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#2B2B2D"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="White"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="Black"/>
+                                <Setter Property="FontSize" Value="20"/>
+                                <Setter Property="Margin" Value="10,10,40,0"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -386,6 +619,547 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" SnapsToDevicePixels="true" StrokeThickness="1" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="TextBox.Static.Background" Color="#FFFFFFFF"/>
+        <Style x:Key="ComboBoxEditableTextBox" TargetType="{x:Type TextBox}">
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="AllowDrop" Value="true"/>
+            <Setter Property="MinWidth" Value="0"/>
+            <Setter Property="MinHeight" Value="0"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <ScrollViewer x:Name="PART_ContentHost" Background="Transparent" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <LinearGradientBrush x:Key="ComboBox.Static.Background" EndPoint="0,1" StartPoint="0,0">
+            <GradientStop Color="Black" Offset="0.0"/>
+            <GradientStop Color="Black" Offset="1.0"/>
+        </LinearGradientBrush>
+        <SolidColorBrush x:Key="ComboBox.Static.Border" Color="#FFACACAC"/>
+        <SolidColorBrush x:Key="ComboBox.Static.Glyph" Color="#FF606060"/>
+        <SolidColorBrush x:Key="ComboBox.Static.Editable.Background" Color="Black"/>
+        <SolidColorBrush x:Key="ComboBox.Static.Editable.Border" Color="#FFABADB3"/>
+        <SolidColorBrush x:Key="ComboBox.Static.Editable.Button.Background" Color="Transparent"/>
+        <SolidColorBrush x:Key="ComboBox.Static.Editable.Button.Border" Color="Transparent"/>
+        <LinearGradientBrush x:Key="ComboBox.MouseOver.Background" EndPoint="0,1" StartPoint="0,0">
+            <GradientStop Color="#FFECF4FC" Offset="0.0"/>
+            <GradientStop Color="#FFDCECFC" Offset="1.0"/>
+        </LinearGradientBrush>
+        <SolidColorBrush x:Key="ComboBox.MouseOver.Border" Color="#FF7EB4EA"/>
+        <SolidColorBrush x:Key="ComboBox.MouseOver.Glyph" Color="#FF000000"/>
+        <SolidColorBrush x:Key="ComboBox.MouseOver.Editable.Background" Color="#FFFFFFFF"/>
+        <SolidColorBrush x:Key="ComboBox.MouseOver.Editable.Border" Color="#FF7EB4EA"/>
+        <LinearGradientBrush x:Key="ComboBox.MouseOver.Editable.Button.Background" EndPoint="0,1" StartPoint="0,0">
+            <GradientStop Color="#FFEBF4FC" Offset="0.0"/>
+            <GradientStop Color="#FFDCECFC" Offset="1.0"/>
+        </LinearGradientBrush>
+        <SolidColorBrush x:Key="ComboBox.MouseOver.Editable.Button.Border" Color="#FF7EB4EA"/>
+        <LinearGradientBrush x:Key="ComboBox.Pressed.Background" EndPoint="0,1" StartPoint="0,0">
+            <GradientStop Color="#FFDAECFC" Offset="0.0"/>
+            <GradientStop Color="#FFC4E0FC" Offset="1.0"/>
+        </LinearGradientBrush>
+        <SolidColorBrush x:Key="ComboBox.Pressed.Border" Color="#FF569DE5"/>
+        <SolidColorBrush x:Key="ComboBox.Pressed.Glyph" Color="#FF000000"/>
+        <SolidColorBrush x:Key="ComboBox.Pressed.Editable.Background" Color="#FFFFFFFF"/>
+        <SolidColorBrush x:Key="ComboBox.Pressed.Editable.Border" Color="#FF569DE5"/>
+        <LinearGradientBrush x:Key="ComboBox.Pressed.Editable.Button.Background" EndPoint="0,1" StartPoint="0,0">
+            <GradientStop Color="#FFDAEBFC" Offset="0.0"/>
+            <GradientStop Color="#FFC4E0FC" Offset="1.0"/>
+        </LinearGradientBrush>
+        <SolidColorBrush x:Key="ComboBox.Pressed.Editable.Button.Border" Color="#FF569DE5"/>
+        <SolidColorBrush x:Key="ComboBox.Disabled.Background" Color="#FFF0F0F0"/>
+        <SolidColorBrush x:Key="ComboBox.Disabled.Border" Color="#FFD9D9D9"/>
+        <SolidColorBrush x:Key="ComboBox.Disabled.Glyph" Color="#FFBFBFBF"/>
+        <SolidColorBrush x:Key="ComboBox.Disabled.Editable.Background" Color="#FFFFFFFF"/>
+        <SolidColorBrush x:Key="ComboBox.Disabled.Editable.Border" Color="#FFBFBFBF"/>
+        <SolidColorBrush x:Key="ComboBox.Disabled.Editable.Button.Background" Color="Transparent"/>
+        <SolidColorBrush x:Key="ComboBox.Disabled.Editable.Button.Border" Color="Transparent"/>
+        <Style x:Key="ComboBoxToggleButton" TargetType="{x:Type ToggleButton}">
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="IsTabStop" Value="false"/>
+            <Setter Property="Focusable" Value="false"/>
+            <Setter Property="ClickMode" Value="Press"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Border x:Name="templateRoot" Background="Black" BorderThickness="0" BorderBrush="{StaticResource ComboBox.Static.Border}" SnapsToDevicePixels="true">
+                            <Border x:Name="splitBorder" BorderThickness="1" BorderBrush="Transparent" HorizontalAlignment="Right" Margin="0" SnapsToDevicePixels="true" Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
+                                <Path x:Name="arrow" Data="F1 M 0,0 L 2.667,2.66665 L 5.3334,0 L 5.3334,-1.78168 L 2.6667,0.88501 L0,-1.78168 L0,0 Z" Fill="{StaticResource ComboBox.Static.Glyph}" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center"/>
+                            </Border>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" Value="true"/>
+                                    <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="false"/>
+                                    <Condition Binding="{Binding IsPressed, RelativeSource={RelativeSource Self}}" Value="false"/>
+                                    <Condition Binding="{Binding IsEnabled, RelativeSource={RelativeSource Self}}" Value="true"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Background" TargetName="templateRoot" Value="Black"/>
+                                <Setter Property="BorderBrush" TargetName="templateRoot" Value="Black"/>
+                                <Setter Property="Background" TargetName="splitBorder" Value="Black"/>
+                                <Setter Property="BorderBrush" TargetName="splitBorder" Value="Black"/>
+                            </MultiDataTrigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Fill" TargetName="arrow" Value="White"/>
+                            </Trigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true"/>
+                                    <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" Value="false"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Background" TargetName="templateRoot" Value="Black"/>
+                                <Setter Property="BorderBrush" TargetName="templateRoot" Value="Black"/>
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true"/>
+                                    <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" Value="true"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Background" TargetName="templateRoot" Value="Black"/>
+                                <Setter Property="BorderBrush" TargetName="templateRoot" Value="Black"/>
+                                <Setter Property="Background" TargetName="splitBorder" Value="Black"/>
+                                <Setter Property="BorderBrush" TargetName="splitBorder" Value="Black"/>
+                            </MultiDataTrigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Fill" TargetName="arrow" Value="White"/>
+                            </Trigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding IsPressed, RelativeSource={RelativeSource Self}}" Value="true"/>
+                                    <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" Value="false"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Background" TargetName="templateRoot" Value="Black"/>
+                                <Setter Property="BorderBrush" TargetName="templateRoot" Value="Black"/>
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding IsPressed, RelativeSource={RelativeSource Self}}" Value="true"/>
+                                    <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" Value="true"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Background" TargetName="templateRoot" Value="{StaticResource ComboBox.Pressed.Editable.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="templateRoot" Value="{StaticResource ComboBox.Pressed.Editable.Border}"/>
+                                <Setter Property="Background" TargetName="splitBorder" Value="{StaticResource ComboBox.Pressed.Editable.Button.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="splitBorder" Value="{StaticResource ComboBox.Pressed.Editable.Button.Border}"/>
+                            </MultiDataTrigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Fill" TargetName="arrow" Value="{StaticResource ComboBox.Disabled.Glyph}"/>
+                            </Trigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding IsEnabled, RelativeSource={RelativeSource Self}}" Value="false"/>
+                                    <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" Value="false"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Background" TargetName="templateRoot" Value="{StaticResource ComboBox.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="templateRoot" Value="{StaticResource ComboBox.Disabled.Border}"/>
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding IsEnabled, RelativeSource={RelativeSource Self}}" Value="false"/>
+                                    <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" Value="true"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Background" TargetName="templateRoot" Value="Black"/>
+                                <Setter Property="BorderBrush" TargetName="templateRoot" Value="{StaticResource ComboBox.Disabled.Editable.Border}"/>
+                                <Setter Property="Background" TargetName="splitBorder" Value="{StaticResource ComboBox.Disabled.Editable.Button.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="splitBorder" Value="{StaticResource ComboBox.Disabled.Editable.Button.Border}"/>
+                            </MultiDataTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <ControlTemplate x:Key="ComboBoxEditableTemplate" TargetType="{x:Type ComboBox}">
+            <Grid x:Name="templateRoot" SnapsToDevicePixels="true">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" Width="0"/>
+                </Grid.ColumnDefinitions>
+                <Popup x:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2" IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}" Placement="Bottom" PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}">
+                    <theme:SystemDropShadowChrome x:Name="shadow" Color="Transparent" MinWidth="{Binding ActualWidth, ElementName=templateRoot}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                        <Border x:Name="dropDownBorder" Background="Black" BorderThickness="1" BorderBrush="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}">
+                            <ScrollViewer x:Name="DropDownScrollViewer">
+                                <Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
+                                    <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
+                                        <Rectangle x:Name="opaqueRect" Fill="{Binding Background, ElementName=dropDownBorder}" Height="{Binding ActualHeight, ElementName=dropDownBorder}" Width="{Binding ActualWidth, ElementName=dropDownBorder}"/>
+                                    </Canvas>
+                                    <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                </Grid>
+                            </ScrollViewer>
+                        </Border>
+                    </theme:SystemDropShadowChrome>
+                </Popup>
+                <ToggleButton x:Name="toggleButton" Background="Transparent" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" Grid.ColumnSpan="2" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource ComboBoxToggleButton}"/>
+                <Border x:Name="border" Background="Transparent" Margin="{TemplateBinding BorderThickness}">
+                    <TextBox x:Name="PART_EditableTextBox" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}" Margin="{TemplateBinding Padding}" Style="{StaticResource ComboBoxEditableTextBox}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                </Border>
+            </Grid>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsEnabled" Value="false">
+                    <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                </Trigger>
+                <Trigger Property="IsKeyboardFocusWithin" Value="true">
+                    <Setter Property="Foreground" Value="Black"/>
+                </Trigger>
+                <Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="true">
+                    <Setter Property="Margin" TargetName="shadow" Value="0,0,5,5"/>
+                    <Setter Property="Color" TargetName="shadow" Value="#71000000"/>
+                </Trigger>
+                <Trigger Property="HasItems" Value="false">
+                    <Setter Property="Height" TargetName="dropDownBorder" Value="95"/>
+                </Trigger>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsGrouping" Value="true"/>
+                        <Condition Property="VirtualizingPanel.IsVirtualizingWhenGrouping" Value="false"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
+                </MultiTrigger>
+                <Trigger Property="ScrollViewer.CanContentScroll" SourceName="DropDownScrollViewer" Value="false">
+                    <Setter Property="Canvas.Top" TargetName="opaqueRect" Value="{Binding VerticalOffset, ElementName=DropDownScrollViewer}"/>
+                    <Setter Property="Canvas.Left" TargetName="opaqueRect" Value="{Binding HorizontalOffset, ElementName=DropDownScrollViewer}"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        <ControlTemplate x:Key="ComboBoxTemplate" TargetType="{x:Type ComboBox}">
+            <Grid x:Name="templateRoot" SnapsToDevicePixels="true">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" Width="0"/>
+                </Grid.ColumnDefinitions>
+                <Popup x:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2" IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Margin="1" Placement="Bottom" PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}">
+                    <theme:SystemDropShadowChrome x:Name="shadow" Color="Transparent" MinWidth="{Binding ActualWidth, ElementName=templateRoot}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                        <Border x:Name="dropDownBorder" Background="Black" BorderThickness="1" BorderBrush="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}">
+                            <ScrollViewer x:Name="DropDownScrollViewer">
+                                <Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
+                                    <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
+                                        <Rectangle x:Name="opaqueRect" Fill="{Binding Background, ElementName=dropDownBorder}" Height="{Binding ActualHeight, ElementName=dropDownBorder}" Width="{Binding ActualWidth, ElementName=dropDownBorder}"/>
+                                    </Canvas>
+                                    <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                </Grid>
+                            </ScrollViewer>
+                        </Border>
+                    </theme:SystemDropShadowChrome>
+                </Popup>
+                <ToggleButton x:Name="toggleButton" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" Grid.ColumnSpan="2" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource ComboBoxToggleButton}"/>
+                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" Content="{TemplateBinding SelectionBoxItem}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" IsHitTestVisible="false" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+            </Grid>
+            <ControlTemplate.Triggers>
+                <Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="true">
+                    <Setter Property="Margin" TargetName="shadow" Value="0,0,5,5"/>
+                    <Setter Property="Color" TargetName="shadow" Value="#71000000"/>
+                </Trigger>
+                <Trigger Property="HasItems" Value="false">
+                    <Setter Property="Height" TargetName="dropDownBorder" Value="95"/>
+                </Trigger>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsGrouping" Value="true"/>
+                        <Condition Property="VirtualizingPanel.IsVirtualizingWhenGrouping" Value="false"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
+                </MultiTrigger>
+                <Trigger Property="ScrollViewer.CanContentScroll" SourceName="DropDownScrollViewer" Value="false">
+                    <Setter Property="Canvas.Top" TargetName="opaqueRect" Value="{Binding VerticalOffset, ElementName=DropDownScrollViewer}"/>
+                    <Setter Property="Canvas.Left" TargetName="opaqueRect" Value="{Binding HorizontalOffset, ElementName=DropDownScrollViewer}"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        <Style x:Key="ServerProfilePickerStyle" TargetType="{x:Type ComboBox}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="Black"/>
+            <Setter Property="BorderBrush" Value="{StaticResource ComboBox.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="Padding" Value="6,3,5,3"/>
+            <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
+            <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="Template" Value="{StaticResource ComboBoxTemplate}"/>
+            <Style.Triggers>
+                <Trigger Property="IsEditable" Value="true">
+                    <Setter Property="IsTabStop" Value="false"/>
+                    <Setter Property="Padding" Value="2"/>
+                    <Setter Property="Template" Value="{StaticResource ComboBoxEditableTemplate}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <!-- Brushes used in Styling of ScrollViewer -->
+        <SolidColorBrush x:Key="StandardBorderBrush" Color="#888" />
+        <SolidColorBrush x:Key="StandardBackgroundBrush" Color="Black" />
+        <SolidColorBrush x:Key="HoverBorderBrush" Color="Black" />
+        <SolidColorBrush x:Key="SelectedBackgroundBrush" Color="Black" />
+        <SolidColorBrush x:Key="SelectedForegroundBrush" Color="Black" />
+        <SolidColorBrush x:Key="DisabledForegroundBrush" Color="Black" />
+        <SolidColorBrush x:Key="NormalBrush" Color="#888" />
+        <SolidColorBrush x:Key="NormalBorderBrush" Color="#888" />
+        <SolidColorBrush x:Key="HorizontalNormalBrush" Color="#888" />
+        <SolidColorBrush x:Key="HorizontalNormalBorderBrush" Color="#888" />
+        <LinearGradientBrush x:Key="ListBoxBackgroundBrush"
+                             StartPoint="0,0" EndPoint="1,0.001">
+            <GradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Color="Black" Offset="0.0" />
+                    <GradientStop Color="Black" Offset="0.6" />
+                    <GradientStop Color="Black" Offset="1.2"/>
+                </GradientStopCollection>
+            </GradientBrush.GradientStops>
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="StandardBrush"
+                             StartPoint="0,0" EndPoint="0,1">
+            <GradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Color="Black" Offset="0.0"/>
+                    <GradientStop Color="Black" Offset="1.0"/>
+                </GradientStopCollection>
+            </GradientBrush.GradientStops>
+        </LinearGradientBrush>
+        <SolidColorBrush x:Key="GlyphBrush" Color="#444" />
+        <LinearGradientBrush x:Key="PressedBrush"
+                             StartPoint="0,0" EndPoint="0,1">
+            <GradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Color="Black" Offset="0.0"/>
+                    <GradientStop Color="Black" Offset="0.1"/>
+                    <GradientStop Color="Black" Offset="0.9"/>
+                    <GradientStop Color="Black" Offset="1.0"/>
+                </GradientStopCollection>
+            </GradientBrush.GradientStops>
+        </LinearGradientBrush>
+
+        <!-- SrollViewer ScrollBar Repeat Buttons (at each end) -->
+        <Style x:Key="ScrollBarLineButton" TargetType="{x:Type RepeatButton}">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="Focusable" Value="false"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                        <Border Name="Border" Margin="0" CornerRadius="0" Height="10"
+                                Background="{StaticResource NormalBrush}"
+                                BorderBrush="{StaticResource NormalBorderBrush}"
+                                BorderThickness="1">
+                            <Path HorizontalAlignment="Center" VerticalAlignment="Center"
+                                  Fill="{StaticResource GlyphBrush}"
+                                  Data="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter TargetName="Border" Property="Background"
+                                    Value="{StaticResource PressedBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground"
+                                    Value="{StaticResource DisabledForegroundBrush}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!-- SrollViewer ScrollBar Repeat Buttons (The part in the middle, 
+             not the thumb the long area between the buttons ) -->
+        <Style x:Key="ScrollBarPageButton" TargetType="{x:Type RepeatButton}">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="IsTabStop" Value="false"/>
+            <Setter Property="Focusable" Value="false"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                        <Border Background="Transparent" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- ScrollViewer ScrollBar Thumb, that part that can be dragged up/down or left/right Buttons -->
+        <Style x:Key="ScrollBarThumb" TargetType="{x:Type Thumb}">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="IsTabStop" Value="false"/>
+            <Setter Property="Focusable" Value="false"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Thumb}">
+                        <Border CornerRadius="0" Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <ControlTemplate x:Key="VerticalScrollBar"
+                         TargetType="{x:Type ScrollBar}">
+            <Grid Width="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition MaxHeight="18"/>
+                    <RowDefinition Height="0.00001*"/>
+                    <RowDefinition MaxHeight="18"/>
+                </Grid.RowDefinitions>
+                <Border Grid.RowSpan="3" CornerRadius="0" Background="#1E1E1E" />
+                <RepeatButton Grid.Row="0" Style="{StaticResource ScrollBarLineButton}"
+                              Height="18" Command="ScrollBar.LineUpCommand"
+                              Content="M 0 4 L 8 4 L 4 0 Z"/>
+                <Track Name="PART_Track" Grid.Row="1" IsDirectionReversed="true">
+                    <Track.DecreaseRepeatButton>
+                        <RepeatButton Style="{StaticResource ScrollBarPageButton}" Command="ScrollBar.PageUpCommand"/>
+                    </Track.DecreaseRepeatButton>
+                    <Track.Thumb>
+                        <Thumb Style="{StaticResource ScrollBarThumb}" Margin="1,0,1,0"
+                               Background="{StaticResource HorizontalNormalBrush}"
+                               BorderBrush="{StaticResource HorizontalNormalBorderBrush}"/>
+                    </Track.Thumb>
+                    <Track.IncreaseRepeatButton>
+                        <RepeatButton Style="{StaticResource ScrollBarPageButton}" Command="ScrollBar.PageDownCommand"/>
+                    </Track.IncreaseRepeatButton>
+                </Track>
+                <RepeatButton Grid.Row="3" Style="{StaticResource ScrollBarLineButton}"
+                              Height="18" Command="ScrollBar.LineDownCommand" Content="M 0 0 L 4 4 L 8 0 Z"/>
+            </Grid>
+        </ControlTemplate>
+
+        <!-- HorizontalScrollBar Template using the previously created Templates -->
+        <ControlTemplate x:Key="HorizontalScrollBar" TargetType="{x:Type ScrollBar}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MaxWidth="18"/>
+                    <ColumnDefinition Width="0.00001*"/>
+                    <ColumnDefinition MaxWidth="18"/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.ColumnSpan="3" CornerRadius="0" Background="Black"/>
+                <RepeatButton Grid.Column="0" Style="{StaticResource ScrollBarLineButton}" Width="18"
+                              Command="ScrollBar.LineLeftCommand" Content="M 4 0 L 4 8 L 0 4 Z"/>
+                <Track Name="PART_Track" Grid.Column="1" IsDirectionReversed="False">
+                    <Track.DecreaseRepeatButton>
+                        <RepeatButton Style="{StaticResource ScrollBarPageButton}" Command="ScrollBar.PageLeftCommand"/>
+                    </Track.DecreaseRepeatButton>
+                    <Track.Thumb>
+                        <Thumb Style="{StaticResource ScrollBarThumb}" Margin="0,1,0,1"
+                               Background="Black" BorderBrush="{StaticResource NormalBorderBrush}"/>
+                    </Track.Thumb>
+                    <Track.IncreaseRepeatButton>
+                        <RepeatButton Style="{StaticResource ScrollBarPageButton}" Command="ScrollBar.PageRightCommand"/>
+                    </Track.IncreaseRepeatButton>
+                </Track>
+                <RepeatButton Grid.Column="3" Style="{StaticResource ScrollBarLineButton}" Width="18"
+                              Command="ScrollBar.LineRightCommand" Content="M 0 0 L 4 4 L 0 8 Z"/>
+            </Grid>
+        </ControlTemplate>
+        <!-- Style for overall  ScrollBar -->
+        <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Style.Triggers>
+                <Trigger Property="Orientation" Value="Horizontal">
+                    <Setter Property="Width" Value="Auto"/>
+                    <Setter Property="Height" Value="18" />
+                    <Setter Property="Template" Value="{StaticResource HorizontalScrollBar}"/>
+                </Trigger>
+                <Trigger Property="Orientation" Value="Vertical">
+                    <Setter Property="Width" Value="18"/>
+                    <Setter Property="Height" Value="Auto" />
+                    <Setter Property="Template" Value="{StaticResource VerticalScrollBar}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Style for overall ScrollViewer -->
+        <Style x:Key="FavsScrollViewer" TargetType="{x:Type ScrollViewer}">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ScrollViewer}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <ScrollContentPresenter Grid.Column="1"/>
+
+                            <ScrollBar Name="PART_VerticalScrollBar"
+                                       Value="{TemplateBinding VerticalOffset}"
+                                       Maximum="{TemplateBinding ScrollableHeight}"
+                                       ViewportSize="{TemplateBinding ViewportHeight}"
+                                       Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"/>
+                            <ScrollBar Name="PART_HorizontalScrollBar"
+                                       Orientation="Horizontal"
+                                       Grid.Row="1"
+                                       Grid.Column="1"
+                                       Value="{TemplateBinding HorizontalOffset}"
+                                       Maximum="{TemplateBinding ScrollableWidth}"
+                                       ViewportSize="{TemplateBinding ViewportWidth}"
+                                       Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"/>
+
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="TextBox.Static.Border" Color="White"/>
+        <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="White"/>
+        <SolidColorBrush x:Key="TextBox.Focus.Border" Color="White"/>
+        <Style x:Key="SimpleTextBox" TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="AllowDrop" Value="true"/>
+            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" SnapsToDevicePixels="True">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.Focus.Border}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
+                        <Condition Property="IsSelectionActive" Value="false"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
     </Window.Resources>
     <Grid x:Name="MainGrid" Background="#151515" 
           MaxWidth="{Binding ActualWidth, ElementName=window, Mode=OneWay}">
@@ -394,13 +1168,43 @@
             The in-between columns with a Width of 5 are used for the GridSplitters
         -->
         <Grid.ColumnDefinitions>
-            <ColumnDefinition x:Name="LeftGridDef" Width="200" MinWidth="200"/>
+            <ColumnDefinition x:Name="LeftGridDef" Width="200" MinWidth="200" MaxWidth="0"/>
             <ColumnDefinition Width="5"/>
             <ColumnDefinition x:Name="MiddleGridDef" Width="250" MinWidth="250"/>
             <ColumnDefinition Width="5"/>
             <ColumnDefinition x:Name="RightGridDef" Width="25*" MinWidth="300"/>
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
+        
+        <!--
+            Debugging / Error handling Popup
+        -->
+
+        <Grid x:Name="ErrorPopup" Panel.ZIndex="1000" Grid.ColumnSpan="5" Visibility="Collapsed" Background="#9F000000">
+            <Border VerticalAlignment="Center" HorizontalAlignment="Center" Background="Black"
+                    BorderBrush="White" BorderThickness="2">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <TextBlock x:Name="ErrorTextTitle" Text="Application Error" Foreground="White" Margin="10,10,10,0" FontSize="24"
+                                   HorizontalAlignment="Center"/>
+                        <TextBlock Text="BackChannel Has encountered an error" Foreground="White" Margin="10,0,10,10" 
+                                   FontSize="18" HorizontalAlignment="Center"/>
+                        <TextBox Style="{DynamicResource SimpleTextBox}" x:Name="ErrorTextDescription" Text="fuck" Foreground="White" Margin="10,0,10,10" FontSize="16" Padding="5"
+                                 AcceptsReturn="True" IsReadOnly="True" BorderThickness="2" BorderBrush="White" Background="Transparent">
+                        </TextBox>
+                        <Button x:Name="ClosePopupButton" Content="Attempt to keep running" FontSize="14" Background="Transparent" 
+                                Click="ClosePopupButton_Click" Foreground="White" BorderBrush="Gray" BorderThickness="0,2,0,2" 
+                                HorizontalAlignment="Center" Margin="0,0,0,5" Style="{DynamicResource ErrorButtonsStyle}"/>
+                        <Button x:Name="CloseAppButton" Content="Close BackChannel" FontSize="14" Background="Transparent" Margin="0,0,0,5"
+                                Foreground="White" BorderBrush="Gray" BorderThickness="0,2,0,2" HorizontalAlignment="Center" 
+                                Click="CloseAppButton_Click" Style="{DynamicResource ErrorButtonsStyle}"/>
+                        <Button x:Name="OpenLogButton" Content="Open log file" FontSize="14" Background="Transparent" 
+                                Click="OpenLogButton_Click" Foreground="White" BorderBrush="Gray" BorderThickness="0,2,0,2" 
+                                HorizontalAlignment="Center" Margin="0,0,0,5" Style="{DynamicResource ErrorButtonsStyle}"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+        </Grid>
 
         <!--
             Layout of the Left Column
@@ -411,16 +1215,15 @@
             <!-- 
                 This StackPanel contains the BackChannel Title/Logo
             -->
-            <StackPanel  x:Name="TitleLogo" Background="#1E1E1E" Margin="4,10,0,0" Panel.ZIndex="1">
-                <Border BorderBrush="#1E1E1E"
-                BorderThickness="0">
+            <StackPanel x:Name="TitleLogo" Background="#1E1E1E" Margin="4,10,0,0" Panel.ZIndex="1">
+                <Border BorderBrush="#1E1E1E" BorderThickness="0">
                     <Border.Effect>
                         <DropShadowEffect ShadowDepth="8"/>
                     </Border.Effect>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Image Source="/BackChannelIcon.png" Width="40" Height="40" RenderOptions.BitmapScalingMode="HighQuality"/>
                         <TextBlock Text="BackChannel" Foreground="White" Margin="0,0,5,0"
-                                FontSize="18" VerticalAlignment="Center" FontFamily="Roboto Mono Thin"/>
+                                   FontSize="18" VerticalAlignment="Center"  />
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -435,12 +1238,12 @@
             -->
             <Grid Panel.ZIndex="10">
                 <TextBlock Text="Servers" Foreground="White" HorizontalAlignment="Center" 
-                           FontSize="18" Margin="0,0,0,2" FontFamily="Roboto Mono Thin"/>
+                           FontSize="18" Margin="0,0,0,2"  />
                 <Button x:Name="AddServerButton" Style="{DynamicResource AddButtonStyle}" 
                         Background="Transparent" BorderThickness="0" VerticalAlignment="Center" 
                         HorizontalAlignment="Right" Click="AddServerButton_Click">
                     <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xF8AA;" Foreground="White"
-                                TextOptions.TextRenderingMode="Grayscale" RenderOptions.BitmapScalingMode="HighQuality"/>
+                               TextOptions.TextRenderingMode="Grayscale" RenderOptions.BitmapScalingMode="HighQuality"/>
                 </Button>
             </Grid>
         </StackPanel>
@@ -448,14 +1251,14 @@
         <!-- 
             This is the list of servers
         -->
-        <ListView x:Name="ServerListView" Background="Transparent" BorderThickness="0" ItemsSource="{Binding}" Width="auto" Margin="0,88,0,0" ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemContainerStyle="{DynamicResource ServerListItemStyle}"
-                  MouseUp="ServerListView_MouseUp" SelectionChanged="ServerListView_SelectionChanged">
+        <ListView x:Name="ServerListView" Background="Transparent" BorderThickness="0" ItemsSource="{Binding}" Width="auto" Margin="0,88,18,0" ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemContainerStyle="{DynamicResource ServerListItemStyle}" MouseEnter="ServerListView_MouseEnter"
+                  SelectionChanged="ServerListView_SelectionChanged" MouseLeave="ServerListView_MouseLeave">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
                         <Image Source="/Icons/Error.png" Height="30" HorizontalAlignment="Left" RenderOptions.BitmapScalingMode="HighQuality"/>
-                        <TextBlock Text="{Binding Name}" Foreground="White" FontFamily="Roboto Mono Thin"
+                        <TextBlock Text="{Binding Name}" Foreground="White"  
                                    TextTrimming="CharacterEllipsis" Margin="35,3,0,0" FontSize="22"/>
                     </Grid>
                 </DataTemplate>
@@ -468,6 +1271,7 @@
                 </ControlTemplate>
             </ListView.Template>
         </ListView>
+        
 
         <!--
             Layout of the Middle Column
@@ -481,9 +1285,9 @@
                       ResizeBehavior="PreviousAndCurrent"
                       Width="5" Panel.ZIndex="10"/>
         <Grid Grid.Column="2" x:Name="MiddleColumnStack" SizeChanged="MiddleColumnStack_SizeChanged"
-                Background="#151515" Visibility="Collapsed">
+              Background="#151515" Visibility="Collapsed">
             <Border BorderBrush="#1E1E1E"
-                BorderThickness="2,0,0,0" >
+                    BorderThickness="2,0,0,0" >
                 <Border.Effect>
                     <DropShadowEffect ShadowDepth="5"/>
                 </Border.Effect>
@@ -493,16 +1297,8 @@
                         Holds the server name and possibly banner image.
                     -->
                     <TextBlock x:Name="ServerTitle" TextTrimming="CharacterEllipsis" FontSize="24"
-                                Text="Test Community Server" Foreground="White" Margin="20,17,0,0"
-                               HorizontalAlignment="Left" Width="200" FontFamily="Roboto Mono Thin"/>
-
-                    <Button x:Name="ServerSettingsButton" Style="{DynamicResource ServerSettingsButtonStyle}" 
-                                    Background="Transparent" BorderThickness="0"
-                                    Click="ServerSettingsButton_Click" 
-                            HorizontalAlignment="Right" VerticalAlignment="Top">
-                        <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE70D;" Foreground="White"
-                                TextOptions.TextRenderingMode="Grayscale" RenderOptions.BitmapScalingMode="HighQuality"/>
-                    </Button>
+                               Text="Test Community Server" Foreground="White" Margin="20,17,0,0"
+                               HorizontalAlignment="Left" Width="230"/>
 
                     <!-- 
                         Seperator Line 
@@ -512,8 +1308,8 @@
                     <!--
                         The List of Channels in a server
                     -->
-                    <ListView x:Name="ChannelListView" VerticalAlignment="Top" ItemContainerStyle="{DynamicResource ServerListItemStyle}"
-                              Background="Transparent" Margin="10,65,0,70" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                    <ListView x:Name="ChannelListView" ItemContainerStyle="{DynamicResource ServerListItemStyle}" MouseLeave="ChannelListView_MouseLeave"
+                              Background="Transparent" Margin="10,65,18,70" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MouseEnter="ChannelListView_MouseEnter"
                               ScrollViewer.VerticalScrollBarVisibility="Hidden" SelectionChanged="ChannelListView_SelectionChanged">
                         <ListView.ItemTemplate>
                             <DataTemplate>
@@ -523,7 +1319,7 @@
                                     <Image Source="/Icons/Voice.png" Height="18" HorizontalAlignment="Left" Margin="0,3,0,3"
                                            RenderOptions.BitmapScalingMode="HighQuality" Visibility="{Binding IsVoice}"/>
                                     <TextBlock Text="{Binding Name}" Foreground="White" FontSize="18"
-                                            TextTrimming="CharacterEllipsis" Margin="35,0,0,0" FontFamily="Roboto Mono Thin" />
+                                               TextTrimming="CharacterEllipsis" Margin="35,0,0,0"/>
                                 </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>
@@ -547,9 +1343,9 @@
             Also hosts the settings button, which will lead to a page where you can change profiles settings as well as app settings
         -->
         <Grid Grid.Column="2" Background="#151515" Height="70"
-                    VerticalAlignment="Bottom" Margin="10,0,0,0">
+              VerticalAlignment="Bottom" Margin="10,0,0,0">
             <Border BorderBrush="#1E1E1E"
-                BorderThickness="0,0,0,0" >
+                    BorderThickness="0,0,0,0" >
                 <Border.Effect>
                     <DropShadowEffect ShadowDepth="8"/>
                 </Border.Effect>
@@ -559,12 +1355,12 @@
                     -->
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/Icons/pfp.png" Height="50" Margin="10" RenderOptions.BitmapScalingMode="HighQuality"
-                   HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                               HorizontalAlignment="Left" VerticalAlignment="Center"/>
                         <StackPanel>
-                            <TextBlock Text="Epsi" Foreground="White" FontSize="24" Margin="0,15,0,0" FontFamily="Roboto Mono Thin"/>
+                            <TextBlock Text="Epsi" Foreground="White" FontSize="24" Margin="0,15,0,0"  />
                             <TextBlock Text="Grab life by the crack and lick the shit out of it" 
-                           Foreground="White" FontSize="12" Margin="0,0,0,0" FontFamily="Roboto Mono Thin"
-                           TextTrimming="CharacterEllipsis" Width="100"/>
+                                       Foreground="White" FontSize="12" Margin="0,0,0,0"  
+                                       TextTrimming="CharacterEllipsis" Width="100"/>
                         </StackPanel>
                     </StackPanel>
 
@@ -572,10 +1368,10 @@
                         Settings Button
                     -->
                     <Button x:Name="SettingsButton" Style="{DynamicResource SettingsButtonStyle}" 
-                    Background="Transparent" BorderThickness="0" Click="SettingsButton_Click"
-                    VerticalAlignment="Center" HorizontalAlignment="Right">
+                            Background="Transparent" BorderThickness="0" Click="SettingsButton_Click"
+                            VerticalAlignment="Center" HorizontalAlignment="Right">
                         <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE713;" Foreground="White"
-                                    TextOptions.TextRenderingMode="Grayscale" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                   TextOptions.TextRenderingMode="Grayscale" RenderOptions.BitmapScalingMode="HighQuality"/>
                     </Button>
                 </Grid>
             </Border>
@@ -605,10 +1401,10 @@
                 -->
                 <Grid x:Name="TextChannelGrid" Background="#171717" Height="60" VerticalAlignment="Top">
                     <Image Source="/Icons/Chat.png"  Height="32" HorizontalAlignment="Left" Margin="20,15,0,0"
-                       RenderOptions.BitmapScalingMode="HighQuality" Visibility="{Binding IsText}"
-                       VerticalAlignment="Top"/>
+                           RenderOptions.BitmapScalingMode="HighQuality" Visibility="{Binding IsText}"
+                           VerticalAlignment="Top"/>
                     <TextBlock x:Name="ChannelTitle" Text="amet elit" Foreground="White" FontSize="32"
-                           Margin="70,10,10,10" VerticalAlignment="Top" FontFamily="Roboto Mono Thin"/>
+                               Margin="70,10,10,10" VerticalAlignment="Top"  />
                     <Grid x:Name="ServerButtonsGrid" HorizontalAlignment="Right">
                         <Button x:Name="SearchButton" Style="{DynamicResource SearchButtonStyle}" 
                                 Background="Transparent" BorderThickness="0" Click="SearchButton_Click"
@@ -627,31 +1423,29 @@
                     This is the chat handler 
                 -->
                 <ListView x:Name="ChatListView" VerticalAlignment="Bottom" ItemContainerStyle="{DynamicResource ChatListItemStyle}"
-                              Background="Transparent" Margin="10,65,0,70" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                              ScrollViewer.VerticalScrollBarVisibility="Hidden" SelectedIndex="-1" ItemsSource="{Binding}" >
+                          Background="Transparent" Margin="10,65,18,40" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                          ScrollViewer.VerticalScrollBarVisibility="Hidden" SelectedIndex="-1" ItemsSource="{Binding}" MouseEnter="ChatListView_MouseEnter" MouseLeave="ChatListView_MouseLeave">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Grid>
+                            <Grid Margin="0,0,0,0">
                                 <Image Source="/Icons/pfp.png" Height="50" HorizontalAlignment="Left" Margin="0,0,0,0"
-                                   RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Top" Visibility="{Binding IsSolo}"/>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding Username}" Foreground="White" FontSize="20"
-                                       TextTrimming="CharacterEllipsis" Margin="60,0,10,0"  Visibility="{Binding IsSolo}"
-                                       FontFamily="Roboto Mono Thin" TextDecorations="None"/>
-                                    <TextBlock Text="01/21/21 6:21pm" Foreground="Gray" FontSize="11"
-                                       TextTrimming="CharacterEllipsis" Margin="0,8,10,0" Visibility="{Binding IsSolo}"
-                                       FontFamily="Roboto Mono Thin"/>
+                                       RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Top" Visibility="{Binding IsSolo}"/>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="{Binding Username}" Foreground="White" FontSize="{c:Binding ElementName=FontSizeSlider, Path=Value+4, UpdateSourceTrigger=PropertyChanged}"
+                                               TextTrimming="CharacterEllipsis" Margin="60,0,10,0"  Visibility="{Binding IsSolo}"
+                                               TextDecorations="None"/>
+                                    <TextBlock Text="01/21/21 6:21pm" Foreground="Gray" FontSize="{c:Binding ElementName=FontSizeSlider, Path=Value-4, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top"
+                                               TextTrimming="CharacterEllipsis" Margin="60,0,0,0" Visibility="{Binding IsSolo}"/>
+                                    <TextBlock Text="{Binding Content}" Foreground="White" FontSize="{Binding ElementName=FontSizeSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}"
+                                               TextWrapping="Wrap" Margin="60,5,10,0"/>
                                 </StackPanel>
-                                <TextBlock Text="{Binding Content}" Foreground="White" FontSize="16"
-                                       TextWrapping="Wrap" Margin="{Binding TextMargin}" 
-                                       FontFamily="Roboto Mono Thin" />
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                     <ListView.Template>
                         <ControlTemplate>
                             <ScrollViewer>
-                                <ItemsPresenter/>
+                                <ItemsPresenter Margin="{Binding TextMargin}"/>
                             </ScrollViewer>
                         </ControlTemplate>
                     </ListView.Template>
@@ -662,43 +1456,47 @@
                     This will hold the Message Box and the send button
                     It will also need to have buttons for sending images and files
                 -->
-                <Button x:Name="SendImageButton" Style="{DynamicResource SendImageButtonStyle}" 
-                                Background="Transparent" BorderThickness="0"
-                                Click="ServerSettingsButton_Click" 
-                        HorizontalAlignment="Left" VerticalAlignment="Bottom">
-                    <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE7C5;" Foreground="White"
-                            TextOptions.TextRenderingMode="Grayscale" RenderOptions.BitmapScalingMode="HighQuality"/>
-                </Button>
-                <Grid x:Name="InputFooter" VerticalAlignment="Bottom" >
-                    <TextBox Background="#171717" Foreground="White" Margin="65,10,10,10"
-                             FontSize="16" FontFamily="Roboto Mono Thin" TextWrapping="Wrap"/>
+                <Grid Background="#151515" VerticalAlignment="Bottom">
+                    <Button x:Name="SendImageButton" Style="{DynamicResource SendImageButtonStyle}" 
+                            Background="Transparent" BorderThickness="0"
+                            HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                        <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE7C5;" Foreground="White"
+                                   TextOptions.TextRenderingMode="Grayscale" RenderOptions.BitmapScalingMode="HighQuality"/>
+                    </Button>
+                    <Grid x:Name="InputFooter" VerticalAlignment="Bottom" >
+                        <TextBox Background="#171717" Foreground="White" Margin="65,10,10,10"
+                                 FontSize="16"   TextWrapping="Wrap"/>
+                    </Grid>
                 </Grid>
             </Grid>
         </Border>
+        <!--
+            Code for the Member panel
+        -->
         <Grid x:Name="MemberBar" Background="Black" Grid.Column="5" Visibility="Collapsed"
               Width="auto" HorizontalAlignment="Right" MaxWidth="300">
             <Grid Background="Black" VerticalAlignment="Top">
                 <TextBlock Text="Members" Foreground="White" FontSize="24" Margin="10,14,60,19"/>
-                <Button x:Name="MButton" Style="{DynamicResource MemberButtonStyle}" Panel.ZIndex="25"
-                                Background="Transparent" BorderThickness="0" Click="MembersButton_Click"
-                                VerticalAlignment="Top" HorizontalAlignment="Right">
+                <Button x:Name="MButton" Style="{DynamicResource MemberButtonStyle}" Panel.ZIndex="15"
+                        Background="Transparent" BorderThickness="0" Click="MembersButton_Click"
+                        VerticalAlignment="Top" HorizontalAlignment="Right">
                     <Image Source="/Icons/Members.png" RenderOptions.BitmapScalingMode="HighQuality"/>
                 </Button>
             </Grid>
             <ListView x:Name="MemberListView" ItemContainerStyle="{DynamicResource MemberListItemStyle}"
-                              Background="Transparent" Margin="0,60,0,10" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                              ScrollViewer.VerticalScrollBarVisibility="Hidden" SelectedIndex="-1" ItemsSource="{Binding}" >
+                      Background="Transparent" Margin="0,60,0,10" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                      ScrollViewer.VerticalScrollBarVisibility="Hidden" SelectedIndex="-1" ItemsSource="{Binding}" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="0,2,0,2" HorizontalAlignment="Right">
                             <Image Source="/Icons/pfp.png" Height="30" HorizontalAlignment="Left" Margin="0,0,0,0"
                                    RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Top"/>
                             <TextBlock Text="{Binding Name}" Foreground="White" FontSize="20"
-                                       TextTrimming="CharacterEllipsis" Margin="36,3,20,0"
-                                       FontFamily="Roboto Mono Thin" Width="180"/>
-                            <TextBlock Text="•" Foreground="{Binding OnlineStatus}" FontSize="30" Height="25"
+                                       TextTrimming="CharacterEllipsis" Margin="36,2,20,0"
+                                       Width="180"/>
+                            <TextBlock Text="•" Foreground="{Binding OnlineStatus}" FontSize="30" Height="30"
                                        TextTrimming="CharacterEllipsis" Margin="35,-10,0,0"
-                                       FontFamily="Roboto Mono Thin" HorizontalAlignment="Right"/>
+                                       HorizontalAlignment="Right" RenderOptions.BitmapScalingMode="HighQuality"/>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
@@ -710,6 +1508,198 @@
                     </ControlTemplate>
                 </ListView.Template>
             </ListView>
+        </Grid>
+
+
+        <!--
+            The Settings grid, covers the whole MainGrid
+        -->
+        <Grid x:Name="SettingsGrid" Grid.Column="0" Grid.ColumnSpan="6" Background="Transparent"
+              Panel.ZIndex="15" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!--
+                The Button that closes the settings
+            -->
+            <Button x:Name="CloseSettingsButton" Style="{DynamicResource CloseSettingsButtonStyle}" Panel.ZIndex="25"
+                    Background="Transparent" BorderThickness="0" Click="CloseSettingsButton_Click"
+                    VerticalAlignment="Top" HorizontalAlignment="Left">
+                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE711;" Foreground="White"
+                           TextOptions.TextRenderingMode="Grayscale" RenderOptions.BitmapScalingMode="HighQuality"/>
+            </Button>
+
+            <!--
+                The Button that opens the debug menu
+            -->
+            <Button x:Name="OpenDebugButton" Style="{DynamicResource OpenDebugButtonStyle}" Panel.ZIndex="25"
+                    Background="Transparent" BorderThickness="0" Click="OpenDebugButton_Click"
+                    VerticalAlignment="Top" HorizontalAlignment="Right">
+                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE15E;" Foreground="White"
+                           TextOptions.TextRenderingMode="Grayscale" RenderOptions.BitmapScalingMode="HighQuality"/>
+            </Button>
+            <Button x:Name="OpenPacketTesterButton" Style="{DynamicResource OpenPacketTesterStyle}" Panel.ZIndex="25"
+                    Background="Transparent" BorderThickness="0" Click="OpenPacketTesterButton_Click"
+                    VerticalAlignment="Top" HorizontalAlignment="Right">
+                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE969;" Foreground="White"
+                           TextOptions.TextRenderingMode="Grayscale" RenderOptions.BitmapScalingMode="HighQuality"/>
+            </Button>
+
+            <!--
+                This is the settings pane
+                This is where the actual settings show
+            -->
+            <Border BorderBrush="White" BorderThickness="1,0,0,0" Margin="0,0,0,0" Grid.Column="1">
+                <Grid>
+                    <!--
+                        The Profile Settings
+                    -->
+                    <StackPanel x:Name="ProfileStack" Visibility="Collapsed" Background="Black">
+                        <StackPanel>
+                                <TextBlock Text="Profile Settings" Foreground="White" FontSize="30"
+                                           TextTrimming="CharacterEllipsis" Margin="30,25,0,0"
+                                           HorizontalAlignment="Left"/>
+                                <TextBlock Text="This is different for each server." Foreground="White" FontSize="16"
+                                           TextTrimming="CharacterEllipsis" Margin="30,5,0,0"
+                                           HorizontalAlignment="Left"/>
+                                <TextBlock x:Name="ProfileServerText"  Text="Currently editing settings for {}" Foreground="White" FontSize="16"
+                                           TextTrimming="CharacterEllipsis" Margin="30,5,0,0"
+                                           HorizontalAlignment="Left"/>
+                            </StackPanel>
+                        <!--
+                            PFP Setting
+                        -->
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="User Icon" Foreground="White" FontSize="25"
+                                       TextTrimming="CharacterEllipsis" Margin="30,25,0,0"
+                                       HorizontalAlignment="Left"/>
+                            <Button x:Name="EditPFPButton" Style="{DynamicResource CloseSettingsButtonStyle}"
+                                    Background="Transparent" BorderThickness="0"
+                                    VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,35,0,0">
+                                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE70F;" Foreground="White"
+                                           TextOptions.TextRenderingMode="Grayscale" RenderOptions.BitmapScalingMode="HighQuality"/>
+                            </Button>
+                        </StackPanel>
+                        <Image Source="/Icons/pfp.png" Height="100" HorizontalAlignment="Left" Margin="30,5,0,0"
+                               RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Top"/>
+                        <!--
+                            Name Setting
+                        -->
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Display Name" Foreground="White" FontSize="25"
+                                       TextTrimming="CharacterEllipsis" Margin="30,25,0,0"
+                                       HorizontalAlignment="Left"/>
+                            <Button x:Name="EditNameButton" Style="{DynamicResource CloseSettingsButtonStyle}"
+                                    Background="Transparent" BorderThickness="0"
+                                    VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,35,0,0">
+                                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE70F;" Foreground="White"
+                                           TextOptions.TextRenderingMode="Grayscale" RenderOptions.BitmapScalingMode="HighQuality"/>
+                            </Button>
+                        </StackPanel>
+                        <TextBlock Text="Epsi" Foreground="White" FontSize="25"
+                                   TextTrimming="CharacterEllipsis" Margin="30,5,0,0"
+                                   HorizontalAlignment="Left" FontStyle="Italic"/>
+                    </StackPanel>
+                    <!--
+                        The Appearance Settings
+                    -->
+                    <StackPanel x:Name="AppearanceStack" Visibility="Collapsed" Background="Black">
+                        <TextBlock x:Name="AppearanceTitle" Text="Appearance Settings" Foreground="White" FontSize="30"
+                                   TextTrimming="CharacterEllipsis" Margin="30,25,0,0"
+                                   HorizontalAlignment="Left"/>
+                        <!--
+                            Font Size Setting
+                        -->
+                        <Border HorizontalAlignment="Left" Background="Black">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Font Size:" Foreground="White" FontSize="25"
+                                       TextTrimming="CharacterEllipsis" Margin="30,25,0,0" Opacity="1"
+                                       HorizontalAlignment="Left"/>
+                                    <TextBlock Text="{Binding ElementName=FontSizeSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" Foreground="White" FontSize="25" VerticalAlignment="Center"
+                                       TextTrimming="CharacterEllipsis" Margin="5,25,0,0" Opacity="1"
+                                       HorizontalAlignment="Left"/>
+                                </StackPanel>
+                                <Grid MouseMove="Grid_MouseMove" HorizontalAlignment="Left" Background="Transparent">
+                                    <Slider x:Name="FontSizeSlider" Margin="28,20,30,30" HorizontalAlignment="Left" Width="300" Value="16"
+                                    TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" Maximum="20" Minimum="11" Opacity="1"/>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+
+                        <!--
+                            Theme Settings
+                        -->
+                        <StackPanel x:Name="ThemeStack">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Left Panel Color:" Foreground="White" FontSize="25"
+                                       TextTrimming="CharacterEllipsis" Margin="30,25,0,0"
+                                       HorizontalAlignment="Left"/>
+                                <xctk:ColorPicker Name="LeftPanelClrPcker" Width="24" Height="24" SelectedColor="Red" HorizontalAlignment="Left" Background="Black" HeaderBackground="Black" DropDownBackground="Black"
+                                              SelectedColorChanged="LeftPanelClrPcker_SelectedColorChanged" Margin="10,0,0,2" VerticalAlignment="Bottom" BorderThickness="0" HeaderForeground="White"
+                                              Foreground="White" TabForeground="White" TabBackground="Black" ShowDropDownButton="False" TabIndex="1"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Middle Panel Color:" Foreground="White" FontSize="25"
+                                       TextTrimming="CharacterEllipsis" Margin="30,25,0,0"
+                                       HorizontalAlignment="Left"/>
+                                <xctk:ColorPicker Name="MiddlePanelClrPcker" Width="24" Height="24" SelectedColor="Red" HorizontalAlignment="Left" Background="Black" HeaderBackground="Black" DropDownBackground="Black"
+                                              SelectedColorChanged="LeftPanelClrPcker_SelectedColorChanged" Margin="10,0,0,2" VerticalAlignment="Bottom" BorderThickness="0" HeaderForeground="White"
+                                              Foreground="White" TabForeground="White" TabBackground="Black" ShowDropDownButton="False" TabIndex="1"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Right Panel Color:" Foreground="White" FontSize="25"
+                                       TextTrimming="CharacterEllipsis" Margin="30,25,0,0"
+                                       HorizontalAlignment="Left"/>
+                                <xctk:ColorPicker Name="RightPanelClrPcker" Width="24" Height="24" SelectedColor="Red" HorizontalAlignment="Left" Background="Black" HeaderBackground="Black" DropDownBackground="Black"
+                                              SelectedColorChanged="LeftPanelClrPcker_SelectedColorChanged" Margin="10,0,0,2" VerticalAlignment="Bottom" BorderThickness="0" HeaderForeground="White"
+                                              Foreground="White" TabForeground="White" TabBackground="Black" ShowDropDownButton="False" TabIndex="1"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                    <!--
+                        The Notifications Settings
+                    -->
+                    <StackPanel x:Name="NotificationsStack" Visibility="Collapsed" Background="Black">
+                        <TextBlock Text="Notification Settings" Foreground="White" FontSize="30"
+                                   TextTrimming="CharacterEllipsis" Margin="30,25,0,0"
+                                   HorizontalAlignment="Left"/>
+                    </StackPanel>
+                    <!--
+                        The Privacy Settings
+                    -->
+                    <StackPanel x:Name="PrivacyStack" Visibility="Collapsed" Background="Black">
+                        <TextBlock Text="Privacy Settings" Foreground="White" FontSize="30"
+                                   TextTrimming="CharacterEllipsis" Margin="30,25,0,0"
+                                   HorizontalAlignment="Left"/>
+                    </StackPanel>
+                    <!--
+                        The Voice / Video Settings
+                    -->
+                    <StackPanel x:Name="VoiceVideoStack" Visibility="Collapsed" Background="Black">
+                        <TextBlock Text="Voice/Video Settings" Foreground="White" FontSize="30"
+                                   TextTrimming="CharacterEllipsis" Margin="30,25,0,0"
+                                   HorizontalAlignment="Left"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!--
+                This is the list of settings catagories
+                Switches which pane is shown
+            -->
+            <Border Background="Black" BorderBrush="White" BorderThickness="0,0,0,0">
+            </Border>
+            <ListView x:Name="SettingsListView" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,50,0,0" Background="Transparent"
+                      Foreground="White" BorderThickness="0" ItemContainerStyle="{DynamicResource SettingsListItemStyle}" Grid.ColumnSpan="2"
+                      Width="200" SelectedIndex="0" SelectionChanged="SettingsListView_SelectionChanged">
+                    <ListViewItem Content="Profile"/>
+                    <ListViewItem Content="Appearance"/>
+                    <ListViewItem Content="Notifications"/>
+                    <ListViewItem Content="Privacy"/>
+                    <ListViewItem Content="Voice/Video"/>
+                </ListView>
         </Grid>
     </Grid>
 </Window>

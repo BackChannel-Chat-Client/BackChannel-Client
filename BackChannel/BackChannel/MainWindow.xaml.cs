@@ -1,19 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using BackChannel.ViewModels;
 using BackChannel.Classes;
+using System.Threading;
 
 namespace BackChannel
 {
@@ -22,17 +17,15 @@ namespace BackChannel
     /// </summary>
     public partial class MainWindow : Window
     {
-        /// <summary>
-        /// This holds the list of servers that the user has joined
-        /// </summary>
-        public ServerViewModel serverViewModel;
-        public ChannelViewModel channelViewModel;
-        public ChatViewModel chatViewModel;
-        public MemberViewModel memberViewModel;
+        // Page variables
+        public ServerViewModel serverViewModel; // List of servers you've joined
+        public ChannelViewModel channelViewModel; // List of channels in a server
+        public ChatViewModel chatViewModel; // Messages in a channel
+        public MemberViewModel memberViewModel; // Members in a server
+        public Thread LowerOpacityThread; // Thread for lowering settings opacity when changing font size
+        public Thread RaiseOpacityThread;// Thread for raising settings opacity on mouse leave
 
-        /// <summary>
-        /// Holds the window that gets opened to display debug info and options
-        /// </summary>
+        // A reference to the debug panel when open for debug logging 
         DebugPanel debugPanel;
 
         public MainWindow()
@@ -46,25 +39,10 @@ namespace BackChannel
             ChannelListView.ItemsSource = channelViewModel.Channels; // Set the Channel List's Source to the ViewModel
             ChatListView.ItemsSource = chatViewModel.Messages; // Set the Cannel List's Source to the ViewModel
             MemberListView.ItemsSource = memberViewModel.Members; // Set the Cannel List's Source to the ViewModel
+            Debug.CreateSessionID();
         }
 
-        /// <summary>
-        /// Opens the Settings Panel.
-        /// 
-        /// </summary>
-        private void SettingsButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (debugPanel == null)
-            {
-                debugPanel = new DebugPanel();
-                debugPanel.Show();
-            }
-        }
-
-        /// 
-        /// These Functions are used to keep the left and middle panel from getting to long. 
-        /// Min can be set in xaml, but max has to be set based on the current size of both.
-        /// 
+        // Column resizing handlers
         private void LeftColumnStack_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             /*
@@ -74,7 +52,7 @@ namespace BackChannel
             {
                 LeftGridDef.MaxWidth = MainGrid.MaxWidth - (MiddleGridDef.Width.Value) - 800;
                 MiddleGridDef.MaxWidth = MainGrid.MaxWidth - (LeftGridDef.Width.Value) - 800;
-                ServerTitle.Width += (MiddleGridDef.Width.Value - ServerTitle.Width) - 50;
+                ServerTitle.Width += (MiddleGridDef.Width.Value - ServerTitle.Width) - 20;
                 debugPanel.UpdateText(LeftGridDef.Width.ToString(), MiddleGridDef.Width.ToString(), RightGridDef.Width.ToString(), LeftGridDef.MaxWidth.ToString(), MiddleGridDef.MaxWidth.ToString());
             }
             catch (Exception)
@@ -91,7 +69,7 @@ namespace BackChannel
             {
                 LeftGridDef.MaxWidth = MainGrid.MaxWidth - (MiddleGridDef.Width.Value) - 800;
                 MiddleGridDef.MaxWidth = MainGrid.MaxWidth - (LeftGridDef.Width.Value) - 800;
-                ServerTitle.Width += (MiddleGridDef.Width.Value - ServerTitle.Width) - 50;
+                ServerTitle.Width += (MiddleGridDef.Width.Value - ServerTitle.Width) - 20;
                 debugPanel.UpdateText(LeftGridDef.Width.ToString(), MiddleGridDef.Width.ToString(), RightGridDef.Width.ToString(), LeftGridDef.MaxWidth.ToString(), MiddleGridDef.MaxWidth.ToString());
             }
             catch (Exception)
@@ -108,7 +86,7 @@ namespace BackChannel
             {
                 LeftGridDef.MaxWidth = MainGrid.MaxWidth - (MiddleGridDef.Width.Value) - 800;
                 MiddleGridDef.MaxWidth = MainGrid.MaxWidth - (LeftGridDef.Width.Value) - 800;
-                ServerTitle.Width += (MiddleGridDef.Width.Value - ServerTitle.Width) - 50;
+                ServerTitle.Width += (MiddleGridDef.Width.Value - ServerTitle.Width) - 20;
                 debugPanel.UpdateText(LeftGridDef.Width.ToString(), MiddleGridDef.Width.ToString(), RightGridDef.Width.ToString(), LeftGridDef.MaxWidth.ToString(), MiddleGridDef.MaxWidth.ToString());
             }
             catch (Exception)
@@ -117,7 +95,52 @@ namespace BackChannel
             }
         }
 
-        
+        // Column scrollbar enable/disable functions
+        private void ChannelListView_MouseEnter(object sender, MouseEventArgs e)
+        {
+            ScrollViewer scrollViewer = (ScrollViewer)VisualTreeHelper.GetChild(ChannelListView, 0);
+
+            scrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
+            ChannelListView.Margin = new Thickness(10, 65, 0, 70);
+        }
+        private void ChannelListView_MouseLeave(object sender, MouseEventArgs e)
+        {
+            ScrollViewer scrollViewer = (ScrollViewer)VisualTreeHelper.GetChild(ChannelListView, 0);
+
+            scrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
+            ChannelListView.Margin = new Thickness(10, 65, 18, 70);
+        }
+        private void ServerListView_MouseEnter(object sender, MouseEventArgs e)
+        {
+            ScrollViewer scrollViewer = (ScrollViewer)VisualTreeHelper.GetChild(ServerListView, 0);
+
+            scrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
+            ServerListView.Margin = new Thickness(0, 88, 0, 0);
+        }
+        private void ServerListView_MouseLeave(object sender, MouseEventArgs e)
+        {
+            ScrollViewer scrollViewer = (ScrollViewer)VisualTreeHelper.GetChild(ServerListView, 0);
+
+            scrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
+            ServerListView.Margin = new Thickness(0, 88, 18, 0);
+        }
+        private void ChatListView_MouseEnter(object sender, MouseEventArgs e)
+        {
+            ScrollViewer scrollViewer = (ScrollViewer)VisualTreeHelper.GetChild(ChatListView, 0);
+
+            scrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
+            ChatListView.Margin = new Thickness(10, 65, 0, 40);
+
+        }
+        private void ChatListView_MouseLeave(object sender, MouseEventArgs e)
+        {
+            ScrollViewer scrollViewer = (ScrollViewer)VisualTreeHelper.GetChild(ChatListView, 0);
+
+            scrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
+            ChatListView.Margin = new Thickness(10, 65, 18, 40);
+        }
+
+        // Server column functions
         private async void AddServerButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -149,51 +172,6 @@ namespace BackChannel
 
             }
         }
-
-        private void MembersButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (MemberBar.Visibility == Visibility.Visible)
-            {
-                MemberBar.Visibility = Visibility.Collapsed;
-                ServerButtonsGrid.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                MemberBar.Visibility = Visibility.Visible;
-                ServerButtonsGrid.Visibility = Visibility.Collapsed;
-            }
-        }
-
-        private void SearchButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void ServerListView_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            
-        }
-
-        public static string CreateRandomName()
-        {
-            Random rnd = new Random();
-            //Dictionary of strings
-            string[] words = {"lorem", "ipsum", "dolor", "sit", "amet", "consectetuer",
-                                "adipiscing", "elit", "sed", "diam", "nonummy", "nibh", "euismod",
-                                "tincidunt", "ut", "laoreet", "dolore", "magna", "aliquam", "erat"};
-
-            int numberOfWords = rnd.Next(1, 5);
-
-            string randomString = words[rnd.Next(0, words.Length)];
-            for (int i = 0; i < numberOfWords; i++)
-            {
-                //Create combination of word + number
-                randomString += $" {words[rnd.Next(0, words.Length)]}";
-            }
-
-            return randomString;
-
-        }
         private async void ServerListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
@@ -217,6 +195,7 @@ namespace BackChannel
             RightColumnStack.Visibility = Visibility.Collapsed;
         }
 
+        // Channel column functions
         private async void ChannelListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
@@ -255,9 +234,219 @@ namespace BackChannel
             }
         }
 
-        private void ServerSettingsButton_Click(object sender, RoutedEventArgs e)
+        // Settings menu functions
+        private void SettingsButton_Click(object sender, RoutedEventArgs e)
+        {
+            //if (debugPanel == null)
+            //{
+            //    debugPanel = new DebugPanel();
+            //    debugPanel.Show();
+            //}
+            SettingsGrid.Visibility = Visibility.Visible;
+        }
+        private void CloseSettingsButton_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsGrid.Visibility = Visibility.Collapsed;
+        }
+        private void SettingsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ListViewItem item = (ListViewItem)SettingsListView.SelectedItem;
+
+            switch (item.Content)
+            {
+                case "Profile":
+                    ProfileStack.Visibility = Visibility.Visible;
+                    AppearanceStack.Visibility = Visibility.Collapsed;
+                    NotificationsStack.Visibility = Visibility.Collapsed;
+                    PrivacyStack.Visibility = Visibility.Collapsed;
+                    VoiceVideoStack.Visibility = Visibility.Collapsed;
+                    break;
+                case "Appearance":
+                    ProfileStack.Visibility = Visibility.Collapsed;
+                    AppearanceStack.Visibility = Visibility.Visible;
+                    NotificationsStack.Visibility = Visibility.Collapsed;
+                    PrivacyStack.Visibility = Visibility.Collapsed;
+                    VoiceVideoStack.Visibility = Visibility.Collapsed;
+                    break;
+                case "Notifications":
+                    ProfileStack.Visibility = Visibility.Collapsed;
+                    AppearanceStack.Visibility = Visibility.Collapsed;
+                    NotificationsStack.Visibility = Visibility.Visible;
+                    PrivacyStack.Visibility = Visibility.Collapsed;
+                    VoiceVideoStack.Visibility = Visibility.Collapsed;
+                    break;
+                case "Privacy":
+                    ProfileStack.Visibility = Visibility.Collapsed;
+                    AppearanceStack.Visibility = Visibility.Collapsed;
+                    NotificationsStack.Visibility = Visibility.Collapsed;
+                    PrivacyStack.Visibility = Visibility.Visible;
+                    VoiceVideoStack.Visibility = Visibility.Collapsed;
+                    break;
+                case "Voice/Video":
+                    ProfileStack.Visibility = Visibility.Collapsed;
+                    AppearanceStack.Visibility = Visibility.Collapsed;
+                    NotificationsStack.Visibility = Visibility.Collapsed;
+                    PrivacyStack.Visibility = Visibility.Collapsed;
+                    VoiceVideoStack.Visibility = Visibility.Visible;
+                    break;
+            }
+        }
+        private void LeftPanelClrPcker_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
         {
 
+        }
+        private void LowerOpacity()
+        {
+            Application.Current.Dispatcher.Invoke(new Action(() =>
+            {
+                AppearanceTitle.Opacity = 0;
+                ThemeStack.Opacity = 0;
+            }));
+            for (int i = 255; i > 149; i--)
+            {
+                Application.Current.Dispatcher.Invoke(new Action(() =>
+                {
+                    AppearanceStack.Background = new SolidColorBrush(Color.FromArgb((byte)i, 0, 0, 0));
+                }));
+                Thread.Sleep(1);
+            }
+        }
+        private void RaiseOpacity()
+        {
+            Application.Current.Dispatcher.Invoke(new Action(() =>
+            {
+                AppearanceTitle.Opacity = 1;
+                ThemeStack.Opacity = 1;
+            }));
+            for (int i = 150; i < 256; i++)
+            {
+                Application.Current.Dispatcher.Invoke(new Action(() =>
+                {
+                    AppearanceStack.Background = new SolidColorBrush(Color.FromArgb((byte)i, 0, 0, 0));
+                }));
+                Thread.Sleep(1);
+            }
+        }
+        private async void Grid_MouseMove(object sender, MouseEventArgs e)
+        {
+            var bgclr = new SolidColorBrush(Color.FromArgb(255, 0, 0, 0));
+            SolidColorBrush asbr = (SolidColorBrush)AppearanceStack.Background;
+            try
+            {
+                if (LowerOpacityThread.IsAlive || RaiseOpacityThread.IsAlive)
+                {
+                    return;
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                if (asbr.Color.A == bgclr.Color.A)
+                {
+                    await Task.Run(() =>
+                    {
+                        try
+                        {
+                            while (LowerOpacityThread.IsAlive) { }
+                        }
+                        catch (Exception)
+                        {
+
+                        }
+                    });
+                        LowerOpacityThread = new Thread(LowerOpacity);
+                    LowerOpacityThread.Start();
+                }
+            }
+            else
+            {
+                if (asbr.Color.A != bgclr.Color.A)
+                {
+                    await Task.Run(() =>
+                    {
+                        try 
+                        { 
+                            while (RaiseOpacityThread.IsAlive) { }
+                        }
+                        catch (Exception)
+                        {
+
+                        }
+                    });
+                    RaiseOpacityThread = new Thread(RaiseOpacity);
+                    RaiseOpacityThread.Start();
+                }
+            }
+        }
+        private void OpenDebugButton_Click(object sender, RoutedEventArgs e)
+        {
+            debugPanel = new DebugPanel();
+            debugPanel.Show();
+        }
+        private void OpenPacketTesterButton_Click(object sender, RoutedEventArgs e)
+        {
+            PacketTester tester = new PacketTester();
+            tester.Show();
+        }
+
+        // Messaging column functions
+        private void MembersButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (MemberBar.Visibility == Visibility.Visible)
+            {
+                MemberBar.Visibility = Visibility.Collapsed;
+                ServerButtonsGrid.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                MemberBar.Visibility = Visibility.Visible;
+                ServerButtonsGrid.Visibility = Visibility.Collapsed;
+            }
+        }
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            Debug.ShowError("Test", "An error has occurred in some random bullshit\nTry doing something about it idk.", new byte[3] {1,1,1 });
+            Debug.WriteLog("Test", "An error has occurred in some random bullshit\nTry doing something about it idk.");
+        }
+
+        // Test functions
+        public static string CreateRandomName()
+        {
+            Random rnd = new Random();
+            //Dictionary of strings
+            string[] words = {"lorem", "ipsum", "dolor", "sit", "amet", "consectetuer",
+                                "adipiscing", "elit", "sed", "diam", "nonummy", "nibh", "euismod",
+                                "tincidunt", "ut", "laoreet", "dolore", "magna", "aliquam", "erat"};
+
+            int numberOfWords = rnd.Next(1, 5);
+
+            string randomString = words[rnd.Next(0, words.Length)];
+            for (int i = 0; i < numberOfWords; i++)
+            {
+                //Create combination of word + number
+                randomString += $" {words[rnd.Next(0, words.Length)]}";
+            }
+
+            return randomString;
+
+        }
+
+        // Error Popup Functions
+        private void ClosePopupButton_Click(object sender, RoutedEventArgs e)
+        {
+            ErrorPopup.Visibility = Visibility.Collapsed;
+        }
+        private void CloseAppButton_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void OpenLogButton_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("explorer.exe", Debug.CurrentFilePath);
         }
     }
 }

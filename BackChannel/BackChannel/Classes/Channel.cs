@@ -59,7 +59,7 @@ namespace BackChannel.Classes
                     if (m.Username == Messages[Messages.Count() - 1].Username)
                     {
                         m.IsSolo = Visibility.Collapsed;
-                        m.TextMargin = new Thickness(60, 0, 50, 0);
+                        m.TextMargin = new Thickness(0, -20, 0, 0);
                     }
                 }
                 catch (Exception) { }

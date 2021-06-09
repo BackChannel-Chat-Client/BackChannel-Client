@@ -23,7 +23,7 @@ namespace BackChannel.Classes
         public Message()
         {
             IsSolo = Visibility.Visible;
-            TextMargin = new Thickness(60, 40, 50, 0);
+            TextMargin = new Thickness(0, 0, 0, 0);
         }
     }
 }

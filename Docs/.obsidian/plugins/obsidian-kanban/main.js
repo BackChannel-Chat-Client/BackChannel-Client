@@ -1317,7 +1317,7 @@ if (!react) throw Error(y$2(227));
 var ba = new Set(),
     ca = {};
 
-function da(a, b) {
+function da$1(a, b) {
   ea(a, b);
   ea(a + "Capture", b);
 }
@@ -1331,14 +1331,14 @@ function ea(a, b) {
 var fa = !("undefined" === typeof window || "undefined" === typeof window.document || "undefined" === typeof window.document.createElement),
     ha = /^[:A-Z_a-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD][:A-Z_a-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD\-.0-9\u00B7\u0300-\u036F\u203F-\u2040]*$/,
     ia = Object.prototype.hasOwnProperty,
-    ja = {},
+    ja$1 = {},
     ka = {};
 
 function la(a) {
   if (ia.call(ka, a)) return !0;
-  if (ia.call(ja, a)) return !1;
+  if (ia.call(ja$1, a)) return !1;
   if (ha.test(a)) return ka[a] = !0;
-  ja[a] = !0;
+  ja$1[a] = !0;
   return !1;
 }
 
@@ -2582,7 +2582,7 @@ function Pc(a, b) {
     e = "on" + (e[0].toUpperCase() + e.slice(1));
     Nc.set(d, b);
     Mc.set(d, e);
-    da(e, [d]);
+    da$1(e, [d]);
   }
 }
 
@@ -2770,7 +2770,7 @@ function gd(a, b, c, d) {
   }
 }
 
-function id(a, b, c, d) {
+function id$1(a, b, c, d) {
   ed(dd, hd.bind(null, a, b, c, d));
 }
 
@@ -3103,7 +3103,7 @@ var Qd = objectAssign({}, ud, {
     be = null;
 fa && "documentMode" in document && (be = document.documentMode);
 var ce = fa && "TextEvent" in window && !be,
-    de = fa && (!ae || be && 8 < be && 11 >= be),
+    de$1 = fa && (!ae || be && 8 < be && 11 >= be),
     ee = String.fromCharCode(32),
     fe = !1;
 
@@ -3166,7 +3166,7 @@ function ke(a, b) {
       return null;
 
     case "compositionend":
-      return de && "ko" !== b.locale ? null : b.data;
+      return de$1 && "ko" !== b.locale ? null : b.data;
 
     default:
       return null;
@@ -3390,12 +3390,12 @@ ea("onMouseEnter", ["mouseout", "mouseover"]);
 ea("onMouseLeave", ["mouseout", "mouseover"]);
 ea("onPointerEnter", ["pointerout", "pointerover"]);
 ea("onPointerLeave", ["pointerout", "pointerover"]);
-da("onChange", "change click focusin focusout input keydown keyup selectionchange".split(" "));
-da("onSelect", "focusout contextmenu dragend focusin keydown keyup mousedown mouseup selectionchange".split(" "));
-da("onBeforeInput", ["compositionend", "keypress", "textInput", "paste"]);
-da("onCompositionEnd", "compositionend focusout keydown keypress keyup mousedown".split(" "));
-da("onCompositionStart", "compositionstart focusout keydown keypress keyup mousedown".split(" "));
-da("onCompositionUpdate", "compositionupdate focusout keydown keypress keyup mousedown".split(" "));
+da$1("onChange", "change click focusin focusout input keydown keyup selectionchange".split(" "));
+da$1("onSelect", "focusout contextmenu dragend focusin keydown keyup mousedown mouseup selectionchange".split(" "));
+da$1("onBeforeInput", ["compositionend", "keypress", "textInput", "paste"]);
+da$1("onCompositionEnd", "compositionend focusout keydown keypress keyup mousedown".split(" "));
+da$1("onCompositionStart", "compositionstart focusout keydown keypress keyup mousedown".split(" "));
+da$1("onCompositionUpdate", "compositionupdate focusout keydown keypress keyup mousedown".split(" "));
 var Xe = "abort canplay canplaythrough durationchange emptied encrypted ended error loadeddata loadedmetadata loadstart pause play playing progress ratechange seeked seeking stalled suspend timeupdate volumechange waiting".split(" "),
     Ye = new Set("cancel close invalid load scroll toggle".split(" ").concat(Xe));
 
@@ -3479,7 +3479,7 @@ function af(a, b, c, d) {
       break;
 
     case 1:
-      e = id;
+      e = id$1;
       break;
 
     default:
@@ -3774,7 +3774,7 @@ function jd(a, b, c, d, e) {
 
         L = void 0;
       } else ie ? ge(a, c) && (L = "onCompositionEnd") : "keydown" === a && 229 === c.keyCode && (L = "onCompositionStart");
-      L && (de && "ko" !== c.locale && (ie || "onCompositionStart" !== L ? "onCompositionEnd" === L && ie && (Q = nd()) : (kd = e, ld = "value" in kd ? kd.value : kd.textContent, ie = !0)), K = oe(d, L), 0 < K.length && (L = new Ld(L, a, null, c, e), g.push({
+      L && (de$1 && "ko" !== c.locale && (ie || "onCompositionStart" !== L ? "onCompositionEnd" === L && ie && (Q = nd()) : (kd = e, ld = "value" in kd ? kd.value : kd.textContent, ie = !0)), K = oe(d, L), 0 < K.length && (L = new Ld(L, a, null, c, e), g.push({
         event: L,
         listeners: K
       }), Q ? L.data = Q : (Q = he(c), null !== Q && (L.data = Q))));
@@ -5638,7 +5638,7 @@ function gi(a, b, c, d, e) {
   var f = b.ref;
   tg(b, e);
   d = Ch(a, b, c, d, f, e);
-  if (null !== a && !ug) return b.updateQueue = a.updateQueue, b.flags &= -517, a.lanes &= ~e, hi(a, b, e);
+  if (null !== a && !ug) return b.updateQueue = a.updateQueue, b.flags &= -517, a.lanes &= ~e, hi$1(a, b, e);
   b.flags |= 1;
   fi(a, b, d, e);
   return b.child;
@@ -5655,7 +5655,7 @@ function ii(a, b, c, d, e, f) {
   }
 
   g = a.child;
-  if (0 === (e & f) && (e = g.memoizedProps, c = c.compare, c = null !== c ? c : Je, c(e, d) && a.ref === b.ref)) return hi(a, b, f);
+  if (0 === (e & f) && (e = g.memoizedProps, c = c.compare, c = null !== c ? c : Je, c(e, d) && a.ref === b.ref)) return hi$1(a, b, f);
   b.flags |= 1;
   a = Tg(g, d);
   a.ref = b.ref;
@@ -5664,7 +5664,7 @@ function ii(a, b, c, d, e, f) {
 }
 
 function ki(a, b, c, d, e, f) {
-  if (null !== a && Je(a.memoizedProps, d) && a.ref === b.ref) if (ug = !1, 0 !== (f & e)) 0 !== (a.flags & 16384) && (ug = !0);else return b.lanes = a.lanes, hi(a, b, f);
+  if (null !== a && Je(a.memoizedProps, d) && a.ref === b.ref) if (ug = !1, 0 !== (f & e)) 0 !== (a.flags & 16384) && (ug = !0);else return b.lanes = a.lanes, hi$1(a, b, f);
   return li(a, b, c, d, f);
 }
 
@@ -5695,7 +5695,7 @@ function li(a, b, c, d, e) {
   f = Ef(b, f);
   tg(b, e);
   c = Ch(a, b, c, d, f, e);
-  if (null !== a && !ug) return b.updateQueue = a.updateQueue, b.flags &= -517, a.lanes &= ~e, hi(a, b, e);
+  if (null !== a && !ug) return b.updateQueue = a.updateQueue, b.flags &= -517, a.lanes &= ~e, hi$1(a, b, e);
   b.flags |= 1;
   fi(a, b, c, e);
   return b.child;
@@ -5749,7 +5749,7 @@ function pi(a, b, c, d, e) {
 function qi(a, b, c, d, e, f) {
   oi(a, b);
   var g = 0 !== (b.flags & 64);
-  if (!d && !g) return e && Kf(b, c, !1), hi(a, b, f);
+  if (!d && !g) return e && Kf(b, c, !1), hi$1(a, b, f);
   d = b.stateNode;
   ei.current = b;
   var h = g && "function" !== typeof c.getDerivedStateFromError ? null : d.render();
@@ -5954,7 +5954,7 @@ function Ai(a, b, c) {
   return b.child;
 }
 
-function hi(a, b, c) {
+function hi$1(a, b, c) {
   null !== a && (b.dependencies = a.dependencies);
   Dg |= b.lanes;
 
@@ -8054,7 +8054,7 @@ ck = function (a, b, c) {
           if (null !== b.memoizedState) {
             if (0 !== (c & b.child.childLanes)) return ti(a, b, c);
             I(P, P.current & 1);
-            b = hi(a, b, c);
+            b = hi$1(a, b, c);
             return null !== b ? b.sibling : null;
           }
 
@@ -8079,7 +8079,7 @@ ck = function (a, b, c) {
           return b.lanes = 0, mi(a, b, c);
       }
 
-      return hi(a, b, c);
+      return hi$1(a, b, c);
     }
   } else ug = !1;
   b.lanes = 0;
@@ -8168,7 +8168,7 @@ ck = function (a, b, c) {
       yg(a, b);
       Cg(b, d, null, c);
       d = b.memoizedState.element;
-      if (d === e) sh(), b = hi(a, b, c);else {
+      if (d === e) sh(), b = hi$1(a, b, c);else {
         e = b.stateNode;
         if (f = e.hydrate) kh = rf(b.stateNode.containerInfo.firstChild), jh = b, f = lh = !0;
 
@@ -8219,7 +8219,7 @@ ck = function (a, b, c) {
         h._currentValue = f;
         if (null !== g) if (h = g.value, f = He(h, f) ? 0 : ("function" === typeof d._calculateChangedBits ? d._calculateChangedBits(h, f) : 1073741823) | 0, 0 === f) {
           if (g.children === e.children && !N.current) {
-            b = hi(a, b, c);
+            b = hi$1(a, b, c);
             break a;
           }
         } else for (h = b.child, null !== h && (h.return = b); null !== h;) {
@@ -8920,14 +8920,14 @@ function swapItems({ boardData, dropResult }) {
         },
     });
 }
-function moveItem({ boardData, dropResult }) {
+function moveItem({ view, boardData, dropResult, }) {
     const { lanes } = boardData;
     const sourceLaneIndex = lanes.findIndex((lane) => lane.id === dropResult.source.droppableId);
     const destinationLaneIndex = lanes.findIndex((lane) => lane.id === dropResult.destination.droppableId);
-    const shouldMarkAsComplete = !!lanes[destinationLaneIndex].data
-        .shouldMarkItemsComplete;
+    const shouldMarkAsComplete = !!lanes[destinationLaneIndex].data.shouldMarkItemsComplete;
     let item = lanes[sourceLaneIndex].items[dropResult.source.index];
     let isComplete = !!item.data.isComplete;
+    view.app.workspace.trigger("kanban:card-moved", view.file, lanes[sourceLaneIndex], lanes[destinationLaneIndex], item);
     if (shouldMarkAsComplete) {
         isComplete = true;
     }
@@ -8980,7 +8980,7 @@ function applyTemplate(view, templatePath) {
             ? view.app.vault.getAbstractFileByPath(templatePath)
             : null;
         if (templateFile && templateFile instanceof obsidian.TFile) {
-            const { templatesEnabled, templaterPlugin, templatesPlugin, } = view.plugin.getTemplatePlugins();
+            const { templatesEnabled, templaterPlugin, templatesPlugin } = view.plugin.getTemplatePlugins();
             const templateContent = yield view.app.vault.read(templateFile);
             // If both plugins are enabled, attempt to detect templater first
             if (templatesEnabled && templaterPlugin) {
@@ -9012,6 +9012,14 @@ function getDefaultDateFormat(app) {
         nlDatesValue ||
         (templatesEnabled && templatesValue) ||
         "YYYY-MM-DD");
+}
+function getDefaultTimeFormat(app) {
+    var _a, _b, _c;
+    const internalPlugins = app.internalPlugins.plugins;
+    const nlDatesValue = (_a = app.plugins.plugins["nldates-obsidian"]) === null || _a === void 0 ? void 0 : _a.settings.timeFormat;
+    const templatesEnabled = (_b = internalPlugins.templates) === null || _b === void 0 ? void 0 : _b.enabled;
+    const templatesValue = (_c = internalPlugins.templates) === null || _c === void 0 ? void 0 : _c.instance.options.timeFormat;
+    return nlDatesValue || (templatesEnabled && templatesValue) || "HH:mm";
 }
 const reRegExChar = /[\\^$.*+?()[\]{}|]/g;
 const reHasRegExChar = RegExp(reRegExChar.source);
@@ -15240,6 +15248,645 @@ var choices = createCommonjsModule(function (module, exports) {
 
 var Choices = /*@__PURE__*/getDefaultExportFromCjs(choices);
 
+// العربية
+var ar = {};
+
+// čeština
+var cz = {};
+
+// Dansk
+var da = {};
+
+// Deutsch
+var de = {
+    // main.ts
+    "Open as kanban board": "Öffne als Kanban-Board",
+    "Create new board": "Erstelle ein neues Board",
+    "Archive completed cards in active board": "Archiviere fertiggestellte Karten im aktiven Board",
+    "Error: current file is not a Kanban board": "Fehler: Momentan geöffnete Datei ist kein Kanban-Board",
+    "Convert empty note to Kanban": "Konvertiere leere Notiz in ein Kanban-Board",
+    "Error: cannot create Kanban, the current note is not empty": "Fehler: Kanban konnte nicht erstellt werden, momentan geöffnete Datei ist nicht leer",
+    "New kanban board": "Neues Kanban-Board",
+    "Untitled Kanban": "Unbenanntes Kanban",
+    // KanbanView.tsx
+    "Open as markdown": "Öffne als Markdown",
+    "Open board settings": "Öffne Board-Einstellungen",
+    "Archive completed cards": "Archiviere fertiggestellte Karten",
+    // parser.ts
+    Complete: "Fertiggestellt",
+    Archive: "Archiv",
+    // settingHelpers.ts
+    "Note: No template plugins are currently enabled.": "Beachte: Keine Template-Plugins sind derzeit aktiviert.",
+    default: "Standard",
+    "Search...": "Suche...",
+    // Settings.ts
+    "These settings will take precedence over the default Kanban board settings.": "Diese Einstellung wird Vorrang vor der standard Kanban-Board Einstellung haben. ",
+    "Set the default Kanban board settings. Settings can be overridden on a board-by-board basis.": "Stelle standard Kanban-Board Einstellungen ein. Einstellungen können auf einer Board-für-Board Basis überschrieben werden.",
+    "Note template": "Notiz Vorlage",
+    "This template will be used when creating new notes from Kanban cards.": "Diese Vorlage wird beim Erstellen neuer Notizen aus Kanban-Karten verwendet.",
+    "No template": "Keine Vorlage",
+    "Note folder": "Notiz Ordner",
+    "Notes created from Kanban cards will be placed in this folder. If blank, they will be placed in the default location for this vault.": "Notizen, welche aus einer Kanban-Karte erstellt wurden, werden in diesem Ordner platziert. Falls leer, werden die Einstellungen des Vaults verwendet.",
+    "Default folder": "Standard Ordner",
+    "Lane width": "Schienen Breite",
+    "Enter a number to set the lane width in pixels.": "Gebe ein Zahl ein, um die Schienen Breite in Pixeln einzustellen.",
+    "Maximum number of archived cards": "Maximale Anzahl archivierter Karten.",
+    "Archived cards can be viewed in markdown mode. This setting will begin removing old cards once the limit is reached. Setting this value to -1 will allow a board's archive to grow infinitely.": "Archivierte Karten können im Markdown-Modus betrachtet werden. Diese Einstellung wird alte Karten löschen, sobald das Limit erreicht wird. Eine Einstellung von -1 setzt das Archiv auf eine unendliche Größe.",
+    "Display card checkbox": "Zeige Karten Checkbox",
+    "When toggled, a checkbox will be displayed with each card": "Wenn aktiviert, wird eine Checkbox mit jeder Karte angezeigt.",
+    "Reset to default": "Zurücksetzen",
+    "Date & Time": "Datum & Uhrzeit",
+    "Date trigger": "Datums Auslöser",
+    "When this is typed, it will trigger the date selector": "Wenn dies eingegeben wird, dann wird die Datumsauswahl angezeigt",
+    "Time trigger": "Uhrzeit Auslöser",
+    "When this is typed, it will trigger the time selector": "Wenn dies eingegeben wird, dann wird die Uhrzeitsauswahl angezeigt",
+    "Date format": "Format des Datums",
+    "This format will be used when saving dates in markdown.": "Dieses Format wird verwendet, wenn ein Datum in Markdown gespeichert wird.",
+    "For more syntax, refer to": "Für mehr Syntax Informationen siehe",
+    "format reference": "Formatvorlage",
+    "Your current syntax looks like this": "Dein momentanes Format sieht so aus",
+    "Time format": "Format der Uhrzeit",
+    "Date display format": "Format der Datums Anzeige",
+    "This format will be used when displaying dates in Kanban cards.": "Dieses Format wird verwendet, wenn ein Datum in einer Kanban-Karte angezeigt wird.",
+    "Show relative date": "Zeige relatives Datum",
+    "When toggled, cards will display the distance between today and the card's date. eg. 'In 3 days', 'A month ago'": "Wenn aktiviert, wird die Zeitspanne zwischen Heute und dem Datum angezeigt. Zum Beispiel: 'In 3 Tagen', 'Vor einem Monat'",
+    "Hide card display dates": "Verstecke Karten Datum",
+    "When toggled, formatted dates will not be displayed on the card. Relative dates will still be displayed if they are enabled.": "Wenn aktiviert, werden formatierte Daten nicht auf der Karte angezeigt. Relative Daten werden dennoch angezeigt, solange sie aktiviert sind.",
+    "Hide dates in card titles": "Verstecke Daten im Titel der Karte",
+    "When toggled, dates will be hidden card titles. This will prevent dates from being included in the title when creating new notes.": "Wenn aktiviert, werden Daten nicht im Titel der Karte angezeigt. Dies verhindert, dass Daten im Titel neu erstellter Notizen vorhanden sind.",
+    "Link dates to daily notes": "Verbinde Daten zu Daily Notes",
+    "When toggled, dates will link to daily notes. Eg. [[2021-04-26]]": "Wenn aktiviert, werden Daten mit Daily Notes verbunden. Zum Beispiel [[26.4.2021]]",
+    "Add date and time to archived cards": "Füge Datum und Uhrzeit zu archivierten Notizen hinzu",
+    "When toggled, the current date and time will be added to the beginning of a card when it is archived. Eg. - [ ] 2021-05-14 10:00am My card title": "Wenn aktiviert, wird das momentane Datum und die momentane Zeit am Anfang einer Karte hinzugefügt, wenn sie archiviert wird. Zum Beispiel: - [ ] 14.05.2021 10:00 Mein Karten Titel",
+    "Archive date/time separator": "Datum/Uhrzeit Trenner für das Archiv",
+    "This will be used to separate the archived date/time from the title": "Dies wird verwendet, um das Datum und die Uhrzeit archivierter Karten vom Titel zu trennen",
+    "Archive date/time format": "Format des Datums und der Uhrzeit für das Archiv",
+    "Kanban Plugin": "Kanban Erweiterung",
+    // components/Item/Item.tsx
+    "Archive item": "Archiviere Karte",
+    "More options": "Mehr optionen",
+    Cancel: "Abbrechen",
+    // components/Item/ItemContent.tsx
+    today: "heute",
+    yesterday: "gestern",
+    tomorrow: "morgen",
+    "Change date": "Verändere Datum",
+    "Change time": "Verändere Uhrzeit",
+    // components/Item/ItemForm.tsx
+    "Item title...": "Karten Titel...",
+    "Add item": "Karte hinzufügen",
+    "Add a card": "Füge eine Karte hinzu",
+    // components/Item/ItemMenu.ts
+    "Edit card": "Karte editieren",
+    "New note from card": "Neue Notiz aus Karte erstellen",
+    "Archive card": "Karte archivieren",
+    "Delete card": "Karte löschen",
+    "Edit date": "Datum editieren",
+    "Add date": "Datum hinzufügen",
+    "Remove date": "Datum entfernen",
+    "Edit time": "Karte editieren",
+    "Add time": "Uhrzeit hinzufügen",
+    "Remove time": "Uhrzeit entfernen",
+    // components/Lane/LaneForm.tsx
+    "Enter list title...": "Listen Titel eingeben..",
+    "Mark items in this list as complete": "Markiere Karten in dieser Liste als fertiggestellt",
+    "Add list": "Liste hinzufügen",
+    "Add a list": "Füge eine Liste hinzu",
+    // components/Lane/LaneHeader.tsx
+    "Move list": "Liste verschieben",
+    Close: "Schließen",
+    // components/Lane/LaneMenu.tsx
+    "Are you sure you want to delete this list and all its cards?": "Bist du dir sicher, dass du diese Liste und alle ihre Karten löschen möchtest?",
+    "Yes, delete list": "Ja, lösche diese Liste",
+    "Are you sure you want to archive this list and all its cards?": "Bist du dir sicher, dass du diese Liste und alle ihre Karten archivieren möchtest?",
+    "Yes, archive list": "Ja, archiviere diese Liste",
+    "Are you sure you want to archive all cards in this list?": "Bist du dir sicher, dass du alle Karten in dieser Liste archivieren möchtest?",
+    "Yes, archive cards": "Ja, archiviere Karten",
+    "Edit list": "Editiere Liste",
+    "Archive cards": "Archiviere Karten",
+    "Archive list": "Archiviere List",
+    "Delete list": "Lösche Liste",
+};
+
+// English
+var en = {
+    // main.ts
+    "Open as kanban board": "Open as kanban board",
+    "Create new board": "Create new board",
+    "Archive completed cards in active board": "Archive completed cards in active board",
+    "Error: current file is not a Kanban board": "Error: current file is not a Kanban board",
+    "Convert empty note to Kanban": "Convert empty note to Kanban",
+    "Error: cannot create Kanban, the current note is not empty": "Error: cannot create Kanban, the current note is not empty",
+    "New kanban board": "New kanban board",
+    "Untitled Kanban": "Untitled Kanban",
+    // KanbanView.tsx
+    "Open as markdown": "Open as markdown",
+    "Open board settings": "Open board settings",
+    "Archive completed cards": "Archive completed cards",
+    // parser.ts
+    Complete: "Complete",
+    Archive: "Archive",
+    // settingHelpers.ts
+    "Note: No template plugins are currently enabled.": "Note: No template plugins are currently enabled.",
+    default: "default",
+    "Search...": "Search...",
+    // Settings.ts
+    "These settings will take precedence over the default Kanban board settings.": "These settings will take precedence over the default Kanban board settings.",
+    "Set the default Kanban board settings. Settings can be overridden on a board-by-board basis.": "Set the default Kanban board settings. Settings can be overridden on a board-by-board basis.",
+    "Note template": "Note template",
+    "This template will be used when creating new notes from Kanban cards.": "This template will be used when creating new notes from Kanban cards.",
+    "No template": "No template",
+    "Note folder": "Note folder",
+    "Notes created from Kanban cards will be placed in this folder. If blank, they will be placed in the default location for this vault.": "Notes created from Kanban cards will be placed in this folder. If blank, they will be placed in the default location for this vault.",
+    "Default folder": "Default folder",
+    "Lane width": "Lane width",
+    "Enter a number to set the lane width in pixels.": "Enter a number to set the lane width in pixels.",
+    "Maximum number of archived cards": "Maximum number of archived cards",
+    "Archived cards can be viewed in markdown mode. This setting will begin removing old cards once the limit is reached. Setting this value to -1 will allow a board's archive to grow infinitely.": "Archived cards can be viewed in markdown mode. This setting will begin removing old cards once the limit is reached. Setting this value to -1 will allow a board's archive to grow infinitely.",
+    "Display card checkbox": "Display card checkbox",
+    "When toggled, a checkbox will be displayed with each card": "When toggled, a checkbox will be displayed with each card",
+    "Reset to default": "Reset to default",
+    "Date & Time": "Date & Time",
+    "Date trigger": "Date trigger",
+    "When this is typed, it will trigger the date selector": "When this is typed, it will trigger the date selector",
+    "Time trigger": "Time trigger",
+    "When this is typed, it will trigger the time selector": "When this is typed, it will trigger the time selector",
+    "Date format": "Date format",
+    "This format will be used when saving dates in markdown.": "This format will be used when saving dates in markdown.",
+    "For more syntax, refer to": "For more syntax, refer to",
+    "format reference": "format reference",
+    "Your current syntax looks like this": "Your current syntax looks like this",
+    "Time format": "Time format",
+    "Date display format": "Date display format",
+    "This format will be used when displaying dates in Kanban cards.": "This format will be used when displaying dates in Kanban cards.",
+    "Show relative date": "Show relative date",
+    "When toggled, cards will display the distance between today and the card's date. eg. 'In 3 days', 'A month ago'": "When toggled, cards will display the distance between today and the card's date. eg. 'In 3 days', 'A month ago'",
+    "Hide card display dates": "Hide card display dates",
+    "When toggled, formatted dates will not be displayed on the card. Relative dates will still be displayed if they are enabled.": "When toggled, formatted dates will not be displayed on the card. Relative dates will still be displayed if they are enabled.",
+    "Hide dates in card titles": "Hide dates in card titles",
+    "When toggled, dates will be hidden card titles. This will prevent dates from being included in the title when creating new notes.": "When toggled, dates will be hidden card titles. This will prevent dates from being included in the title when creating new notes.",
+    "Link dates to daily notes": "Link dates to daily notes",
+    "When toggled, dates will link to daily notes. Eg. [[2021-04-26]]": "When toggled, dates will link to daily notes. Eg. [[2021-04-26]]",
+    "Add date and time to archived cards": "Add date and time to archived cards",
+    "When toggled, the current date and time will be added to the beginning of a card when it is archived. Eg. - [ ] 2021-05-14 10:00am My card title": "When toggled, the current date and time will be added to the beginning of a card when it is archived. Eg. - [ ] 2021-05-14 10:00am My card title",
+    "Archive date/time separator": "Archive date/time separator",
+    "This will be used to separate the archived date/time from the title": "This will be used to separate the archived date/time from the title",
+    "Archive date/time format": "Archive date/time format",
+    "Kanban Plugin": "Kanban Plugin",
+    // components/Item/Item.tsx
+    "Archive item": "Archive item",
+    "More options": "More options",
+    Cancel: "Cancel",
+    // components/Item/ItemContent.tsx
+    today: "today",
+    yesterday: "yesterday",
+    tomorrow: "tomorrow",
+    "Change date": "Change date",
+    "Change time": "Change time",
+    // components/Item/ItemForm.tsx
+    "Item title...": "Item title...",
+    "Add item": "Add item",
+    "Add a card": "Add a card",
+    // components/Item/ItemMenu.ts
+    "Edit card": "Edit card",
+    "New note from card": "New note from card",
+    "Archive card": "Archive card",
+    "Delete card": "Delete card",
+    "Edit date": "Edit date",
+    "Add date": "Add date",
+    "Remove date": "Remove date",
+    "Edit time": "Edit time",
+    "Add time": "Add time",
+    "Remove time": "Remove time",
+    // components/Lane/LaneForm.tsx
+    "Enter list title...": "Enter list title...",
+    "Mark items in this list as complete": "Mark items in this list as complete",
+    "Add list": "Add list",
+    "Add a list": "Add a list",
+    // components/Lane/LaneHeader.tsx
+    "Move list": "Move list",
+    Close: "Close",
+    // components/Lane/LaneMenu.tsx
+    "Are you sure you want to delete this list and all its cards?": "Are you sure you want to delete this list and all its cards?",
+    "Yes, delete list": "Yes, delete list",
+    "Are you sure you want to archive this list and all its cards?": "Are you sure you want to archive this list and all its cards?",
+    "Yes, archive list": "Yes, archive list",
+    "Are you sure you want to archive all cards in this list?": "Are you sure you want to archive all cards in this list?",
+    "Yes, archive cards": "Yes, archive cards",
+    "Edit list": "Edit list",
+    "Archive cards": "Archive cards",
+    "Archive list": "Archive list",
+    "Delete list": "Delete list",
+};
+
+// Español
+var es = {};
+
+// français
+var fr = {};
+
+// हिन्दी
+var hi = {};
+
+// Bahasa Indonesia
+var id = {};
+
+// Italiano
+var it = {};
+
+// 日本語
+var ja = {
+    // main.ts
+    "Open as kanban board": "カンバンボードとして開く",
+    "Create new board": "カンバンボードを新規作成",
+    "Archive completed cards in active board": "アクティブボードの完了したカードをアーカイブ",
+    "Error: current file is not a Kanban board": "エラー: 現在のファイルはカンバンボードではありません",
+    "Convert empty note to Kanban": "空のノートをカンバンに変換",
+    "Error: cannot create Kanban, the current note is not empty": "エラー: 現在開いているノートは空であり、カンバンを作成できません",
+    "New kanban board": "新規カンバンボード",
+    "Untitled Kanban": "無題のカンバン",
+    // KanbanView.tsx
+    "Open as markdown": "マークダウンとして開く",
+    "Open board settings": "ボード設定を開く",
+    "Archive completed cards": "完了したカードをアーカイブ",
+    // parser.ts
+    Complete: "完了",
+    Archive: "アーカイブ",
+    // settingHelpers.ts
+    "Note: No template plugins are currently enabled.": "ノート:  現在、テンプレートのプラグインが無効化されています",
+    default: "デフォルト",
+    "Search...": "検索…",
+    // Settings.ts
+    "These settings will take precedence over the default Kanban board settings.": "これらの設定はデフォルトのカンバン設定より優先されます。",
+    "Set the default Kanban board settings. Settings can be overridden on a board-by-board basis.": "デフォルトのカンバンボード設定をセットします。この設定はボード毎の設定により上書きされます。",
+    "Note template": "ノートテンプレート",
+    "This template will be used when creating new notes from Kanban cards.": "このテンプレートはカンバンカードからノートを新規作成した際に使用されます。",
+    "No template": "テンプレートがありません",
+    "Note folder": "ノートフォルダ",
+    "Notes created from Kanban cards will be placed in this folder. If blank, they will be placed in the default location for this vault.": "カンバンカードから作成されたノートはこのフォルダ内に置かれます。ブランクの場合には、この保管庫のデフォルトロケーションに置かれます。",
+    "Default folder": "デフォルトフォルダ",
+    "Lane width": "レーンの幅",
+    "Enter a number to set the lane width in pixels.": "レーンの幅をピクセル単位を入力してください。",
+    "Maximum number of archived cards": "アーカイブされたカードの最大数",
+    "Archived cards can be viewed in markdown mode. This setting will begin removing old cards once the limit is reached. Setting this value to -1 will allow a board's archive to grow infinitely.": "アーカイブされたカードはマークダウンモードで閲覧できます。この設定により指定されたアーカイブの限界数まで達した際には古いカードを削除します。この値を-1に設定するとボードのアーカイブ限界を無限にします。",
+    "Display card checkbox": "カードのチェックボックスを表示",
+    "When toggled, a checkbox will be displayed with each card": "有効化すると各カードのチェックボックスが表示されます。",
+    "Reset to default": "デフォルトにリセット",
+    "Date & Time": "日付と時間",
+    "Date trigger": "日付トリガー",
+    "When this is typed, it will trigger the date selector": "この設定に入力された文字列で日付セレクターをトリガーします。",
+    "Time trigger": "時間トリガー",
+    "When this is typed, it will trigger the time selector": "この設定に入力された文字列で時間セレクターをトリガーします。",
+    "Date format": "日付フォーマット",
+    "This format will be used when saving dates in markdown.": "このフォーマットはマークダウンで日付が保存される際に使用されます。",
+    "For more syntax, refer to": "シンタックスについてはこちらを参照:",
+    "format reference": "フォーマットリファレンス",
+    "Your current syntax looks like this": "現在のシンタックスは次のように見えます",
+    "Time format": "時間フォーマット",
+    "Date display format": "日付表示フォーマット",
+    "This format will be used when displaying dates in Kanban cards.": "このフォーマットはカンバンカード内にて日付の表示に使用されます。",
+    "Show relative date": "相対日付を表示",
+    "When toggled, cards will display the distance between today and the card's date. eg. 'In 3 days', 'A month ago'": "有効化するとカードの日付と今日の間の日数が表示されます。例: '3日後', '1ヶ月前'",
+    "Hide card display dates": "カードに表示される日付を隠す",
+    "When toggled, formatted dates will not be displayed on the card. Relative dates will still be displayed if they are enabled.": "有効化するとカード上のフォーマットされた日付が非表示になります。有効化された場合には相対日付は表示されままとなります。",
+    "Hide dates in card titles": "カードタイトルの日付を隠す",
+    "When toggled, dates will be hidden card titles. This will prevent dates from being included in the title when creating new notes.": "有効化するとカードタイトルの日付が非表示になります。これは新規ノートを作成した際にカードタイトルに日付が含まれるのを防ぎます。",
+    "Link dates to daily notes": "デイリーノートに日付をリンク",
+    "When toggled, dates will link to daily notes. Eg. [[2021-04-26]]": "有効化すると日付がデイリーノートにリンクされます。 例: [[2021-04-26]]",
+    "Add date and time to archived cards": "アーカイブされたカードに日付と時間を追加",
+    "When toggled, the current date and time will be added to the beginning of a card when it is archived. Eg. - [ ] 2021-05-14 10:00am My card title": "有効化するとカードがアーカイブされた際に現在の日付と時間がカードの最初に追記されるようになります。例: - [ ] 2021-05-14 10:00am カードタイトル",
+    "Archive date/time separator": "日付・時間セパレーターをアーカイブ",
+    "This will be used to separate the archived date/time from the title": "これはアーカイブされた日付・時間をタイトルから分離するのに使用されます。",
+    "Archive date/time format": "日付・時間フォーマットをアーカイブ",
+    "Kanban Plugin": "カンバンプラグイン",
+    // components/Item/Item.tsx
+    "Archive item": "アイテムをアーカイブ",
+    "More options": "他のオプション",
+    Cancel: "キャンセル",
+    // components/Item/ItemContent.tsx
+    today: "今日",
+    yesterday: "昨日",
+    tomorrow: "明日",
+    "Change date": "日付を変更",
+    "Change time": "時間を変更",
+    // components/Item/ItemForm.tsx
+    "Item title...": "アイテムタイトル…",
+    "Add item": "アイテムを追加",
+    "Add a card": "カードを追加",
+    // components/Item/ItemMenu.ts
+    "Edit card": "カードを編集",
+    "New note from card": "カードからノートを新規作成",
+    "Archive card": "カードをアーカイブ",
+    "Delete card": "カードを削除",
+    "Edit date": "日付を編集",
+    "Add date": "日付を追加",
+    "Remove date": "日付を削除",
+    "Edit time": "時間を編集",
+    "Add time": "時間を追加",
+    "Remove time": "時間を削除",
+    // components/Lane/LaneForm.tsx
+    "Enter list title...": "リストタイトルを編集…",
+    "Mark items in this list as complete": "このリストに含まれるアイテムを完了としてマークする",
+    "Add list": "リストを追加",
+    "Add a list": "リストを追加",
+    // components/Lane/LaneHeader.tsx
+    "Move list": "リストを移動",
+    Close: "閉じる",
+    // components/Lane/LaneMenu.tsx
+    "Are you sure you want to delete this list and all its cards?": "このリストと含まれるすべてのカードを削除しますか？",
+    "Yes, delete list": "はい、リストを削除します",
+    "Are you sure you want to archive this list and all its cards?": "このリストと含まれるすべてのカードをアーカイブしますか？",
+    "Yes, archive list": "はい、リストをアーカイブします",
+    "Are you sure you want to archive all cards in this list?": "このリストに含まれるすべてのカードをアーカイブしますか？",
+    "Yes, archive cards": "はい、カードをアーカイブします",
+    "Edit list": "リストを編集",
+    "Archive cards": "カードをアーカイブ",
+    "Archive list": "リストをアーカイブ",
+    "Delete list": "リストを削除",
+};
+
+// 한국어
+var ko = {};
+
+// Nederlands
+var nl = {};
+
+// Norsk
+var no = {};
+
+// język polski	
+var pl = {};
+
+// Português
+var pt = {};
+
+// Português do Brasil
+// Brazilian Portuguese
+var ptBR = {
+    // main.ts
+    "Open as Kanban board": "Abrir como quadro Kanban",
+    "Create new board": "Criar um novo quadro",
+    "Archive completed cards in active board": "Arquivar cartões concluídos no quadro ativo.",
+    "Error: current file is not a Kanban board": "Erro: o arquivo atual não é um quadro Kanban",
+    "Convert empty note to Kanban": "Converter nota vazia em Kanban",
+    "Error: cannot create Kanban, the current note is not empty": "Erro: não é possível criar o quadro Kanban, a nota atual não está vazia",
+    "New Kanban board": "Novo quadro Kanban",
+    "Untitled Kanban": "Kanban sem título",
+    // KanbanView.tsx
+    "Open as markdown": "Abrir como markdown",
+    "Open board settings": "Abrir configurações do quadro Kanban",
+    "Archive completed cards": "Arquivar cartões concluídos",
+    // parser.ts
+    Complete: "Concluído",
+    Archive: "Arquivo",
+    // settingHelpers.ts
+    "Note: No template plugins are currently enabled.": "Nota: Não há plug-ins de modelo habilitados no momento.",
+    default: "padrão",
+    "Search...": "Pesquisar...",
+    // Settings.ts
+    "These settings will take precedence over the default Kanban board settings.": "Essas configurações sobrescreverão as configurações padrão do quadro Kanban.",
+    "Set the default Kanban board settings. Settings can be overridden on a board-by-board basis.": "Defina as configurações padrão do quadro Kanban. Cada quadro Kanban pode ter sua própria configuração.",
+    "Note template": "Modelo de nota",
+    "This template will be used when creating new notes from Kanban cards.": "Este modelo será usado quando uma nova nota Kanban for criada.",
+    "No template": "Sem modelo",
+    "Note folder": "Pasta de notas",
+    "Notes created from Kanban cards will be placed in this folder. If blank, they will be placed in the default location for this vault.": "As notas criadas pelos links dos cartões Kanban serão colocadas nesta pasta. Se estiver em branco, serão colocadas no local configurado como padrão deste cofre.",
+    "Default folder": "Pasta padrão",
+    "Lane width": "Largura das listas",
+    "Enter a number to set the lane width in pixels.": "Insira um número para definir a largura das listas em pixels.",
+    "Maximum number of archived cards": "Quantidade máxima de cartões arquivados.",
+    "Archived cards can be viewed in markdown mode. This setting will begin removing old cards once the limit is reached. Setting this value to -1 will allow a board's archive to grow infinitely.": "Os cartões arquivados podem ser vistos no modo Markdown. Esta configuração excluirá os cartões antigos assim que o limite for atingido. Inserir o valor -1 retira o limite para cartões arquivados.",
+    "Display card checkbox": "Exibir caixa de seleção do cartão.",
+    "When toggled, a checkbox will be displayed with each card": "Quando ativada, uma caixa de seleção será exibida em cada cartão.",
+    "Reset to default": "Redefinir configurações padrão",
+    "Date & Time": "Data e Hora",
+    "Date trigger": "Gatilho de data",
+    "When this is typed, it will trigger the date selector": "Quando este caractere é digitado, o seletor de data é exibido",
+    "Time trigger": "Gatilho de hora",
+    "When this is typed, it will trigger the time selector": "Quando este caractere é digitado, o seletor de hora é exibido",
+    "Date format": "Formado da data",
+    "This format will be used when saving dates in markdown.": "Este formato será usado quando datas forem armazenadas no Markdown.",
+    "For more syntax, refer to": "Para mais informações sobre esta sintaxe, consulte",
+    "format reference": "modelos de formato",
+    "Your current syntax looks like this": "Sua atual sintaxe está assim",
+    "Time format": "Formato da hora",
+    "Date display format": "Formato de exibição da data",
+    "This format will be used when displaying dates in Kanban cards.": "Este será o formato das datas exibido nos cartões do Kanban.",
+    "Show relative date": "Exibir datas relativas",
+    "When toggled, cards will display the distance between today and the card's date. eg. 'In 3 days', 'A month ago'": "Ao ativar, os cartões exibirão o intervalo de tempo entre hoje e a data do cartão: Ex.: 'Em 3 dias', 'Um mês atrás'",
+    "Hide card display dates": "Esconder datas dos cartões",
+    "When toggled, formatted dates will not be displayed on the card. Relative dates will still be displayed if they are enabled.": "Ao ativar, as datas formatadas não serão exibidas no cartão. As datas relativas ainda serão exibidas se estiverem ativadas .",
+    "Hide dates in card titles": "Esconder datas dos títulos dos cartões",
+    "When toggled, dates will be hidden card titles. This will prevent dates from being included in the title when creating new notes.": "Ao ativar, as datas serão títulos de cartões ocultos. Isso impedirá que datas sejam incluídas no título ao criar novas notas.",
+    "Link dates to daily notes": "Vincular datas a notas diárias",
+    "When toggled, dates will link to daily notes. Eg. [[2021-04-26]]": "Ao ativar, as datas serão vinculadas às notas diárias. Ex.: [[2021-04-26]] ",
+    "Add date and time to archived cards": "Adicionar data e hora aos cartões arquivados",
+    "When toggled, the current date and time will be added to the beginning of a card when it is archived. Eg. - [ ] 2021-05-14 10:00am My card title": "Quando alternado, a data e a hora atuais serão adicionadas ao início de um cartão quando ele for arquivado. Ex.: - [] 2021-05-14 10:00 Título do meu cartão ",
+    "Archive date/time separator": "Separador de data/hora do arquivo",
+    "This will be used to separate the archived date/time from the title": "Isso será usado para separar a data/hora arquivada do título",
+    "Archive date/time format": "Formato de data/hora do arquivo",
+    "Kanban Plugin": "Plugin Kanban",
+    // components/Item/Item.tsx
+    "Archive item": "Arquivar item",
+    "More options": "Mais opções",
+    Cancel: "Cancelar",
+    // components/Item/ItemContent.tsx
+    today: "hoje",
+    yesterday: "ontem",
+    tomorrow: "amanhã",
+    "Change date": "Alterar data",
+    "Change time": "Mudar hora",
+    // components/Item/ItemForm.tsx
+    "Item title...": "Título do item...",
+    "Add item": "Adicionar Item",
+    "Add a card": "Adicione um cartão",
+    // components/Item/ItemMenu.ts
+    "Edit card": "Editar cartão",
+    "New note from card": "Nova nota do cartão",
+    "Archive card": "Arquivar cartão",
+    "Delete card": "Excluir cartão",
+    "Edit date": "Editar data",
+    "Add date": "Adicionar data",
+    "Remove date": "Remover data",
+    "Edit time": "Editar hora",
+    "Add time": "Adicionar hora",
+    "Remove time": "Remover hora",
+    // components/Lane/LaneForm.tsx
+    "Enter list title...": "Insira o título da lista ...",
+    "Mark items in this list as complete": "Marcar os itens nesta lista como concluídos",
+    "Add list": "Adicionar lista",
+    "Add a list": "Adicionar uma lista",
+    // components/Lane/LaneHeader.tsx
+    "Move list": "Mover lista",
+    Close: "Fechar",
+    // components/Lane/LaneMenu.tsx
+    "Are you sure you want to delete this list and all its cards?": "Tem certeza de que deseja excluir esta lista e todos os seus cartões?",
+    "Yes, delete list": "Sim, excluir esta lista",
+    "Are you sure you want to archive this list and all its cards?": "Tem certeza de que deseja arquivar esta lista e todos os seus cartões?",
+    "Yes, archive list": "Sim, arquivar esta lista",
+    "Are you sure you want to archive all cards in this list?": "Tem certeza de que deseja arquivar todos os cartões desta lista?",
+    "Yes, archive cards": "Sim, arquivar cartões",
+    "Edit list": "Editar lista",
+    "Archive cards": "Arquivar cartões",
+    "Archive list": "Arquivar lista",
+    "Delete list": "Excluir lista",
+};
+
+// Română
+var ro = {};
+
+// русский
+var ru = {};
+
+// Türkçe
+var tr = {};
+
+// 简体中文
+var zhCN = {
+    // main.ts
+    "Open as kanban board": "打开为看板",
+    "Create new board": "创建新看板",
+    "Archive completed cards in active board": "在当前看板中归档已完成卡片",
+    "Error: current file is not a Kanban board": "错误：当前文件不是看板文件",
+    "Convert empty note to Kanban": "转换空白文档为看板",
+    "Error: cannot create Kanban, the current note is not empty": "错误：无法转换当前文件，当前文件不是空白文档",
+    "New kanban board": "新看板",
+    "Untitled Kanban": "未命名看板",
+    // KanbanView.tsx
+    "Open as markdown": "打开为 Markdown 文件",
+    "Open board settings": "打开看板设置",
+    "Archive completed cards": "归档已完成卡片",
+    // parser.ts
+    Complete: "完成",
+    Archive: "归档",
+    // settingHelpers.ts
+    "Note: No template plugins are currently enabled.": "注意：当前模板插件没有运行",
+    default: "默认",
+    "Search...": "搜索。。。",
+    // Settings.ts
+    "These settings will take precedence over the default Kanban board settings.": "当前看板设置将会覆盖默认的看板设置",
+    "Set the default Kanban board settings. Settings can be overridden on a board-by-board basis.": "设置看板的默认设置。设置可以每个看板单独设置。",
+    "Note template": "笔记模板",
+    "This template will be used when creating new notes from Kanban cards.": "创建新看板卡片时会使用该模板",
+    "No template": "没有模板",
+    "Note folder": "笔记存放位置",
+    "Notes created from Kanban cards will be placed in this folder. If blank, they will be placed in the default location for this vault.": "从看板卡片创建的笔记会放置到该文件夹中，如果这里为空，在看板创建的笔记会放置到 Obsidian 的默认文件存放位置。",
+    "Default folder": "默认文件夹",
+    "Lane width": "卡片宽度",
+    "Enter a number to set the lane width in pixels.": "输入一个数字来设置看板的卡片宽度",
+    "Maximum number of archived cards": "单个看板的归档卡片的最大数量",
+    "Archived cards can be viewed in markdown mode. This setting will begin removing old cards once the limit is reached. Setting this value to -1 will allow a board's archive to grow infinitely.": "已归档的卡片可以在 Markdown 模式下查看。这个设置会导致插件在已归档的卡片数量抵达限制值时开始删除卡片。当前值设置为 -1 的话可以永久保留所有归档卡片。",
+    "Display card checkbox": "展示卡片复选框",
+    "When toggled, a checkbox will be displayed with each card": "当打开这个，复选框会出现在每个卡片上",
+    "Reset to default": "还原初始设置",
+    "Date & Time": "日期和时间",
+    "Date trigger": "日期触发指令",
+    "When this is typed, it will trigger the date selector": "当在看板卡片中输入这个时，会触发一个日期选择器",
+    "Time trigger": "时间触发指令",
+    "When this is typed, it will trigger the time selector": "当在看板卡片中输入这个时，会触发一个时间选择器",
+    "Date format": "日期格式",
+    "This format will be used when saving dates in markdown.": "这个格式会在日期保存到 Markdown 格式时使用。",
+    "For more syntax, refer to": "更多格式，请查看",
+    "format reference": "格式参考",
+    "Your current syntax looks like this": "你当前设置的格式会是",
+    "Time format": "时间格式",
+    "Date display format": "日期展示格式",
+    "This format will be used when displaying dates in Kanban cards.": "在看板卡片中，会基于该格式展示日期",
+    "Show relative date": "展示相对日期",
+    "When toggled, cards will display the distance between today and the card's date. eg. 'In 3 days', 'A month ago'": "当打开这个，卡片会展示其设置的日期与今天的日期的差值，例如三天内、一个月内等。",
+    "Hide card display dates": "隐藏卡片日期",
+    "When toggled, formatted dates will not be displayed on the card. Relative dates will still be displayed if they are enabled.": "当打开这个，格式化的日期不会展示，但是如果你开启了相对日期的功能，相对日期还是会继续展示。",
+    "Hide dates in card titles": "在卡片标题中隐藏日期",
+    "When toggled, dates will be hidden card titles. This will prevent dates from being included in the title when creating new notes.": "当打开这个，卡片标题中的日期会隐藏，当基于卡片创建新笔记的时候可以避免日期混杂其中。",
+    "Link dates to daily notes": "链接日期到日记",
+    "When toggled, dates will link to daily notes. Eg. [[2021-04-26]]": "当打开这个，日期会自动链接到日记页面，例如 [[2021-04-26]]",
+    "Add date and time to archived cards": "添加日期和时间到归档卡片",
+    "When toggled, the current date and time will be added to the beginning of a card when it is archived. Eg. - [ ] 2021-05-14 10:00am My card title": "当打开这个，当前的日期和时间会被添加到归档的卡片的前端上，例如“- [ ] 2021-05-14 10:00am 我的卡片标题”",
+    "Archive date/time separator": "日期或时间分隔符",
+    "This will be used to separate the archived date/time from the title": "用于从分隔归档卡片的日期或时间",
+    "Archive date/time format": "归档日期或时间格式",
+    "Kanban Plugin": "看板插件",
+    // components/Item/Item.tsx
+    "Archive item": "归档卡片",
+    "More options": "更多选项",
+    Cancel: "取消",
+    // components/Item/ItemContent.tsx
+    today: "今天",
+    yesterday: "昨天",
+    tomorrow: "明天",
+    "Change date": "更改日期",
+    "Change time": "更改时间",
+    // components/Item/ItemForm.tsx
+    "Item title...": "卡片标题",
+    "Add item": "添加",
+    "Add a card": "添加卡片",
+    // components/Item/ItemMenu.ts
+    "Edit card": "编辑卡片",
+    "New note from card": "从卡片新建笔记",
+    "Archive card": "归档卡片",
+    "Delete card": "删除卡片",
+    "Edit date": "编辑日期",
+    "Add date": "添加日期",
+    "Remove date": "移除日期",
+    "Edit time": "编辑时间",
+    "Add time": "添加时间",
+    "Remove time": "移除时间",
+    // components/Lane/LaneForm.tsx
+    "Enter list title...": "输入新的列标题",
+    "Mark items in this list as complete": "将该列设置为完成列",
+    "Add list": "添加",
+    "Add a list": "添加列",
+    // components/Lane/LaneHeader.tsx
+    "Move list": "移动列",
+    Close: "关闭",
+    // components/Lane/LaneMenu.tsx
+    "Are you sure you want to delete this list and all its cards?": "你确定你要删除整列以及该列下所有卡片吗？",
+    "Yes, delete list": "是，删除列",
+    "Are you sure you want to archive this list and all its cards?": "你确定你要归档整列以及该列下所有卡片吗？",
+    "Yes, archive list": "是, 归档列",
+    "Are you sure you want to archive all cards in this list?": "你确认你要归档当前列的所有卡片吗？",
+    "Yes, archive cards": "是，归档所有卡片",
+    "Edit list": "编辑列",
+    "Archive cards": "归档卡片",
+    "Archive list": "归档列",
+    "Delete list": "删除列",
+};
+
+// 繁體中文
+var zhTW = {};
+
+const localeMap$1 = {
+    ar,
+    cs: cz,
+    da,
+    de,
+    en,
+    es,
+    fr,
+    hi,
+    id,
+    it,
+    ja,
+    ko,
+    nl,
+    nn: no,
+    pl,
+    pt,
+    "pt-br": ptBR,
+    ro,
+    ru,
+    tr,
+    "zh-cn": zhCN,
+    "zh-tw": zhTW,
+};
+const locale$1 = localeMap$1[obsidian.moment.locale()];
+function t$2(str) {
+    if (!locale$1) {
+        console.error("Error: kanban locale not found", obsidian.moment.locale());
+    }
+    return (locale$1 && locale$1[str]) || en[str];
+}
+
 const defaultDateTrigger = "@";
 const defaultTimeTrigger = "@@";
 function getFolderChoices(app) {
@@ -15275,12 +15922,12 @@ function getTemplateChoices(app, folderStr) {
     return fileList;
 }
 function getListOptions(app, plugin) {
-    const { templateFolder, templatesEnabled, templaterPlugin, } = plugin.getTemplatePlugins();
+    const { templateFolder, templatesEnabled, templaterPlugin } = plugin.getTemplatePlugins();
     const templateFiles = getTemplateChoices(app, templateFolder);
     const vaultFolders = getFolderChoices(app);
     let templateWarning = "";
     if (!templatesEnabled && !templaterPlugin) {
-        templateWarning = "Note: No template plugins are currently enabled.";
+        templateWarning = t$2("Note: No template plugins are currently enabled.");
     }
     return {
         templateFiles,
@@ -15309,7 +15956,7 @@ function createSearchSelect({ choices, key, warningText, local, placeHolderStr, 
                                     $set: "",
                                 },
                                 label: {
-                                    $apply: (v) => `${v} (default)`,
+                                    $apply: (v) => `${v} (${t$2("default")})`,
                                 },
                             }),
                         ],
@@ -15331,7 +15978,7 @@ function createSearchSelect({ choices, key, warningText, local, placeHolderStr, 
                 const c = new Choices(el, {
                     placeholder: true,
                     position: "bottom",
-                    searchPlaceholderValue: "Search...",
+                    searchPlaceholderValue: t$2("Search..."),
                     searchEnabled: list.length > 10,
                     choices: list,
                 }).setChoiceByValue("");
@@ -19240,8 +19887,8 @@ const taskRegex = /^([\s\t]*)([-+*])\s+\[([^\]]+)]\s+(.+)$/;
  * 3. content
  */
 const listRegex = /^([\s\t]*)([-+*])\s+?(.+)$/;
-const completeString = "**Complete**";
-const completeRegex = /^\*\*Complete\*\*$/i;
+const completeString = `**${t$2("Complete")}**`;
+const completeRegex = new RegExp(`^${escapeRegExpStr(completeString)}$`, "i");
 const archiveString = "***";
 const archiveMarkerRegex = /^\*\*\*$/;
 function itemToMd(item) {
@@ -19250,22 +19897,38 @@ function itemToMd(item) {
 function processTitle(title, view, settings) {
     const dateFormat = view.getSetting("date-format", settings) || getDefaultDateFormat(view.app);
     const dateTrigger = view.getSetting("date-trigger", settings) || defaultDateTrigger;
+    const timeFormat = view.getSetting("time-format", settings) || getDefaultTimeFormat(view.app);
+    const timeTrigger = view.getSetting("time-trigger", settings) || defaultTimeTrigger;
     const shouldHideDate = view.getSetting("hide-date-in-title", settings);
     const shouldLinkDate = view.getSetting("link-date-to-daily-note", settings);
     let date = undefined;
+    let time = undefined;
     let processedTitle = title;
     const contentMatch = shouldLinkDate ? "\\[\\[([^}]+)\\]\\]" : "{([^}]+)}";
-    const dateRegEx = new RegExp(`(?:^|\\s)${escapeRegExpStr(dateTrigger)}${contentMatch}`, "g");
-    const match = dateRegEx.exec(title);
-    if (match) {
-        date = obsidian.moment(match[1], dateFormat);
+    const dateRegEx = new RegExp(`(?:^|\\s)${escapeRegExpStr(dateTrigger)}${contentMatch}`);
+    const timeRegEx = new RegExp(`(?:^|\\s)${escapeRegExpStr(timeTrigger)}{([^}]+)}`);
+    const dateMatch = dateRegEx.exec(title);
+    const timeMatch = timeRegEx.exec(title);
+    if (dateMatch) {
+        date = obsidian.moment(dateMatch[1], dateFormat);
+    }
+    if (timeMatch) {
+        time = obsidian.moment(timeMatch[1], timeFormat);
+        if (date) {
+            date.hour(time.hour());
+            date.minute(time.minute());
+            time = date.clone();
+        }
     }
     if (shouldHideDate) {
-        processedTitle = processedTitle.replace(dateRegEx, "");
+        processedTitle = processedTitle
+            .replace(dateRegEx, "")
+            .replace(timeRegEx, "");
     }
     return {
         title: processedTitle,
         date,
+        time,
     };
 }
 function mdToItem(itemMd, view, settings, isListItem) {
@@ -19291,6 +19954,7 @@ function mdToItem(itemMd, view, settings, isListItem) {
         },
         metadata: {
             date: processed.date,
+            time: processed.time,
         },
     };
 }
@@ -19311,7 +19975,7 @@ function laneToMd(lane) {
 }
 function archiveToMd(archive) {
     if (archive.length) {
-        const lines = [archiveString, "", "## Archive", ""];
+        const lines = [archiveString, "", `## ${t$2("Archive")}`, ""];
         archive.forEach((item) => {
             lines.push(itemToMd(item));
         });
@@ -36941,10 +37605,9 @@ var l10n = createCommonjsModule(function (module, exports) {
 
 var l10n$1 = /*@__PURE__*/getDefaultExportFromCjs(l10n);
 
-const momentLocale = obsidian.moment.locale();
 const localeMap = {
     ar: l10n$1.ar,
-    cz: l10n$1.cs,
+    cs: l10n$1.cs,
     da: l10n$1.da,
     de: l10n$1.de,
     en: l10n$1.en,
@@ -36956,18 +37619,215 @@ const localeMap = {
     ja: l10n$1.ja,
     ko: l10n$1.ko,
     nl: l10n$1.nl,
-    no: l10n$1.no,
+    nn: l10n$1.no,
     pl: l10n$1.pl,
     pt: l10n$1.pt,
-    "pt-BR": l10n$1.pt,
+    "pt-br": l10n$1.pt,
     ro: l10n$1.ro,
     ru: l10n$1.ru,
     tr: l10n$1.tr,
-    zh: l10n$1.zh,
-    "zh-TW": l10n$1.zh_tw,
+    "zh-cn": l10n$1.zh,
+    "zh-tw": l10n$1.zh_tw,
 };
+const locale = localeMap[obsidian.moment.locale()];
 function getDefaultLocale() {
-    return localeMap[momentLocale];
+    return locale;
+}
+
+function constructDatePicker$1(coordinates, onChange, date) {
+    return document.body.createDiv({ cls: `${c$2("date-picker")} ${c$2("ignore-click-outside")}` }, (div) => {
+        div.style.left = `${coordinates.x || 0}px`;
+        div.style.top = `${coordinates.y || 0}px`;
+        div.createEl("input", { type: "text" }, (input) => {
+            setTimeout(() => {
+                let picker = null;
+                const clickHandler = (e) => {
+                    if (e.target instanceof HTMLElement &&
+                        e.target.closest(`.${c$2("date-picker")}`) === null) {
+                        selfDestruct();
+                    }
+                };
+                const keyHandler = (e) => {
+                    if (e.key === "Escape") {
+                        selfDestruct();
+                    }
+                };
+                const selfDestruct = () => {
+                    picker.destroy();
+                    div.remove();
+                    document.body.removeEventListener("click", clickHandler);
+                    document.removeEventListener("keydown", keyHandler);
+                };
+                picker = flatpickr(input, {
+                    locale: getDefaultLocale(),
+                    defaultDate: date,
+                    inline: true,
+                    onChange: (dates) => {
+                        onChange(dates);
+                        selfDestruct();
+                    },
+                });
+                setTimeout(() => {
+                    const height = div.clientHeight;
+                    const width = div.clientWidth;
+                    if (coordinates.y + height > window.innerHeight) {
+                        div.style.top = `${(coordinates.y || 0) - height}px`;
+                    }
+                    if (coordinates.x + width > window.innerWidth) {
+                        div.style.left = `${(coordinates.x || 0) - width}px`;
+                    }
+                });
+                document.body.addEventListener("click", clickHandler);
+                document.addEventListener("keydown", keyHandler);
+            });
+        });
+    });
+}
+function constructMenuDatePickerOnChange({ view, boardModifiers, item, hasDate, laneIndex, itemIndex, }) {
+    const dateFormat = view.getSetting("date-format") || getDefaultDateFormat(view.app);
+    const shouldLinkDates = view.getSetting("link-date-to-daily-note");
+    const dateTrigger = view.getSetting("date-trigger") || defaultDateTrigger;
+    const contentMatch = shouldLinkDates ? "\\[\\[([^}]+)\\]\\]" : "{([^}]+)}";
+    const dateRegEx = new RegExp(`(^|\\s)${escapeRegExpStr(dateTrigger)}${contentMatch}`);
+    return (dates) => {
+        const date = dates[0];
+        const formattedDate = obsidian.moment(date).format(dateFormat);
+        const wrappedDate = shouldLinkDates
+            ? `[[${formattedDate}]]`
+            : `{${formattedDate}}`;
+        let titleRaw = item.titleRaw;
+        if (hasDate) {
+            titleRaw = item.titleRaw.replace(dateRegEx, `$1${dateTrigger}${wrappedDate}`);
+        }
+        else {
+            titleRaw = `${item.titleRaw} ${dateTrigger}${wrappedDate}`;
+        }
+        const processed = processTitle(titleRaw, view);
+        boardModifiers.updateItem(laneIndex, itemIndex, update$2(item, {
+            title: { $set: processed.title },
+            titleRaw: { $set: titleRaw },
+            metadata: {
+                date: {
+                    $set: processed.date,
+                },
+                time: {
+                    $set: processed.time,
+                },
+            },
+        }));
+    };
+}
+function buildTimeArray(view) {
+    const format = view.getSetting("time-format") || getDefaultTimeFormat(view.app);
+    const time = [];
+    for (let i = 0; i < 24; i++) {
+        time.push(obsidian.moment({ hour: i }).format(format));
+        time.push(obsidian.moment({ hour: i, minute: 15 }).format(format));
+        time.push(obsidian.moment({ hour: i, minute: 30 }).format(format));
+        time.push(obsidian.moment({ hour: i, minute: 45 }).format(format));
+    }
+    return time;
+}
+function constructTimePicker(view, coordinates, onSelect, time) {
+    const pickerClassName = c$2("time-picker");
+    const timeFormat = view.getSetting("time-format") || getDefaultTimeFormat(view.app);
+    const selected = time === null || time === void 0 ? void 0 : time.format(timeFormat);
+    document.body.createDiv({ cls: `${pickerClassName} ${c$2("ignore-click-outside")}` }, (div) => {
+        const options = buildTimeArray(view);
+        const clickHandler = (e) => {
+            if (e.target instanceof HTMLElement &&
+                e.target.hasClass(c$2("time-picker-item")) &&
+                e.target.dataset.value) {
+                onSelect(e.target.dataset.value);
+                selfDestruct();
+            }
+        };
+        const clickOutsideHandler = (e) => {
+            if (e.target instanceof HTMLElement &&
+                e.target.closest(`.${pickerClassName}`) === null) {
+                selfDestruct();
+            }
+        };
+        const escHandler = (e) => {
+            if (e.key === "Escape") {
+                selfDestruct();
+            }
+        };
+        const selfDestruct = () => {
+            div.remove();
+            div.removeEventListener("click", clickHandler);
+            document.body.removeEventListener("click", clickOutsideHandler);
+            document.removeEventListener("keydown", escHandler);
+        };
+        div.style.left = `${coordinates.x || 0}px`;
+        div.style.top = `${coordinates.y || 0}px`;
+        let selectedItem = null;
+        let middleItem = null;
+        options.forEach((opt, index) => {
+            const isSelected = opt === selected;
+            div.createDiv({
+                cls: `${c$2("time-picker-item")} ${isSelected ? "is-selected" : ""}`,
+                text: opt,
+            }, (item) => {
+                item.createEl("span", { cls: c$2("time-picker-check"), prepend: true }, (span) => {
+                    obsidian.setIcon(span, "checkmark");
+                });
+                if (index % 4 === 0) {
+                    item.addClass("is-hour");
+                }
+                item.dataset.value = opt;
+                if (isSelected)
+                    selectedItem = item;
+                if (index === Math.floor(options.length / 2)) {
+                    middleItem = item;
+                }
+            });
+        });
+        setTimeout(() => {
+            var _a;
+            const height = div.clientHeight;
+            const width = div.clientWidth;
+            if (coordinates.y + height > window.innerHeight) {
+                div.style.top = `${(coordinates.y || 0) - height}px`;
+            }
+            if (coordinates.x + width > window.innerWidth) {
+                div.style.left = `${(coordinates.x || 0) - width}px`;
+            }
+            (_a = (selectedItem || middleItem)) === null || _a === void 0 ? void 0 : _a.scrollIntoView({
+                block: "center",
+                inline: "nearest",
+            });
+            div.addEventListener("click", clickHandler);
+            document.body.addEventListener("click", clickOutsideHandler);
+            document.addEventListener("keydown", escHandler);
+        });
+    });
+}
+function constructMenuTimePickerOnChange({ view, boardModifiers, item, hasTime, laneIndex, itemIndex, }) {
+    const timeTrigger = view.getSetting("time-trigger") || defaultTimeTrigger;
+    const timeRegEx = new RegExp(`(^|\\s)${escapeRegExpStr(timeTrigger)}{([^}]+)}`);
+    return (time) => {
+        let titleRaw = item.titleRaw;
+        if (hasTime) {
+            titleRaw = item.titleRaw.replace(timeRegEx, `$1${timeTrigger}{${time}}`);
+        }
+        else {
+            titleRaw = `${item.titleRaw} ${timeTrigger}{${time}}`;
+        }
+        const processed = processTitle(titleRaw, view);
+        boardModifiers.updateItem(laneIndex, itemIndex, update$2(item, {
+            title: { $set: processed.title },
+            titleRaw: { $set: titleRaw },
+            metadata: {
+                date: {
+                    $set: processed.date,
+                },
+                time: {
+                    $set: processed.time,
+                },
+            },
+        }));
+    };
 }
 
 const tagRegex = /\B#([^\s]*)?$/;
@@ -36987,7 +37847,7 @@ function applyDate(date, inputRef, view) {
     forceChangeEvent(inputRef.current, `${inputRef.current.value}${wrappedDate}`);
     inputRef.current.focus();
 }
-function constructDatePicker$1({ div, inputRef, cb, view, }) {
+function constructDatePicker({ div, inputRef, cb, view, }) {
     div.createEl("input", { type: "text" }, (input) => {
         setTimeout(() => cb(flatpickr(input, {
             locale: getDefaultLocale(),
@@ -36997,6 +37857,40 @@ function constructDatePicker$1({ div, inputRef, cb, view, }) {
             },
         })));
     });
+}
+function ensureDatePickerIsOnScreen(position, div) {
+    const height = div.clientHeight;
+    const width = div.clientWidth;
+    if (position.top + height > window.innerHeight) {
+        div.style.top = `${(position.clientTop || 0) - height}px`;
+    }
+    if (position.left + width > window.innerWidth) {
+        div.style.left = `${(position.left || 0) - width}px`;
+    }
+}
+function getTimePickerConfig(view) {
+    const timeTrigger = view.getSetting("time-trigger") || defaultTimeTrigger;
+    const timeTriggerRegex = new RegExp(`\\B${escapeRegExpStr(timeTrigger)}{?([^}]*)$`);
+    const times = buildTimeArray(view);
+    return {
+        id: "time",
+        match: timeTriggerRegex,
+        index: 1,
+        search: (term, callback) => {
+            if (!term) {
+                callback(times);
+            }
+            else {
+                callback(times.filter((t) => t.startsWith(term)));
+            }
+        },
+        template: (result) => {
+            return result;
+        },
+        replace: (result) => {
+            return `${timeTrigger}{${result}} `;
+        },
+    };
 }
 function getTagSearchConfig(tags, tagSearch) {
     return {
@@ -37065,15 +37959,7 @@ function constructAutocomplete({ inputRef, isAutocompleteVisibleRef, obsidianCon
     let datePickerEl = null;
     let datePickerInstance = null;
     const dateTrigger = view.getSetting("date-trigger") || defaultDateTrigger;
-    const timeTrigger = view.getSetting("time-trigger") || defaultTimeTrigger;
-    const destroyDatePicker = () => {
-        isAutocompleteVisibleRef.current = false;
-        datePickerInstance.destroy();
-        datePickerEl.remove();
-        setTimeout(() => (datePickerEl = null));
-    };
     const dateTriggerRegex = new RegExp(`(?:^|\\s)${escapeRegExpStr(dateTrigger)}$`);
-    new RegExp(`(?:^|\\s)${escapeRegExpStr(timeTrigger)}$`);
     const tags = Object.keys(view.app.metadataCache.getTags()).sort();
     const tagSearch = new Fuse(tags);
     const files = view.app.vault.getFiles();
@@ -37085,16 +37971,25 @@ function constructAutocomplete({ inputRef, isAutocompleteVisibleRef, obsidianCon
         getTagSearchConfig(tags, tagSearch),
         getFileSearchConfig(files, fileSearch, filePath, view, false),
         getFileSearchConfig(files, fileSearch, filePath, view, true),
+        getTimePickerConfig(view),
     ], {
         dropdown: {
             className: `${c$2("autocomplete")} ${c$2("ignore-click-outside")}`,
             rotate: true,
             item: {
-                className: c$2("autocomplete-item"),
-                activeClassName: c$2("autocomplete-item-active"),
+                className: `${c$2("autocomplete-item")} ${c$2("ignore-click-outside")}`,
+                activeClassName: `${c$2("autocomplete-item-active")} ${c$2("ignore-click-outside")}`,
             },
         },
     });
+    const destroyDatePicker = () => {
+        if (!autocomplete.isShown()) {
+            isAutocompleteVisibleRef.current = false;
+        }
+        datePickerInstance.destroy();
+        datePickerEl.remove();
+        setTimeout(() => (datePickerEl = null));
+    };
     autocomplete.on("show", () => {
         isAutocompleteVisibleRef.current = true;
     });
@@ -37160,18 +38055,20 @@ function constructAutocomplete({ inputRef, isAutocompleteVisibleRef, obsidianCon
             if (datePickerEl) {
                 datePickerEl.style.left = `${position.left || 0}px`;
                 datePickerEl.style.top = `${position.top || 0}px`;
+                ensureDatePickerIsOnScreen(position, datePickerEl);
             }
             else {
                 datePickerEl = document.body.createDiv({ cls: `${c$2("date-picker")} ${c$2("ignore-click-outside")}` }, (div) => {
                     div.style.left = `${position.left || 0}px`;
                     div.style.top = `${position.top || 0}px`;
-                    constructDatePicker$1({
+                    constructDatePicker({
                         div,
                         inputRef,
                         view,
                         cb: (picker) => {
                             datePickerInstance = picker;
                             isAutocompleteVisibleRef.current = true;
+                            ensureDatePickerIsOnScreen(position, datePickerEl);
                         },
                     });
                 });
@@ -37196,7 +38093,7 @@ function useAutocompleteInputProps({ isInputVisible, onEnter, onEscape, }) {
     const obsidianContext = react.useContext(ObsidianContext);
     const isAutocompleteVisibleRef = react.useRef(false);
     const inputRef = react.useRef();
-    const { onCompositionStart, onCompositionEnd, getShouldIMEBlockAction, } = useIMEInputProps();
+    const { onCompositionStart, onCompositionEnd, getShouldIMEBlockAction } = useIMEInputProps();
     react.useEffect(() => {
         const input = inputRef.current;
         if (isInputVisible && input) {
@@ -37228,197 +38125,106 @@ function useAutocompleteInputProps({ isInputVisible, onEnter, onEscape, }) {
     };
 }
 
-function getRelativeDate(date) {
+function getRelativeDate(date, time) {
+    if (time) {
+        return time.from(obsidian.moment());
+    }
     const today = obsidian.moment().startOf("day");
     if (today.isSame(date, "day")) {
-        return "today";
+        return t$2("today");
     }
     const diff = date.diff(today, "day");
     if (diff === -1) {
-        return "yesterday";
+        return t$2("yesterday");
     }
     if (diff === 1) {
-        return "tomorrow";
+        return t$2("tomorrow");
     }
     return date.from(today);
 }
-function ItemContent({ item, isSettingsVisible, setIsSettingsVisible, onChange, }) {
-    var _a, _b;
+function RelativeDate({ item, view }) {
+    const shouldShowRelativeDate = view.getSetting("show-relative-date");
+    if (!shouldShowRelativeDate || !item.metadata.date) {
+        return null;
+    }
+    const relativeDate = getRelativeDate(item.metadata.date, item.metadata.time);
+    return (react.createElement("span", { className: c$2("item-metadata-date-relative") }, relativeDate));
+}
+function DateAndTime({ item, view, filePath, onEditDate, onEditTime, }) {
+    const hideDateDisplay = view.getSetting("hide-date-display");
+    if (hideDateDisplay || !item.metadata.date)
+        return null;
+    const dateFormat = view.getSetting("date-format") || getDefaultDateFormat(view.app);
+    const timeFormat = view.getSetting("time-format") || getDefaultTimeFormat(view.app);
+    const dateDisplayFormat = view.getSetting("date-display-format") || dateFormat;
+    const shouldLinkDate = view.getSetting("link-date-to-daily-note");
+    const dateStr = item.metadata.date.format(dateFormat);
+    if (!dateStr)
+        return null;
+    const hasTime = !!item.metadata.time;
+    const dateDisplayStr = item.metadata.date.format(dateDisplayFormat);
+    const timeDisplayStr = !hasTime
+        ? null
+        : item.metadata.time.format(timeFormat);
+    const datePath = dateStr ? obsidian.getLinkpath(dateStr) : null;
+    const isResolved = dateStr
+        ? view.app.metadataCache.getFirstLinkpathDest(datePath, filePath)
+        : null;
+    const date = datePath && shouldLinkDate ? (react.createElement("a", { href: datePath, "data-href": datePath, className: `internal-link ${isResolved ? "" : "is-unresolved"}`, target: "blank", rel: "noopener" }, dateDisplayStr)) : (dateDisplayStr);
+    const dateProps = {};
+    if (!shouldLinkDate) {
+        dateProps["aria-label"] = t$2("Change date");
+        dateProps.onClick = onEditDate;
+    }
+    return (react.createElement("span", { className: c$2("item-metadata-date-wrapper") },
+        react.createElement("span", Object.assign({}, dateProps, { className: `${c$2("item-metadata-date")} ${!shouldLinkDate ? "is-button" : ""}` }), date),
+        " ",
+        hasTime && (react.createElement("span", { onClick: onEditTime, className: `${c$2("item-metadata-time")} is-button`, "aria-label": t$2("Change time") }, timeDisplayStr))));
+}
+function ItemContent({ item, isSettingsVisible, setIsSettingsVisible, onEditDate, onEditTime, onChange, }) {
     const obsidianContext = react.useContext(ObsidianContext);
     const inputRef = react.useRef();
     const { view, filePath } = obsidianContext;
-    const dateFormat = view.getSetting("date-format") || getDefaultDateFormat(view.app);
-    const dateDisplayFormat = view.getSetting("date-display-format") || dateFormat;
-    const shouldLinkDate = view.getSetting("link-date-to-daily-note");
-    const shouldShowRelativeDate = view.getSetting("show-relative-date");
-    const hideDateDisplay = view.getSetting("hide-date-display");
     const onAction = () => setIsSettingsVisible && setIsSettingsVisible(false);
     const autocompleteProps = useAutocompleteInputProps({
         isInputVisible: isSettingsVisible,
         onEnter: onAction,
         onEscape: onAction,
     });
-    const [isCtrlHovering, setIsCtrlHovering] = react.useState(false);
-    const [isHovering, setIsHovering] = react.useState(false);
-    react.useEffect(() => {
-        if (isHovering) {
-            const handler = (e) => {
-                if (e.metaKey || e.ctrlKey) {
-                    setIsCtrlHovering(true);
-                }
-                else {
-                    setIsCtrlHovering(false);
-                }
-            };
-            window.addEventListener("keydown", handler);
-            window.addEventListener("keyup", handler);
-            return () => {
-                window.removeEventListener("keydown", handler);
-                window.removeEventListener("keyup", handler);
-            };
-        }
-    }, [isHovering]);
     const markdownContent = react.useMemo(() => {
         const tempEl = createDiv();
         obsidian.MarkdownRenderer.renderMarkdown(item.title, tempEl, filePath, view);
         return {
             innerHTML: { __html: tempEl.innerHTML.toString() },
         };
-    }, [item, filePath, dateFormat, view]);
+    }, [item, filePath, view]);
     if (isSettingsVisible) {
         return (react.createElement("div", { "data-replicated-value": item.titleRaw, className: c$2("grow-wrap") },
             react.createElement("textarea", Object.assign({ rows: 1, ref: inputRef, className: c$2("item-input"), value: item.titleRaw, onChange: onChange }, autocompleteProps))));
     }
-    const dateStr = hideDateDisplay
-        ? null
-        : (_a = item.metadata.date) === null || _a === void 0 ? void 0 : _a.format(dateFormat);
-    const dateDisplayStr = hideDateDisplay
-        ? null
-        : (_b = item.metadata.date) === null || _b === void 0 ? void 0 : _b.format(dateDisplayFormat);
-    const datePath = dateStr ? obsidian.getLinkpath(dateStr) : null;
-    const isResolved = dateStr
-        ? view.app.metadataCache.getFirstLinkpathDest(datePath, filePath)
-        : null;
-    const date = datePath && shouldLinkDate ? (react.createElement("a", { href: datePath, "data-href": datePath, className: `internal-link ${isResolved ? "" : "is-unresolved"}`, target: "blank", rel: "noopener" }, dateDisplayStr)) : (dateDisplayStr);
-    const relativeDate = shouldShowRelativeDate && item.metadata.date
-        ? getRelativeDate(item.metadata.date)
-        : null;
     return (react.createElement("div", { className: c$2("item-title") },
-        react.createElement("div", { onMouseEnter: (e) => {
-                setIsHovering(true);
-                if (e.ctrlKey || e.metaKey) {
-                    setIsCtrlHovering(true);
-                }
-            }, onMouseLeave: () => {
-                setIsHovering(false);
-                if (isCtrlHovering) {
-                    setIsCtrlHovering(false);
-                }
-            }, onClick: (e) => {
-                if (e.metaKey || e.ctrlKey) {
-                    e.stopPropagation();
-                    e.preventDefault();
-                    setIsSettingsVisible(true);
-                }
-            }, className: `markdown-preview-view ${c$2("item-markdown")} ${isCtrlHovering ? "is-ctrl-hovering" : ""}`, dangerouslySetInnerHTML: markdownContent.innerHTML }),
+        react.createElement("div", { className: `markdown-preview-view ${c$2("item-markdown")}`, dangerouslySetInnerHTML: markdownContent.innerHTML }),
         react.createElement("div", { className: c$2("item-metadata") },
-            react.createElement(react.Fragment, null,
-                relativeDate && (react.createElement("span", { className: c$2("item-metadata-date-relative") }, relativeDate)),
-                !hideDateDisplay && dateStr && (react.createElement("span", { className: c$2("item-metadata-date") }, date))))));
+            react.createElement(RelativeDate, { item: item, view: view }),
+            react.createElement(DateAndTime, { item: item, view: view, filePath: filePath, onEditDate: onEditDate, onEditTime: onEditTime }))));
 }
 
 const illegalCharsRegEx = /[\\/:"*?<>|]+/g;
-function constructDatePicker(coordinates, onChange, date) {
-    return document.body.createDiv({ cls: `${c$2("date-picker")} ${c$2("ignore-click-outside")}` }, (div) => {
-        div.style.left = `${coordinates.x || 0}px`;
-        div.style.top = `${coordinates.y || 0}px`;
-        div.createEl("input", { type: "text" }, (input) => {
-            setTimeout(() => {
-                let picker = null;
-                const clickHandler = (e) => {
-                    if (e.target instanceof HTMLElement &&
-                        e.target.closest(`.${c$2("date-picker")}`) === null) {
-                        selfDestruct();
-                    }
-                };
-                const keyHandler = (e) => {
-                    if (e.key === "Escape") {
-                        selfDestruct();
-                    }
-                };
-                const selfDestruct = () => {
-                    picker.destroy();
-                    div.remove();
-                    document.body.removeEventListener("click", clickHandler);
-                    document.removeEventListener("keydown", keyHandler);
-                };
-                picker = flatpickr(input, {
-                    locale: getDefaultLocale(),
-                    defaultDate: date,
-                    inline: true,
-                    onChange: (dates) => {
-                        onChange(dates);
-                        selfDestruct();
-                    },
-                });
-                document.body.addEventListener("click", clickHandler);
-                document.addEventListener("keydown", keyHandler);
-            });
-        });
-    });
-}
 function useItemMenu({ setIsEditing, item, laneIndex, itemIndex, boardModifiers, }) {
     const { view } = react.useContext(ObsidianContext);
     return react.useMemo(() => {
         const coordinates = { x: 0, y: 0 };
-        const menu = new obsidian.Menu(view.app)
-            .addItem((i) => {
+        const hasDate = !!item.metadata.date;
+        const hasTime = !!item.metadata.time;
+        const menu = new obsidian.Menu(view.app).addItem((i) => {
             i.setIcon("pencil")
-                .setTitle("Edit card")
+                .setTitle(t$2("Edit card"))
                 .onClick(() => setIsEditing(true));
-        })
-            .addItem((i) => {
-            const hasDate = !!item.metadata.date;
-            i.setIcon("calendar-with-checkmark")
-                .setTitle(hasDate ? "Edit date" : "Add date")
-                .onClick(() => {
-                var _a;
-                const dateFormat = view.getSetting("date-format") || getDefaultDateFormat(view.app);
-                const shouldLinkDates = view.getSetting("link-date-to-daily-note");
-                const dateTrigger = view.getSetting("date-trigger") || defaultDateTrigger;
-                const contentMatch = shouldLinkDates
-                    ? "\\[\\[([^}]+)\\]\\]"
-                    : "{([^}]+)}";
-                const dateRegEx = new RegExp(`(^|\\s)${escapeRegExpStr(dateTrigger)}${contentMatch}`);
-                constructDatePicker(coordinates, (dates) => {
-                    const date = dates[0];
-                    const formattedDate = obsidian.moment(date).format(dateFormat);
-                    const wrappedDate = shouldLinkDates
-                        ? `[[${formattedDate}]]`
-                        : `{${formattedDate}}`;
-                    let titleRaw = item.titleRaw;
-                    if (hasDate) {
-                        titleRaw = item.titleRaw.replace(dateRegEx, `$1${dateTrigger}${wrappedDate}`);
-                    }
-                    else {
-                        titleRaw = `${item.titleRaw} ${dateTrigger}${wrappedDate}`;
-                    }
-                    const processed = processTitle(titleRaw, view);
-                    boardModifiers.updateItem(laneIndex, itemIndex, update$2(item, {
-                        title: { $set: processed.title },
-                        titleRaw: { $set: titleRaw },
-                        metadata: {
-                            date: {
-                                $set: processed.date,
-                            },
-                        },
-                    }));
-                }, (_a = item.metadata.date) === null || _a === void 0 ? void 0 : _a.toDate());
-            });
-        })
+        });
+        menu
             .addItem((i) => {
             i.setIcon("create-new")
-                .setTitle("New note from card")
+                .setTitle(t$2("New note from card"))
                 .onClick(() => __awaiter(this, void 0, void 0, function* () {
                 const prevTitle = item.title;
                 const sanitizedTitle = item.title.replace(illegalCharsRegEx, " ");
@@ -37426,7 +38232,7 @@ function useItemMenu({ setIsEditing, item, laneIndex, itemIndex, boardModifiers,
                 const newNoteTemplatePath = view.getSetting("new-note-template");
                 const targetFolder = newNoteFolder
                     ? view.app.vault.getAbstractFileByPath(newNoteFolder)
-                    : view.app.fileManager.getNewFileParent(view.file.parent.path);
+                    : view.app.fileManager.getNewFileParent(view.file.path);
                 // @ts-ignore
                 const newFile = yield view.app.fileManager.createNewMarkdownFile(targetFolder, sanitizedTitle);
                 const newLeaf = view.app.workspace.splitActiveLeaf();
@@ -37444,14 +38250,96 @@ function useItemMenu({ setIsEditing, item, laneIndex, itemIndex, boardModifiers,
             .addSeparator()
             .addItem((i) => {
             i.setIcon("sheets-in-box")
-                .setTitle("Archive card")
+                .setTitle(t$2("Archive card"))
                 .onClick(() => boardModifiers.archiveItem(laneIndex, itemIndex, item));
         })
             .addItem((i) => {
             i.setIcon("trash")
-                .setTitle("Delete card")
+                .setTitle(t$2("Delete card"))
                 .onClick(() => boardModifiers.deleteItem(laneIndex, itemIndex));
+        })
+            .addSeparator()
+            .addItem((i) => {
+            i.setIcon("calendar-with-checkmark")
+                .setTitle(hasDate ? t$2("Edit date") : t$2("Add date"))
+                .onClick(() => {
+                var _a;
+                constructDatePicker$1(coordinates, constructMenuDatePickerOnChange({
+                    view,
+                    boardModifiers,
+                    item,
+                    hasDate,
+                    laneIndex,
+                    itemIndex,
+                }), (_a = item.metadata.date) === null || _a === void 0 ? void 0 : _a.toDate());
+            });
         });
+        if (hasDate) {
+            menu.addItem((i) => {
+                i.setIcon("cross")
+                    .setTitle(t$2("Remove date"))
+                    .onClick(() => {
+                    const shouldLinkDates = view.getSetting("link-date-to-daily-note");
+                    const dateTrigger = view.getSetting("date-trigger") || defaultDateTrigger;
+                    const contentMatch = shouldLinkDates
+                        ? "\\[\\[[^}]+\\]\\]"
+                        : "{[^}]+}";
+                    const dateRegEx = new RegExp(`(^|\\s)${escapeRegExpStr(dateTrigger)}${contentMatch}`);
+                    const titleRaw = item.titleRaw.replace(dateRegEx, "").trim();
+                    const processed = processTitle(titleRaw, view);
+                    boardModifiers.updateItem(laneIndex, itemIndex, update$2(item, {
+                        title: { $set: processed.title },
+                        titleRaw: { $set: titleRaw },
+                        metadata: {
+                            date: {
+                                $set: processed.date,
+                            },
+                            time: {
+                                $set: processed.time,
+                            },
+                        },
+                    }));
+                });
+            });
+            menu.addItem((i) => {
+                i.setIcon("clock")
+                    .setTitle(hasTime ? t$2("Edit time") : t$2("Add time"))
+                    .onClick(() => {
+                    constructTimePicker(view, coordinates, constructMenuTimePickerOnChange({
+                        view,
+                        boardModifiers,
+                        item,
+                        hasTime,
+                        laneIndex,
+                        itemIndex,
+                    }), item.metadata.time);
+                });
+            });
+            if (hasTime) {
+                menu.addItem((i) => {
+                    i.setIcon("cross")
+                        .setTitle(t$2("Remove time"))
+                        .onClick(() => {
+                        const timeTrigger = view.getSetting("time-trigger") || defaultTimeTrigger;
+                        const timeRegEx = new RegExp(`(^|\\s)${escapeRegExpStr(timeTrigger)}{([^}]+)}`);
+                        const titleRaw = item.titleRaw.replace(timeRegEx, "").trim();
+                        const processed = processTitle(titleRaw, view);
+                        boardModifiers.updateItem(laneIndex, itemIndex, update$2(item, {
+                            title: { $set: processed.title },
+                            titleRaw: { $set: titleRaw },
+                            metadata: {
+                                date: {
+                                    $set: processed.date,
+                                },
+                                time: {
+                                    $set: processed.time,
+                                },
+                            },
+                        }));
+                    });
+                });
+            }
+        }
         return (e) => {
             coordinates.x = e.clientX;
             coordinates.y = e.clientY;
@@ -37487,11 +38375,11 @@ function GhostItem({ item, shouldShowArchiveButton }) {
         react.createElement("div", { className: c$2("item-content-wrapper") },
             (shouldShowArchiveButton || shouldShowCheckbox) && (react.createElement("div", { className: c$2("item-prefix-button-wrapper") },
                 shouldShowCheckbox && (react.createElement("input", { readOnly: true, type: "checkbox", className: "task-list-item-checkbox", checked: !!item.data.isComplete })),
-                shouldShowArchiveButton && (react.createElement("button", { className: c$2("item-prefix-button"), "aria-label": "Archive item" },
+                shouldShowArchiveButton && (react.createElement("button", { className: c$2("item-prefix-button"), "aria-label": t$2("Archive item") },
                     react.createElement(Icon, { name: "sheets-in-box" }))))),
             react.createElement(ItemContent, { isSettingsVisible: false, item: item }),
             react.createElement("div", { className: c$2("item-postfix-button-wrapper") },
-                react.createElement("button", { className: c$2("item-postfix-button"), "aria-label": "More options" },
+                react.createElement("button", { className: c$2("item-postfix-button"), "aria-label": t$2("More options") },
                     react.createElement(Icon, { name: "vertical-three-dots" }))))));
 }
 function draggableItemFactory({ items, laneIndex, }) {
@@ -37499,16 +38387,16 @@ function draggableItemFactory({ items, laneIndex, }) {
         const { boardModifiers, board } = react.useContext(KanbanContext);
         const { view } = react.useContext(ObsidianContext);
         const [isEditing, setIsEditing] = react.useState(false);
-        const [isCtrlHovering, setIsCtrlHovering] = react.useState(false);
-        const [isHovering, setIsHovering] = react.useState(false);
+        const [isCtrlHoveringCheckbox, setIsCtrlHoveringCheckbox] = react.useState(false);
+        const [isHoveringCheckbox, setIsHoveringCheckbox] = react.useState(false);
         react.useEffect(() => {
-            if (isHovering) {
+            if (isHoveringCheckbox) {
                 const handler = (e) => {
                     if (e.metaKey || e.ctrlKey) {
-                        setIsCtrlHovering(true);
+                        setIsCtrlHoveringCheckbox(true);
                     }
                     else {
-                        setIsCtrlHovering(false);
+                        setIsCtrlHoveringCheckbox(false);
                     }
                 };
                 window.addEventListener("keydown", handler);
@@ -37518,7 +38406,7 @@ function draggableItemFactory({ items, laneIndex, }) {
                     window.removeEventListener("keyup", handler);
                 };
             }
-        }, [isHovering]);
+        }, [isHoveringCheckbox]);
         const itemIndex = rubric.source.index;
         const item = items[itemIndex];
         const lane = board.lanes[laneIndex];
@@ -37534,32 +38422,57 @@ function draggableItemFactory({ items, laneIndex, }) {
             itemIndex,
             boardModifiers,
         });
-        return (react.createElement("div", Object.assign({ className: `${c$2("item")} ${classModifiers.join(" ")}`, ref: provided.innerRef }, provided.draggableProps, provided.dragHandleProps),
+        return (react.createElement("div", Object.assign({ onContextMenu: (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                showMenu(e.nativeEvent);
+            }, onDoubleClick: () => {
+                setIsEditing(true);
+            }, className: `${c$2("item")} ${classModifiers.join(" ")}`, ref: provided.innerRef }, provided.draggableProps, provided.dragHandleProps),
             react.createElement("div", { className: c$2("item-content-wrapper") },
                 (shouldMarkItemsComplete || shouldShowCheckbox) && (react.createElement("div", { onMouseEnter: (e) => {
-                        setIsHovering(true);
+                        setIsHoveringCheckbox(true);
                         if (e.ctrlKey || e.metaKey) {
-                            setIsCtrlHovering(true);
+                            setIsCtrlHoveringCheckbox(true);
                         }
                     }, onMouseLeave: () => {
-                        setIsHovering(false);
-                        if (isCtrlHovering) {
-                            setIsCtrlHovering(false);
+                        setIsHoveringCheckbox(false);
+                        if (isCtrlHoveringCheckbox) {
+                            setIsCtrlHoveringCheckbox(false);
                         }
                     }, className: c$2("item-prefix-button-wrapper") },
-                    shouldShowCheckbox && !isCtrlHovering && (react.createElement("input", { onChange: () => {
+                    shouldShowCheckbox && !isCtrlHoveringCheckbox && (react.createElement("input", { onChange: () => {
                             boardModifiers.updateItem(laneIndex, itemIndex, update$2(item, {
                                 data: {
                                     $toggle: ["isComplete"],
                                 },
                             }));
                         }, type: "checkbox", className: "task-list-item-checkbox", checked: !!item.data.isComplete })),
-                    (isCtrlHovering ||
+                    (isCtrlHoveringCheckbox ||
                         (!shouldShowCheckbox && shouldMarkItemsComplete)) && (react.createElement("button", { onClick: () => {
                             boardModifiers.archiveItem(laneIndex, itemIndex, item);
-                        }, className: c$2("item-prefix-button"), "aria-label": isCtrlHovering ? undefined : "Archive item" },
+                        }, className: c$2("item-prefix-button"), "aria-label": isCtrlHoveringCheckbox ? undefined : "Archive item" },
                         react.createElement(Icon, { name: "sheets-in-box" }))))),
-                react.createElement(ItemContent, { isSettingsVisible: isEditing, setIsSettingsVisible: setIsEditing, item: item, onChange: (e) => {
+                react.createElement(ItemContent, { isSettingsVisible: isEditing, setIsSettingsVisible: setIsEditing, item: item, onEditDate: (e) => {
+                        var _a;
+                        constructDatePicker$1({ x: e.clientX, y: e.clientY }, constructMenuDatePickerOnChange({
+                            view,
+                            boardModifiers,
+                            item,
+                            hasDate: true,
+                            laneIndex,
+                            itemIndex,
+                        }), (_a = item.metadata.date) === null || _a === void 0 ? void 0 : _a.toDate());
+                    }, onEditTime: (e) => {
+                        constructTimePicker(view, { x: e.clientX, y: e.clientY }, constructMenuTimePickerOnChange({
+                            view,
+                            boardModifiers,
+                            item,
+                            hasTime: true,
+                            laneIndex,
+                            itemIndex,
+                        }), item.metadata.time);
+                    }, onChange: (e) => {
                         const titleRaw = e.target.value.replace(/[\r\n]+/g, " ");
                         const processed = processTitle(titleRaw, view);
                         boardModifiers.updateItem(laneIndex, itemIndex, update$2(item, {
@@ -37569,15 +38482,18 @@ function draggableItemFactory({ items, laneIndex, }) {
                                 date: {
                                     $set: processed.date,
                                 },
+                                time: {
+                                    $set: processed.time,
+                                },
                             },
                         }));
                     } }),
                 react.createElement("div", { className: c$2("item-postfix-button-wrapper") }, isEditing ? (react.createElement("button", { onClick: () => {
                         setIsEditing(false);
-                    }, className: `${c$2("item-postfix-button")} is-enabled`, "aria-label": "Cancel" },
+                    }, className: `${c$2("item-postfix-button")} is-enabled`, "aria-label": t$2("Cancel") },
                     react.createElement(Icon, { name: "cross" }))) : (react.createElement("button", { onClick: (e) => {
                         showMenu(e.nativeEvent);
-                    }, className: c$2("item-postfix-button"), "aria-label": "More options" },
+                    }, className: c$2("item-postfix-button"), "aria-label": t$2("More options") },
                     react.createElement(Icon, { name: "vertical-three-dots" })))))));
     };
 }
@@ -37717,7 +38633,7 @@ function ItemForm({ addItem }) {
     const clickOutsideRef = useOnclickOutside(() => {
         setIsInputVisible(false);
     }, {
-        ignoreClass: c$2("ignore-click-outside")
+        ignoreClass: c$2("ignore-click-outside"),
     });
     const clear = () => {
         setItemTitle("");
@@ -37734,6 +38650,7 @@ function ItemForm({ addItem }) {
                 data: {},
                 metadata: {
                     date: processed.date,
+                    time: processed.time,
                 },
             };
             addItem(newItem);
@@ -37749,15 +38666,16 @@ function ItemForm({ addItem }) {
         return (react.createElement("div", { ref: clickOutsideRef },
             react.createElement("div", { className: c$2("item-input-wrapper") },
                 react.createElement("div", { "data-replicated-value": itemTitle, className: c$2("grow-wrap") },
-                    react.createElement("textarea", Object.assign({ rows: 1, value: itemTitle, className: c$2("item-input"), placeholder: "Item title...", onChange: (e) => setItemTitle(e.target.value.replace(/[\r\n]+/g, " ")) }, autocompleteProps)))),
+                    react.createElement("textarea", Object.assign({ rows: 1, value: itemTitle, className: c$2("item-input"), placeholder: t$2("Item title..."), onChange: (e) => setItemTitle(e.target.value.replace(/[\r\n]+/g, " ")) }, autocompleteProps)))),
             react.createElement("div", { className: c$2("item-input-actions") },
-                react.createElement("button", { className: c$2("item-action-add"), onClick: createItem }, "Add item"),
-                react.createElement("button", { className: c$2("item-action-cancel"), onClick: clear }, "Cancel"))));
+                react.createElement("button", { className: c$2("item-action-add"), onClick: createItem }, t$2("Add item")),
+                react.createElement("button", { className: c$2("item-action-cancel"), onClick: clear }, t$2("Cancel")))));
     }
     return (react.createElement("div", { className: c$2("item-button-wrapper") },
         react.createElement("button", { className: c$2("new-item-button"), onClick: () => setIsInputVisible(true) },
             react.createElement("span", { className: c$2("item-button-plus") }, "+"),
-            " Add a card")));
+            " ",
+            t$2("Add a card"))));
 }
 
 function GripIcon(props) {
@@ -37776,7 +38694,7 @@ function LaneTitle({ itemCount, isEditing, title, onChange, onKeyDown, }) {
         }
     }, [isEditing]);
     return (react.createElement("div", { className: c$2("lane-title") }, isEditing ? (react.createElement("div", { "data-replicated-value": title, className: c$2("grow-wrap") },
-        react.createElement("textarea", Object.assign({ ref: inputRef, rows: 1, value: title, className: c$2("lane-input"), placeholder: "Enter list title...", onChange: onChange, onKeyDown: (e) => {
+        react.createElement("textarea", Object.assign({ ref: inputRef, rows: 1, value: title, className: c$2("lane-input"), placeholder: t$2("Enter list title..."), onChange: onChange, onKeyDown: (e) => {
                 if (getShouldIMEBlockAction())
                     return;
                 onKeyDown(e);
@@ -37789,7 +38707,7 @@ function LaneSettings({ lane, laneIndex }) {
     const { boardModifiers } = react.useContext(KanbanContext);
     return (react.createElement("div", { className: c$2("lane-setting-wrapper") },
         react.createElement("div", { className: c$2("checkbox-wrapper") },
-            react.createElement("div", { className: c$2("checkbox-label") }, "Mark items in this list as complete"),
+            react.createElement("div", { className: c$2("checkbox-label") }, t$2("Mark items in this list as complete")),
             react.createElement("div", { onClick: () => boardModifiers.updateLane(laneIndex, update$2(lane, {
                     data: { $toggle: ["shouldMarkItemsComplete"] },
                 })), className: `checkbox-container ${lane.data.shouldMarkItemsComplete ? "is-enabled" : ""}` }))));
@@ -37797,16 +38715,16 @@ function LaneSettings({ lane, laneIndex }) {
 
 const actionLabels = {
     delete: {
-        description: "Are you sure you want to delete this list and all its cards?",
-        confirm: "Yes, delete list",
+        description: t$2("Are you sure you want to delete this list and all its cards?"),
+        confirm: t$2("Yes, delete list"),
     },
     archive: {
-        description: "Are you sure you want to archive this list and all its cards?",
-        confirm: "Yes, archive list",
+        description: t$2("Are you sure you want to archive this list and all its cards?"),
+        confirm: t$2("Yes, archive list"),
     },
     "archive-items": {
-        description: "Are you sure you want to archive all cards in this list?",
-        confirm: "Yes, archive cards",
+        description: t$2("Are you sure you want to archive all cards in this list?"),
+        confirm: t$2("Yes, archive cards"),
     },
 };
 function ConfirmAction({ action, cancel, onAction, lane, }) {
@@ -37832,26 +38750,26 @@ function useSettingsMenu({ setIsEditing }) {
             .addItem((item) => {
             item
                 .setIcon("pencil")
-                .setTitle("Edit list")
+                .setTitle(t$2("Edit list"))
                 .onClick(() => setIsEditing(true));
         })
             .addItem((item) => {
             item
                 .setIcon("documents")
-                .setTitle("Archive cards")
+                .setTitle(t$2("Archive cards"))
                 .onClick(() => setConfirmAction("archive-items"));
         })
             .addSeparator()
             .addItem((item) => {
             item
                 .setIcon("sheets-in-box")
-                .setTitle("Archive list")
+                .setTitle(t$2("Archive list"))
                 .onClick(() => setConfirmAction("archive"));
         })
             .addItem((item) => {
             item
                 .setIcon("trash")
-                .setTitle("Delete list")
+                .setTitle(t$2("Delete list"))
                 .onClick(() => setConfirmAction("delete"));
         });
     }, [view, setConfirmAction]);
@@ -37869,8 +38787,8 @@ function LaneHeader({ lane, laneIndex, dragHandleProps, }) {
         setIsEditing,
     });
     return (react.createElement(react.Fragment, null,
-        react.createElement("div", { className: c$2("lane-header-wrapper") },
-            react.createElement("div", Object.assign({ className: c$2("lane-grip") }, dragHandleProps, { "aria-label": "Move list" }),
+        react.createElement("div", { onDoubleClick: () => setIsEditing(true), className: c$2("lane-header-wrapper") },
+            react.createElement("div", Object.assign({ className: c$2("lane-grip") }, dragHandleProps, { "aria-label": t$2("Move list") }),
                 react.createElement(GripIcon, null)),
             react.createElement(LaneTitle, { isEditing: isEditing, itemCount: lane.items.length, title: lane.title, onChange: (e) => boardModifiers.updateLane(laneIndex, update$2(lane, { title: { $set: e.target.value } })), onKeyDown: (e) => {
                     if (e.key === "Escape" || e.key === "Enter") {
@@ -37881,7 +38799,7 @@ function LaneHeader({ lane, laneIndex, dragHandleProps, }) {
             react.createElement("div", { className: c$2("lane-settings-button-wrapper") }, isEditing ? (react.createElement("button", { onClick: () => {
                     setIsEditing(false);
                 }, "aria-label": "Close", className: `${c$2("lane-settings-button")} is-enabled` },
-                react.createElement(Icon, { name: "cross" }))) : (react.createElement("button", { "aria-label": "More options", className: c$2("lane-settings-button"), onClick: (e) => {
+                react.createElement(Icon, { name: "cross" }))) : (react.createElement("button", { "aria-label": t$2("More options"), className: c$2("lane-settings-button"), onClick: (e) => {
                     settingsMenu.showAtPosition({ x: e.clientX, y: e.clientY });
                 } },
                 react.createElement(Icon, { name: "vertical-three-dots" }))))),
@@ -37982,7 +38900,7 @@ function LaneForm() {
         return (react.createElement("div", { ref: clickOutsideRef, className: c$2("lane") },
             react.createElement("div", { className: c$2("lane-input-wrapper") },
                 react.createElement("div", { "data-replicated-value": laneTitle, className: c$2("grow-wrap") },
-                    react.createElement("textarea", Object.assign({ rows: 1, value: laneTitle, ref: inputRef, className: c$2("lane-input"), placeholder: "Enter list title...", onChange: (e) => setLaneTitle(e.target.value), onKeyDown: (e) => {
+                    react.createElement("textarea", Object.assign({ rows: 1, value: laneTitle, ref: inputRef, className: c$2("lane-input"), placeholder: t$2("Enter list title..."), onChange: (e) => setLaneTitle(e.target.value), onKeyDown: (e) => {
                             if (getShouldIMEBlockAction())
                                 return;
                             if (e.key === "Enter") {
@@ -37994,19 +38912,20 @@ function LaneForm() {
                             }
                         } }, inputProps)))),
             react.createElement("div", { className: c$2("checkbox-wrapper") },
-                react.createElement("div", { className: c$2("checkbox-label") }, "Mark items in this list as complete"),
+                react.createElement("div", { className: c$2("checkbox-label") }, t$2("Mark items in this list as complete")),
                 react.createElement("div", { onClick: () => setShouldMarkAsComplete(!shouldMarkAsComplete), className: `checkbox-container ${shouldMarkAsComplete ? "is-enabled" : ""}` })),
             react.createElement("div", { className: c$2("lane-input-actions") },
-                react.createElement("button", { className: c$2("lane-action-add"), onClick: createLane }, "Add list"),
-                react.createElement("button", { className: c$2("lane-action-cancel"), onClick: clear }, "Cancel"))));
+                react.createElement("button", { className: c$2("lane-action-add"), onClick: createLane }, t$2("Add list")),
+                react.createElement("button", { className: c$2("lane-action-cancel"), onClick: clear }, t$2("Cancel")))));
     }
     return (react.createElement("div", { className: c$2("new-lane-button-wrapper") },
         react.createElement("button", { className: c$2("new-lane-button"), onClick: () => setIsInputVisible(true) },
             react.createElement("span", { className: c$2("new-lane-button-plus") }, "+"),
-            " Add a list")));
+            " ",
+            t$2("Add a list"))));
 }
 
-function getBoardDragHandler({ boardData, setBoardData, }) {
+function getBoardDragHandler({ view, boardData, setBoardData, }) {
     return (dropResult) => {
         const { source, destination } = dropResult;
         // Bail out early if we're not dropping anywhere
@@ -38016,6 +38935,7 @@ function getBoardDragHandler({ boardData, setBoardData, }) {
             return;
         }
         const mutationParams = {
+            view,
             boardData,
             dropResult,
         };
@@ -38033,9 +38953,28 @@ function getBoardDragHandler({ boardData, setBoardData, }) {
         setBoardData(moveItem(mutationParams));
     };
 }
-function getBoardModifiers({ boardData, setBoardData, }) {
+function getBoardModifiers({ view, boardData, setBoardData, }) {
+    const shouldAppendArchiveDate = !!view.getSetting("prepend-archive-date");
+    const dateFmt = view.getSetting("date-format") || getDefaultDateFormat(view.app);
+    const timeFmt = view.getSetting("time-format") || getDefaultTimeFormat(view.app);
+    const archiveDateSeparator = view.getSetting("prepend-archive-separator") || "";
+    const archiveDateFormat = view.getSetting("prepend-archive-format") ||
+        `${dateFmt} ${timeFmt}`;
+    const appendArchiveDate = (item) => {
+        const newTitle = [obsidian.moment().format(archiveDateFormat)];
+        if (archiveDateSeparator)
+            newTitle.push(archiveDateSeparator);
+        newTitle.push(item.titleRaw);
+        const titleRaw = newTitle.join(" ");
+        const processed = processTitle(titleRaw, view);
+        return update$2(item, {
+            title: { $set: processed.title },
+            titleRaw: { $set: titleRaw },
+        });
+    };
     return {
         addItemToLane: (laneIndex, item) => {
+            view.app.workspace.trigger("kanban:card-added", view.file, item);
             setBoardData(update$2(boardData, {
                 lanes: {
                     [laneIndex]: {
@@ -38047,6 +38986,7 @@ function getBoardModifiers({ boardData, setBoardData, }) {
             }));
         },
         addLane: (lane) => {
+            view.app.workspace.trigger("kanban:lane-added", view.file, lane);
             setBoardData(update$2(boardData, {
                 lanes: {
                     $push: [lane],
@@ -38054,6 +38994,7 @@ function getBoardModifiers({ boardData, setBoardData, }) {
             }));
         },
         updateLane: (laneIndex, lane) => {
+            view.app.workspace.trigger("kanban:lane-updated", view.file, lane);
             setBoardData(update$2(boardData, {
                 lanes: {
                     [laneIndex]: {
@@ -38063,6 +39004,7 @@ function getBoardModifiers({ boardData, setBoardData, }) {
             }));
         },
         deleteLane: (laneIndex) => {
+            view.app.workspace.trigger("kanban:lane-deleted", view.file, boardData.lanes[laneIndex]);
             setBoardData(update$2(boardData, {
                 lanes: {
                     $splice: [[laneIndex, 1]],
@@ -38070,18 +39012,22 @@ function getBoardModifiers({ boardData, setBoardData, }) {
             }));
         },
         archiveLane: (laneIndex) => {
+            view.app.workspace.trigger("kanban:lane-archived", view.file, boardData.lanes[laneIndex]);
             const items = boardData.lanes[laneIndex].items;
             setBoardData(update$2(boardData, {
                 lanes: {
                     $splice: [[laneIndex, 1]],
                 },
                 archive: {
-                    $push: items,
+                    $push: shouldAppendArchiveDate
+                        ? items.map(appendArchiveDate)
+                        : items,
                 },
             }));
         },
         archiveLaneItems: (laneIndex) => {
             const items = boardData.lanes[laneIndex].items;
+            view.app.workspace.trigger("kanban:lane-cards-archived", view.file, items);
             setBoardData(update$2(boardData, {
                 lanes: {
                     [laneIndex]: {
@@ -38091,11 +39037,14 @@ function getBoardModifiers({ boardData, setBoardData, }) {
                     },
                 },
                 archive: {
-                    $push: items,
+                    $push: shouldAppendArchiveDate
+                        ? items.map(appendArchiveDate)
+                        : items,
                 },
             }));
         },
         deleteItem: (laneIndex, itemIndex) => {
+            view.app.workspace.trigger("kanban:card-deleted", view.file, boardData.lanes[laneIndex].items[itemIndex]);
             setBoardData(update$2(boardData, {
                 lanes: {
                     [laneIndex]: {
@@ -38107,6 +39056,7 @@ function getBoardModifiers({ boardData, setBoardData, }) {
             }));
         },
         updateItem: (laneIndex, itemIndex, item) => {
+            view.app.workspace.trigger("kanban:card-updated", view.file, boardData.lanes[laneIndex], item);
             setBoardData(update$2(boardData, {
                 lanes: {
                     [laneIndex]: {
@@ -38120,6 +39070,7 @@ function getBoardModifiers({ boardData, setBoardData, }) {
             }));
         },
         archiveItem: (laneIndex, itemIndex, item) => {
+            view.app.workspace.trigger("kanban:card-archived", view.file, boardData.lanes[laneIndex], item);
             setBoardData(update$2(boardData, {
                 lanes: {
                     [laneIndex]: {
@@ -38129,7 +39080,7 @@ function getBoardModifiers({ boardData, setBoardData, }) {
                     },
                 },
                 archive: {
-                    $push: [item],
+                    $push: [shouldAppendArchiveDate ? appendArchiveDate(item) : item],
                 },
             }));
         },
@@ -38162,11 +39113,11 @@ const Kanban = ({ filePath, view, dataBridge }) => {
         }
     }, [boardData.archive.length, maxArchiveLength]);
     const boardModifiers = react.useMemo(() => {
-        return getBoardModifiers({ boardData, setBoardData });
-    }, [boardData, setBoardData]);
+        return getBoardModifiers({ view, boardData, setBoardData });
+    }, [view, boardData, setBoardData]);
     const onDragEnd = react.useMemo(() => {
-        return getBoardDragHandler({ boardData, setBoardData });
-    }, [boardData, setBoardData]);
+        return getBoardDragHandler({ view, boardData, setBoardData });
+    }, [view, boardData, setBoardData]);
     if (boardData === null)
         return null;
     const renderLane = draggableLaneFactory({
@@ -38288,38 +39239,38 @@ class SettingsManager {
         contentEl.createEl("h3", { text: heading });
         if (local) {
             contentEl.createEl("p", {
-                text: "These settings will take precedence over the default Kanban board settings.",
+                text: t$2("These settings will take precedence over the default Kanban board settings."),
             });
         }
         else {
             contentEl.createEl("p", {
-                text: "Set the default Kanban board settings. Settings can be overridden on a board-by-board basis.",
+                text: t$2("Set the default Kanban board settings. Settings can be overridden on a board-by-board basis."),
             });
         }
         new obsidian.Setting(contentEl)
-            .setName("Note template")
-            .setDesc("This template will be used when creating new notes from Kanban cards.")
+            .setName(t$2("Note template"))
+            .setDesc(t$2("This template will be used when creating new notes from Kanban cards."))
             .then(createSearchSelect({
             choices: templateFiles,
             key: "new-note-template",
             warningText: templateWarning,
             local,
-            placeHolderStr: "No template",
+            placeHolderStr: t$2("No template"),
             manager: this,
         }));
         new obsidian.Setting(contentEl)
-            .setName("Note folder")
-            .setDesc("Notes created from Kanban cards will be placed in this folder. If blank, they will be placed in the default location for this vault.")
+            .setName(t$2("Note folder"))
+            .setDesc(t$2("Notes created from Kanban cards will be placed in this folder. If blank, they will be placed in the default location for this vault."))
             .then(createSearchSelect({
             choices: vaultFolders,
             key: "new-note-folder",
             local,
-            placeHolderStr: "Default folder",
+            placeHolderStr: t$2("Default folder"),
             manager: this,
         }));
         new obsidian.Setting(contentEl)
-            .setName("Lane width")
-            .setDesc("Enter a number to set the lane width in pixels.")
+            .setName(t$2("Lane width"))
+            .setDesc(t$2("Enter a number to set the lane width in pixels."))
             .addText((text) => {
             const [value, globalValue] = this.getSetting("lane-width", local);
             text.inputEl.setAttr("type", "number");
@@ -38344,8 +39295,8 @@ class SettingsManager {
             });
         });
         new obsidian.Setting(contentEl)
-            .setName("Maximum number of archived cards")
-            .setDesc("Archived cards can be viewed in markdown mode. This setting will begin removing old cards once the limit is reached. Setting this value to -1 will allow a board's archive to grow infinitely.")
+            .setName(t$2("Maximum number of archived cards"))
+            .setDesc(t$2("Archived cards can be viewed in markdown mode. This setting will begin removing old cards once the limit is reached. Setting this value to -1 will allow a board's archive to grow infinitely."))
             .addText((text) => {
             const [value, globalValue] = this.getSetting("max-archive-size", local);
             text.inputEl.setAttr("type", "number");
@@ -38370,8 +39321,8 @@ class SettingsManager {
             });
         });
         new obsidian.Setting(contentEl)
-            .setName("Display card checkbox")
-            .setDesc("When toggled, a checkbox will be displayed with each card")
+            .setName(t$2("Display card checkbox"))
+            .setDesc(t$2("When toggled, a checkbox will be displayed with each card"))
             .addToggle((toggle) => {
             const [value, globalValue] = this.getSetting("show-checkboxes", local);
             if (value !== undefined) {
@@ -38390,17 +39341,17 @@ class SettingsManager {
         })
             .addExtraButton((b) => {
             b.setIcon("reset")
-                .setTooltip("Reset to default")
+                .setTooltip(t$2("Reset to default"))
                 .onClick(() => {
                 this.applySettingsUpdate({
                     $unset: ["show-checkboxes"],
                 });
             });
         });
-        contentEl.createEl("h4", { text: "Date & Time" });
+        contentEl.createEl("h4", { text: t$2("Date & Time") });
         new obsidian.Setting(contentEl)
-            .setName("Date trigger")
-            .setDesc("When this is typed, it will trigger the date selector")
+            .setName(t$2("Date trigger"))
+            .setDesc(t$2("When this is typed, it will trigger the date selector"))
             .addText((text) => {
             const [value, globalValue] = this.getSetting("date-trigger", local);
             if (value || globalValue) {
@@ -38422,20 +39373,44 @@ class SettingsManager {
                 }
             });
         });
-        new obsidian.Setting(contentEl).setName("Date format").then((setting) => {
+        new obsidian.Setting(contentEl)
+            .setName(t$2("Time trigger"))
+            .setDesc(t$2("When this is typed, it will trigger the time selector"))
+            .addText((text) => {
+            const [value, globalValue] = this.getSetting("time-trigger", local);
+            if (value || globalValue) {
+                text.setValue((value || globalValue));
+            }
+            text.setPlaceholder(globalValue || defaultTimeTrigger);
+            text.onChange((newValue) => {
+                if (newValue) {
+                    this.applySettingsUpdate({
+                        "time-trigger": {
+                            $set: newValue,
+                        },
+                    });
+                }
+                else {
+                    this.applySettingsUpdate({
+                        $unset: ["time-trigger"],
+                    });
+                }
+            });
+        });
+        new obsidian.Setting(contentEl).setName(t$2("Date format")).then((setting) => {
             setting.addMomentFormat((mf) => {
                 setting.descEl.appendChild(createFragment((frag) => {
-                    frag.appendText("This format will be used when saving dates in markdown.");
+                    frag.appendText(t$2("This format will be used when saving dates in markdown."));
                     frag.createEl("br");
-                    frag.appendText("For more syntax, refer to ");
+                    frag.appendText(t$2("For more syntax, refer to") + " ");
                     frag.createEl("a", {
-                        text: "format reference",
+                        text: t$2("format reference"),
                         href: "https://momentjs.com/docs/#/displaying/format/",
                     }, (a) => {
                         a.setAttr("target", "_blank");
                     });
                     frag.createEl("br");
-                    frag.appendText("Your current syntax looks like this: ");
+                    frag.appendText(t$2("Your current syntax looks like this") + ": ");
                     mf.setSampleEl(frag.createEl("b", { cls: "u-pop" }));
                     frag.createEl("br");
                 }));
@@ -38462,20 +39437,58 @@ class SettingsManager {
                 });
             });
         });
-        new obsidian.Setting(contentEl).setName("Date display format").then((setting) => {
+        new obsidian.Setting(contentEl).setName(t$2("Time format")).then((setting) => {
             setting.addMomentFormat((mf) => {
                 setting.descEl.appendChild(createFragment((frag) => {
-                    frag.appendText("This format will be used when displaying dates in Kanban cards.");
-                    frag.createEl("br");
-                    frag.appendText("For more syntax, refer to ");
+                    frag.appendText(t$2("For more syntax, refer to") + " ");
                     frag.createEl("a", {
-                        text: "format reference",
+                        text: t$2("format reference"),
                         href: "https://momentjs.com/docs/#/displaying/format/",
                     }, (a) => {
                         a.setAttr("target", "_blank");
                     });
                     frag.createEl("br");
-                    frag.appendText("Your current syntax looks like this: ");
+                    frag.appendText(t$2("Your current syntax looks like this") + ": ");
+                    mf.setSampleEl(frag.createEl("b", { cls: "u-pop" }));
+                    frag.createEl("br");
+                }));
+                const [value, globalValue] = this.getSetting("time-format", local);
+                const defaultFormat = getDefaultTimeFormat(this.app);
+                mf.setPlaceholder(defaultFormat);
+                mf.setDefaultFormat(defaultFormat);
+                if (value || globalValue) {
+                    mf.setValue((value || globalValue));
+                }
+                mf.onChange((newValue) => {
+                    if (newValue) {
+                        this.applySettingsUpdate({
+                            "time-format": {
+                                $set: newValue,
+                            },
+                        });
+                    }
+                    else {
+                        this.applySettingsUpdate({
+                            $unset: ["time-format"],
+                        });
+                    }
+                });
+            });
+        });
+        new obsidian.Setting(contentEl).setName(t$2("Date display format")).then((setting) => {
+            setting.addMomentFormat((mf) => {
+                setting.descEl.appendChild(createFragment((frag) => {
+                    frag.appendText(t$2("This format will be used when displaying dates in Kanban cards."));
+                    frag.createEl("br");
+                    frag.appendText(t$2("For more syntax, refer to") + " ");
+                    frag.createEl("a", {
+                        text: t$2("format reference"),
+                        href: "https://momentjs.com/docs/#/displaying/format/",
+                    }, (a) => {
+                        a.setAttr("target", "_blank");
+                    });
+                    frag.createEl("br");
+                    frag.appendText(t$2("Your current syntax looks like this") + ": ");
                     mf.setSampleEl(frag.createEl("b", { cls: "u-pop" }));
                     frag.createEl("br");
                 }));
@@ -38503,8 +39516,8 @@ class SettingsManager {
             });
         });
         new obsidian.Setting(contentEl)
-            .setName("Show relative date")
-            .setDesc("When toggled, cards will display the distance between today and the card's date. eg. 'In 3 days', 'A month ago'")
+            .setName(t$2("Show relative date"))
+            .setDesc(t$2("When toggled, cards will display the distance between today and the card's date. eg. 'In 3 days', 'A month ago'"))
             .addToggle((toggle) => {
             const [value, globalValue] = this.getSetting("show-relative-date", local);
             if (value !== undefined) {
@@ -38523,82 +39536,16 @@ class SettingsManager {
         })
             .addExtraButton((b) => {
             b.setIcon("reset")
-                .setTooltip("Reset to default")
+                .setTooltip(t$2("Reset to default"))
                 .onClick(() => {
                 this.applySettingsUpdate({
                     $unset: ["show-relative-date"],
                 });
             });
         });
-        // new Setting(contentEl).setName("Time output format").then((setting) => {
-        //   setting.addMomentFormat((mf) => {
-        //     setting.descEl.appendChild(
-        //       createFragment((frag) => {
-        //         frag.appendText("For more syntax, refer to ");
-        //         frag.createEl(
-        //           "a",
-        //           {
-        //             text: "format reference",
-        //             href: "https://momentjs.com/docs/#/displaying/format/",
-        //           },
-        //           (a) => {
-        //             a.setAttr("target", "_blank");
-        //           }
-        //         );
-        //         frag.createEl("br");
-        //         frag.appendText("Your current syntax looks like this: ");
-        //         mf.setSampleEl(frag.createEl("b", { cls: "u-pop" }));
-        //         frag.createEl("br");
-        //       })
-        //     );
-        //     const [value, globalValue] = this.getSetting("time-format", local);
-        //     const defaultFormat = getDefaultTimeFormat(this.app);
-        //     mf.setPlaceholder(defaultFormat);
-        //     mf.setDefaultFormat(defaultFormat);
-        //     if (value || globalValue) {
-        //       mf.setValue((value || globalValue) as string);
-        //     }
-        //     mf.onChange((newValue) => {
-        //       if (newValue) {
-        //         this.applySettingsUpdate({
-        //           "time-format": {
-        //             $set: newValue,
-        //           },
-        //         });
-        //       } else {
-        //         this.applySettingsUpdate({
-        //           $unset: ["time-format"],
-        //         });
-        //       }
-        //     });
-        //   });
-        // });
-        // new Setting(contentEl)
-        //   .setName("Time trigger")
-        //   .setDesc("When this is typed, it will trigger the time selector")
-        //   .addText((text) => {
-        //     const [value, globalValue] = this.getSetting("time-trigger", local);
-        //     if (value || globalValue) {
-        //       text.setValue((value || globalValue) as string);
-        //     }
-        //     text.setPlaceholder((globalValue as string) || defaultTimeTrigger);
-        //     text.onChange((newValue) => {
-        //       if (newValue) {
-        //         this.applySettingsUpdate({
-        //           "time-trigger": {
-        //             $set: newValue,
-        //           },
-        //         });
-        //       } else {
-        //         this.applySettingsUpdate({
-        //           $unset: ["time-trigger"],
-        //         });
-        //       }
-        //     });
-        //   });
         new obsidian.Setting(contentEl)
-            .setName("Hide card display dates")
-            .setDesc("When toggled, formatted dates will not be displayed on the card. Relative dates will still be displayed if they are enabled.")
+            .setName(t$2("Hide card display dates"))
+            .setDesc(t$2("When toggled, formatted dates will not be displayed on the card. Relative dates will still be displayed if they are enabled."))
             .addToggle((toggle) => {
             const [value, globalValue] = this.getSetting("hide-date-display", local);
             if (value !== undefined) {
@@ -38617,7 +39564,7 @@ class SettingsManager {
         })
             .addExtraButton((b) => {
             b.setIcon("reset")
-                .setTooltip("Reset to default")
+                .setTooltip(t$2("Reset to default"))
                 .onClick(() => {
                 this.applySettingsUpdate({
                     $unset: ["hide-date-display"],
@@ -38625,8 +39572,8 @@ class SettingsManager {
             });
         });
         new obsidian.Setting(contentEl)
-            .setName("Hide dates in card titles")
-            .setDesc("When toggled, dates will be hidden card titles. This will prevent dates from being included in the title when creating new notes.")
+            .setName(t$2("Hide dates in card titles"))
+            .setDesc(t$2("When toggled, dates will be hidden card titles. This will prevent dates from being included in the title when creating new notes."))
             .addToggle((toggle) => {
             const [value, globalValue] = this.getSetting("hide-date-in-title", local);
             if (value !== undefined) {
@@ -38645,7 +39592,7 @@ class SettingsManager {
         })
             .addExtraButton((b) => {
             b.setIcon("reset")
-                .setTooltip("Reset to default")
+                .setTooltip(t$2("Reset to default"))
                 .onClick(() => {
                 this.applySettingsUpdate({
                     $unset: ["hide-date-in-title"],
@@ -38653,8 +39600,8 @@ class SettingsManager {
             });
         });
         new obsidian.Setting(contentEl)
-            .setName("Link dates to daily notes")
-            .setDesc("When toggled, dates will link to daily notes. Eg. [[2021-04-26]]")
+            .setName(t$2("Link dates to daily notes"))
+            .setDesc(t$2("When toggled, dates will link to daily notes. Eg. [[2021-04-26]]"))
             .addToggle((toggle) => {
             const [value, globalValue] = this.getSetting("link-date-to-daily-note", local);
             if (value !== undefined) {
@@ -38673,10 +39620,105 @@ class SettingsManager {
         })
             .addExtraButton((b) => {
             b.setIcon("reset")
-                .setTooltip("Reset to default")
+                .setTooltip(t$2("Reset to default"))
                 .onClick(() => {
                 this.applySettingsUpdate({
                     $unset: ["link-date-to-daily-note"],
+                });
+            });
+        });
+        new obsidian.Setting(contentEl)
+            .setName(t$2("Add date and time to archived cards"))
+            .setDesc(t$2("When toggled, the current date and time will be added to the beginning of a card when it is archived. Eg. - [ ] 2021-05-14 10:00am My card title"))
+            .addToggle((toggle) => {
+            const [value, globalValue] = this.getSetting("prepend-archive-date", local);
+            if (value !== undefined) {
+                toggle.setValue(value);
+            }
+            else if (globalValue !== undefined) {
+                toggle.setValue(globalValue);
+            }
+            toggle.onChange((newValue) => {
+                this.applySettingsUpdate({
+                    "prepend-archive-date": {
+                        $set: newValue,
+                    },
+                });
+            });
+        })
+            .addExtraButton((b) => {
+            b.setIcon("reset")
+                .setTooltip(t$2("Reset to default"))
+                .onClick(() => {
+                this.applySettingsUpdate({
+                    $unset: ["prepend-archive-date"],
+                });
+            });
+        });
+        new obsidian.Setting(contentEl)
+            .setName(t$2("Archive date/time separator"))
+            .setDesc(t$2("This will be used to separate the archived date/time from the title"))
+            .addText((text) => {
+            const [value, globalValue] = this.getSetting("prepend-archive-separator", local);
+            text.inputEl.placeholder = globalValue
+                ? `${globalValue} (default)`
+                : "";
+            text.inputEl.value = value ? value : "";
+            text.onChange((val) => {
+                if (val) {
+                    this.applySettingsUpdate({
+                        "prepend-archive-separator": {
+                            $set: val,
+                        },
+                    });
+                    return;
+                }
+                this.applySettingsUpdate({
+                    $unset: ["prepend-archive-separator"],
+                });
+            });
+        });
+        new obsidian.Setting(contentEl)
+            .setName(t$2("Archive date/time format"))
+            .then((setting) => {
+            setting.addMomentFormat((mf) => {
+                setting.descEl.appendChild(createFragment((frag) => {
+                    frag.appendText(t$2("For more syntax, refer to") + " ");
+                    frag.createEl("a", {
+                        text: t$2("format reference"),
+                        href: "https://momentjs.com/docs/#/displaying/format/",
+                    }, (a) => {
+                        a.setAttr("target", "_blank");
+                    });
+                    frag.createEl("br");
+                    frag.appendText(t$2("Your current syntax looks like this") + ": ");
+                    mf.setSampleEl(frag.createEl("b", { cls: "u-pop" }));
+                    frag.createEl("br");
+                }));
+                const [value, globalValue] = this.getSetting("prepend-archive-format", local);
+                const [dateFmt, globalDateFmt] = this.getSetting("date-format", local);
+                const defaultDateFmt = dateFmt || globalDateFmt || getDefaultDateFormat(this.app);
+                const [timeFmt, globalTimeFmt] = this.getSetting("time-format", local);
+                const defaultTimeFmt = timeFmt || globalTimeFmt || getDefaultTimeFormat(this.app);
+                const defaultFormat = `${defaultDateFmt} ${defaultTimeFmt}`;
+                mf.setPlaceholder(defaultFormat);
+                mf.setDefaultFormat(defaultFormat);
+                if (value || globalValue) {
+                    mf.setValue((value || globalValue));
+                }
+                mf.onChange((newValue) => {
+                    if (newValue) {
+                        this.applySettingsUpdate({
+                            "prepend-archive-format": {
+                                $set: newValue,
+                            },
+                        });
+                    }
+                    else {
+                        this.applySettingsUpdate({
+                            $unset: ["prepend-archive-format"],
+                        });
+                    }
                 });
             });
         });
@@ -38713,7 +39755,7 @@ class KanbanSettingsTab extends obsidian.PluginSettingTab {
         let { containerEl } = this;
         containerEl.empty();
         containerEl.addClass(c$2("board-settings-modal"));
-        this.settingsManager.constructUI(containerEl, "Kanban Plugin", false);
+        this.settingsManager.constructUI(containerEl, t$2("Kanban Plugin"), false);
     }
 }
 
@@ -38756,7 +39798,7 @@ class KanbanView extends obsidian.TextFileView {
         menu
             .addItem((item) => {
             item
-                .setTitle("Open as markdown")
+                .setTitle(t$2("Open as markdown"))
                 .setIcon("document")
                 .onClick(() => {
                 this.plugin.kanbanFileModes[this.leaf.id || this.file.path] = "markdown";
@@ -38765,7 +39807,7 @@ class KanbanView extends obsidian.TextFileView {
         })
             .addItem((item) => {
             item
-                .setTitle("Open board settings")
+                .setTitle(t$2("Open board settings"))
                 .setIcon("gear")
                 .onClick(() => {
                 const board = this.dataBridge.getData();
@@ -38781,6 +39823,14 @@ class KanbanView extends obsidian.TextFileView {
                         }, 100);
                     },
                 }, board.settings).open();
+            });
+        })
+            .addItem((item) => {
+            item
+                .setTitle(t$2("Archive completed cards"))
+                .setIcon("sheets-in-box")
+                .onClick(() => {
+                this.archiveCompletedCards();
             });
         })
             .addSeparator();
@@ -38813,6 +39863,49 @@ class KanbanView extends obsidian.TextFileView {
             this.dataBridge.setExternal(board);
         }
     }
+    archiveCompletedCards() {
+        const archived = [];
+        const board = this.dataBridge.data;
+        const shouldAppendArchiveDate = !!this.getSetting("prepend-archive-date");
+        const dateFmt = this.getSetting("date-format") || getDefaultDateFormat(this.app);
+        const timeFmt = this.getSetting("time-format") || getDefaultTimeFormat(this.app);
+        const archiveDateSeparator = this.getSetting("prepend-archive-separator") || "";
+        const archiveDateFormat = this.getSetting("prepend-archive-format") ||
+            `${dateFmt} ${timeFmt}`;
+        const appendArchiveDate = (item) => {
+            const newTitle = [obsidian.moment().format(archiveDateFormat)];
+            if (archiveDateSeparator)
+                newTitle.push(archiveDateSeparator);
+            newTitle.push(item.titleRaw);
+            const titleRaw = newTitle.join(" ");
+            const processed = processTitle(titleRaw, this);
+            return update$2(item, {
+                title: { $set: processed.title },
+                titleRaw: { $set: titleRaw },
+            });
+        };
+        const lanes = board.lanes.map((lane) => {
+            return update$2(lane, {
+                items: {
+                    $set: lane.items.filter((item) => {
+                        if (item.data.isComplete) {
+                            archived.push(shouldAppendArchiveDate ? appendArchiveDate(item) : item);
+                        }
+                        return !item.data.isComplete;
+                    }),
+                },
+            });
+        });
+        this.app.workspace.trigger("kanban:board-cards-archived", this.file, archived);
+        this.dataBridge.setExternal(update$2(board, {
+            lanes: {
+                $set: lanes,
+            },
+            archive: {
+                $push: archived,
+            },
+        }));
+    }
     constructKanban() {
         var _a;
         reactDom.unmountComponentAtNode(this.contentEl);
@@ -38837,7 +39930,7 @@ class KanbanPlugin extends obsidian.Plugin {
                     this.settings = newSettings;
                     yield this.saveSettings();
                     // Force a complete re-render when settings change
-                    this.app.workspace.getLeavesOfType(kanbanViewType).forEach(leaf => {
+                    this.app.workspace.getLeavesOfType(kanbanViewType).forEach((leaf) => {
                         const view = leaf.view;
                         view.setViewData(view.data, true);
                     });
@@ -38918,10 +40011,11 @@ class KanbanPlugin extends obsidian.Plugin {
                         menu
                             .addItem((item) => {
                             item
-                                .setTitle("Open as kanban board")
+                                .setTitle(t$2("Open as kanban board"))
                                 .setIcon(kanbanIcon)
                                 .onClick(() => {
-                                self.kanbanFileModes[this.leaf.id || file.path] = kanbanViewType;
+                                self.kanbanFileModes[this.leaf.id || file.path] =
+                                    kanbanViewType;
                                 self.setKanbanView(this.leaf);
                             });
                         })
@@ -38933,15 +40027,52 @@ class KanbanPlugin extends obsidian.Plugin {
             this.registerView(kanbanViewType, (leaf) => new KanbanView(leaf, this));
             this.addCommand({
                 id: "create-new-kanban-board",
-                name: "Create new board",
+                name: t$2("Create new board"),
                 callback: () => this.newKanban(),
+            });
+            this.addCommand({
+                id: "archive-completed-cards",
+                name: t$2("Archive completed cards in active board"),
+                callback: () => {
+                    const view = this.app.workspace.getActiveViewOfType(KanbanView);
+                    if (view) {
+                        view.archiveCompletedCards();
+                    }
+                    else {
+                        new obsidian.Notice(t$2("Error: current file is not a Kanban board"), 5000);
+                    }
+                },
+            });
+            this.addCommand({
+                id: "convert-to-kanban",
+                name: t$2("Convert empty note to Kanban"),
+                callback: () => __awaiter(this, void 0, void 0, function* () {
+                    const activeLeaf = this.app.workspace.activeLeaf;
+                    const activeFile = this.app.workspace.getActiveFile();
+                    if (activeFile && activeFile.stat.size === 0) {
+                        const frontmatter = [
+                            "---",
+                            "",
+                            `${frontMatterKey}: basic`,
+                            "",
+                            "---",
+                            "",
+                            "",
+                        ].join("\n");
+                        yield this.app.vault.modify(activeFile, frontmatter);
+                        this.setKanbanView(activeLeaf);
+                    }
+                    else {
+                        new obsidian.Notice(t$2("Error: cannot create Kanban, the current note is not empty"), 5000);
+                    }
+                }),
             });
             this.registerEvent(this.app.workspace.on("file-menu", (menu, file, source, leaf) => {
                 // Add a menu item to the folder context menu to create a board
                 if (file instanceof obsidian.TFolder) {
                     menu.addItem((item) => {
                         item
-                            .setTitle("New kanban board")
+                            .setTitle(t$2("New kanban board"))
                             .setIcon(kanbanIcon)
                             .onClick(() => this.newKanban(file));
                     });
@@ -38966,10 +40097,11 @@ class KanbanPlugin extends obsidian.Plugin {
         });
     }
     newKanban(folder) {
+        var _a;
         return __awaiter(this, void 0, void 0, function* () {
             const targetFolder = folder
                 ? folder
-                : this.app.fileManager.getNewFileParent("");
+                : this.app.fileManager.getNewFileParent(((_a = this.app.workspace.getActiveFile()) === null || _a === void 0 ? void 0 : _a.path) || "");
             // Forcing frontmatter for now until more options are available
             const frontmatter = [
                 "---",
@@ -38982,7 +40114,7 @@ class KanbanPlugin extends obsidian.Plugin {
             ].join("\n");
             try {
                 // @ts-ignore
-                const kanban = yield this.app.fileManager.createNewMarkdownFile(targetFolder, "Untitled Kanban");
+                const kanban = yield this.app.fileManager.createNewMarkdownFile(targetFolder, t$2("Untitled Kanban"));
                 yield this.app.vault.modify(kanban, frontmatter);
                 const view = new KanbanView(this.app.workspace.activeLeaf, this);
                 yield view.setState({ file: kanban.path }, {});
