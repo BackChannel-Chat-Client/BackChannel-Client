@@ -8,8 +8,8 @@
         xmlns:c="clr-namespace:CalcBinding;assembly=CalcBinding"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="BackChannel" Height="900" Width="1600" MinHeight="300" MinWidth="900" Icon="/BackChannelIcon.png" SizeChanged="window_SizeChanged"
-        xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
+        Title="BackChannel" Height="900" Width="1600" 
+        MinHeight="300" MinWidth="900" Icon="/BackChannelIcon.png" SizeChanged="window_SizeChanged">
     <Grid x:Name="MainGrid" Background="#151515" 
           MaxWidth="{Binding ActualWidth, ElementName=window, Mode=OneWay}">
         <!--
@@ -28,7 +28,6 @@
         <!--
             Debugging / Error handling Popup
         -->
-
         <Grid x:Name="ErrorPopup" Panel.ZIndex="1000" Grid.ColumnSpan="5" Visibility="Collapsed" Background="#9F000000">
             <Border VerticalAlignment="Center" HorizontalAlignment="Center" Background="Black"
                     BorderBrush="White" BorderThickness="2">
@@ -36,20 +35,19 @@
                     <StackPanel>
                         <TextBlock x:Name="ErrorTextTitle" Text="Application Error" Foreground="White" Margin="10,10,10,0" FontSize="24"
                                    HorizontalAlignment="Center"/>
-                        <TextBlock Text="BackChannel Has encountered an error" Foreground="White" Margin="10,0,10,10" 
+                        <TextBlock Text="BackChannel has encountered an error" Foreground="White" Margin="10,0,10,0" 
                                    FontSize="18" HorizontalAlignment="Center"/>
-                        <TextBox Style="{DynamicResource SimpleTextBox}" x:Name="ErrorTextDescription" Text="fuck" Foreground="White" Margin="10,0,10,10" FontSize="16" Padding="5"
-                                 AcceptsReturn="True" IsReadOnly="True" BorderThickness="2" BorderBrush="White" Background="Transparent">
+                        <TextBox Style="{DynamicResource SimpleTextBox}" x:Name="ErrorTextDescription" Text="fuck" Foreground="White" Margin="8,15,10,25" FontSize="16"
+                                 AcceptsReturn="True" IsReadOnly="True" BorderThickness="0" BorderBrush="White" Background="Transparent">
                         </TextBox>
-                        <Button x:Name="ClosePopupButton" Content="Attempt to keep running" FontSize="14" Background="Transparent" 
+                        <StackPanel Orientation="Horizontal" Margin="10" HorizontalAlignment="Center">
+                            <Button x:Name="ClosePopupButton" Content="Close this popup" FontSize="14" Background="Transparent" 
                                 Click="ClosePopupButton_Click" Foreground="White" BorderBrush="Gray" BorderThickness="0,2,0,2" 
-                                HorizontalAlignment="Center" Margin="0,0,0,5" Style="{DynamicResource ErrorButtonsStyle}"/>
-                        <Button x:Name="CloseAppButton" Content="Close BackChannel" FontSize="14" Background="Transparent" Margin="0,0,0,5"
+                                HorizontalAlignment="Center" Margin="0,0,10,5" Style="{DynamicResource ErrorButtonsStyle}"/>
+                            <Button x:Name="CloseAppButton" Content="Close BackChannel" FontSize="14" Background="Transparent" Margin="0,0,0,5"
                                 Foreground="White" BorderBrush="Gray" BorderThickness="0,2,0,2" HorizontalAlignment="Center" 
                                 Click="CloseAppButton_Click" Style="{DynamicResource ErrorButtonsStyle}"/>
-                        <Button x:Name="OpenLogButton" Content="Open log file" FontSize="14" Background="Transparent" 
-                                Click="OpenLogButton_Click" Foreground="White" BorderBrush="Gray" BorderThickness="0,2,0,2" 
-                                HorizontalAlignment="Center" Margin="0,0,0,5" Style="{DynamicResource ErrorButtonsStyle}"/>
+                        </StackPanel>
                     </StackPanel>
                 </ScrollViewer>
             </Border>
