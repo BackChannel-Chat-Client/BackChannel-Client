@@ -24,7 +24,7 @@
             <ColumnDefinition x:Name="RightGridDef" Width="25*" MinWidth="300"/>
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
-        
+
         <!--
             Debugging / Error handling Popup
         -->
@@ -42,14 +42,58 @@
                         </TextBox>
                         <StackPanel Orientation="Horizontal" Margin="10" HorizontalAlignment="Center">
                             <Button x:Name="ClosePopupButton" Content="Close this popup" FontSize="14" Background="Transparent" 
-                                Click="ClosePopupButton_Click" Foreground="White" BorderBrush="Gray" BorderThickness="0,2,0,2" 
-                                HorizontalAlignment="Center" Margin="0,0,10,5" Style="{DynamicResource ErrorButtonsStyle}"/>
+                                    Click="ClosePopupButton_Click" Foreground="White" BorderBrush="Gray" BorderThickness="0,2,0,2" 
+                                    HorizontalAlignment="Center" Margin="0,0,10,5" Style="{DynamicResource ErrorButtonsStyle}"/>
                             <Button x:Name="CloseAppButton" Content="Close BackChannel" FontSize="14" Background="Transparent" Margin="0,0,0,5"
-                                Foreground="White" BorderBrush="Gray" BorderThickness="0,2,0,2" HorizontalAlignment="Center" 
-                                Click="CloseAppButton_Click" Style="{DynamicResource ErrorButtonsStyle}"/>
+                                    Foreground="White" BorderBrush="Gray" BorderThickness="0,2,0,2" HorizontalAlignment="Center" 
+                                    Click="CloseAppButton_Click" Style="{DynamicResource ErrorButtonsStyle}"/>
                         </StackPanel>
                     </StackPanel>
                 </ScrollViewer>
+            </Border>
+        </Grid>
+
+        <Grid x:Name="ServerJoin" Panel.ZIndex="1000" Grid.ColumnSpan="5" Visibility="Collapsed" Background="#9F000000">
+            <TextBlock Text="Join a Server" Foreground="White" FontSize="22"
+                       HorizontalAlignment="Center" VerticalAlignment="Center" 
+                       Margin="10,3,200,100" Panel.ZIndex="20">
+                <TextBlock.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#0F000000"/>
+                        <GradientStop Color="#0F000000" Offset="0.0"/>
+                        <GradientStop Color="#0F000000" Offset="0.5"/>
+                        <GradientStop Color="Black" Offset="0.51"/>
+                        <GradientStop Color="Black" Offset="1"/>
+                    </LinearGradientBrush>
+                </TextBlock.Background>
+            </TextBlock>
+            <Border BorderBrush="White" BorderThickness="2" Background="Black"
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Visible"
+                    Margin="0,66,0,0" Grid.Column="0" Grid.ColumnSpan="5" Width="350" Height="160">
+                <Grid Background="Black" 
+                      HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <StackPanel VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Server Link/IP:" Foreground="White" FontSize="16"
+                                       HorizontalAlignment="Center" Margin="10,0,0,5"/>
+                            <TextBox Foreground="White" Background="Black" BorderThickness="0,0,0,1"
+                                     Margin="5,0,10,5" x:Name="ServerLinkJoinEntry" MinWidth="150" MaxWidth="150" FontSize="16"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Server Port:" Foreground="White" FontSize="16"
+                                       HorizontalAlignment="Center" Margin="10,5,0,5"/>
+                            <TextBox Foreground="White" Background="Black" BorderThickness="0,0,0,1"
+                                     Margin="5,5,10,45" x:Name="ServerPortJoinEntry" Text="3090" FontSize="16" 
+                                     MinWidth="45" MaxWidth="150"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <Button x:Name="CloseServerJoinButton" Style="{DynamicResource CloseServerJoinStyle}"
+                        Background="#1A1A1A" VerticalAlignment="Bottom" Foreground="White"
+                        HorizontalAlignment="Left" Click="CloseServerJoinButton_Click" Content="Cancel"/>
+                    <Button x:Name="ServerJoinButton" Style="{DynamicResource ServerJoinStyle}"
+                        Background="#1A1A1A" VerticalAlignment="Bottom" Foreground="White"
+                        HorizontalAlignment="Right" Click="ServerJoinButton_Click" Content="Join Server"/>
+                </Grid>
             </Border>
         </Grid>
 
@@ -118,7 +162,7 @@
                 </ControlTemplate>
             </ListView.Template>
         </ListView>
-        
+
 
         <!--
             Layout of the Middle Column
@@ -404,16 +448,16 @@
                     -->
                     <StackPanel x:Name="ProfileStack" Visibility="Collapsed" Background="Black">
                         <StackPanel>
-                                <TextBlock Text="Profile Settings" Foreground="White" FontSize="30"
+                            <TextBlock Text="Profile Settings" Foreground="White" FontSize="30"
                                            TextTrimming="CharacterEllipsis" Margin="30,25,0,0"
                                            HorizontalAlignment="Left"/>
-                                <TextBlock Text="This is different for each server." Foreground="White" FontSize="16"
+                            <TextBlock Text="This is different for each server." Foreground="White" FontSize="16"
                                            TextTrimming="CharacterEllipsis" Margin="30,5,0,0"
                                            HorizontalAlignment="Left"/>
-                                <TextBlock x:Name="ProfileServerText"  Text="Currently editing settings for {}" Foreground="White" FontSize="16"
+                            <TextBlock x:Name="ProfileServerText"  Text="Currently editing settings for {}" Foreground="White" FontSize="16"
                                            TextTrimming="CharacterEllipsis" Margin="30,5,0,0"
                                            HorizontalAlignment="Left"/>
-                            </StackPanel>
+                        </StackPanel>
                         <!--
                             PFP Setting
                         -->
@@ -541,12 +585,12 @@
             <ListView x:Name="SettingsListView" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,50,0,0" Background="Transparent"
                       Foreground="White" BorderThickness="0" ItemContainerStyle="{DynamicResource SettingsListItemStyle}" Grid.ColumnSpan="2"
                       Width="200" SelectedIndex="0" SelectionChanged="SettingsListView_SelectionChanged">
-                    <ListViewItem Content="Profile"/>
-                    <ListViewItem Content="Appearance"/>
-                    <ListViewItem Content="Notifications"/>
-                    <ListViewItem Content="Privacy"/>
-                    <ListViewItem Content="Voice/Video"/>
-                </ListView>
+                <ListViewItem Content="Profile"/>
+                <ListViewItem Content="Appearance"/>
+                <ListViewItem Content="Notifications"/>
+                <ListViewItem Content="Privacy"/>
+                <ListViewItem Content="Voice/Video"/>
+            </ListView>
         </Grid>
     </Grid>
 </Window>

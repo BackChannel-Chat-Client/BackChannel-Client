@@ -124,6 +124,7 @@ namespace BackChannel
             scrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
             ServerListView.Margin = new Thickness(0, 88, 18, 0);
         }
+
         private void ChatListView_MouseEnter(object sender, MouseEventArgs e)
         {
             ScrollViewer scrollViewer = (ScrollViewer)VisualTreeHelper.GetChild(ChatListView, 0);
@@ -141,7 +142,37 @@ namespace BackChannel
         }
 
         // Server column functions
-        private async void AddServerButton_Click(object sender, RoutedEventArgs e)
+        private void AddServerButton_Click(object sender, RoutedEventArgs e)
+        {
+            ServerJoin.Visibility = Visibility.Visible;
+        }
+        private async void ServerListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                var item = (Server)ServerListView.SelectedItem;
+                ServerTitle.Text = item.Name;
+                MiddleColumnStack.Visibility = Visibility.Visible;
+                channelViewModel.Channels.Clear();
+                await Task.Run(() =>
+                {
+                    foreach(Channel c in item.Channels)
+                    {
+                        channelViewModel.AddChannel(c);
+                    }
+                });
+            }
+            catch (Exception)
+            {
+                MiddleColumnStack.Visibility = Visibility.Collapsed;
+            }
+            RightColumnStack.Visibility = Visibility.Collapsed;
+        }
+        private void CloseServerJoinButton_Click(object sender, RoutedEventArgs e)
+        {
+            ServerJoin.Visibility = Visibility.Collapsed;
+        }
+        private async void ServerJoinButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -166,33 +197,12 @@ namespace BackChannel
                     }
                     serverViewModel.AddServer(s);
                 });
+                ServerJoin.Visibility = Visibility.Collapsed;
             }
             catch (Exception)
             {
 
             }
-        }
-        private async void ServerListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            try
-            {
-                var item = (Server)ServerListView.SelectedItem;
-                ServerTitle.Text = item.Name;
-                MiddleColumnStack.Visibility = Visibility.Visible;
-                channelViewModel.Channels.Clear();
-                await Task.Run(() =>
-                {
-                    foreach(Channel c in item.Channels)
-                    {
-                        channelViewModel.AddChannel(c);
-                    }
-                });
-            }
-            catch (Exception)
-            {
-                MiddleColumnStack.Visibility = Visibility.Collapsed;
-            }
-            RightColumnStack.Visibility = Visibility.Collapsed;
         }
 
         // Channel column functions
@@ -408,8 +418,8 @@ namespace BackChannel
         }
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-            Debug.ShowError("Test", "An error has occurred in some random bullshit\nTry doing something about it idk.", new byte[3] {1,1,1 });
-            Debug.WriteLog("Test", "An error has occurred in some random bullshit\nTry doing something about it idk.");
+            //Debug.ShowError("Test", "An error has occurred in some random bullshit\nTry doing something about it idk.", new byte[3] {1,1,1 });
+            //Debug.WriteLog("Test", "An error has occurred in some random bullshit\nTry doing something about it idk.");
         }
 
         // Test functions
@@ -448,5 +458,6 @@ namespace BackChannel
         {
             System.Diagnostics.Process.Start("explorer.exe", Debug.CurrentFilePath);
         }
+
     }
 }

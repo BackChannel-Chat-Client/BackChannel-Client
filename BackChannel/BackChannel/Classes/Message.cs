@@ -1,9 +1,11 @@
-﻿using System;
+﻿using BackChannel.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace BackChannel.Classes
 {
@@ -15,15 +17,10 @@ namespace BackChannel.Classes
         public int ID { get; set; }
         public string Username { get; set; }
         public string Content { get; set; }
-        public Visibility IsSolo { get; set; }
-        public Thickness TextMargin { get; set; }
         public DateTime Date { get; set; }
         public Member User { get; set; }
-
-        public Message()
-        {
-            IsSolo = Visibility.Visible;
-            TextMargin = new Thickness(0, 0, 0, 0);
-        }
+        public MessageType Type { get; set; }
+        public Visibility IsSolo { get; set; }
+        public Thickness TextMargin { get; set; }
     }
 }
