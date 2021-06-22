@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace BackChannel.Enums
 {
-    public enum ServerError : uint
+    public enum ResponseStatus : uint
     {
-        NoError = 0,
-        RequestError =  0xFFFFFFFF,
+        Success = 0x00000000,
+        RequestError = 0xFFFFFFFF,
         InvalidPacket = 0x40000000,
-        UnImplemented = 0x40000001
+        UnImplemented = 0x40000001,
+        MoreData = 0x30000001
+
     }
 }

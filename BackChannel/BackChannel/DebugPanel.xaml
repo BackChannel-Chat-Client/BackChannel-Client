@@ -99,6 +99,7 @@
                 <TextBlock x:Name="RightWidthText" Text="Right Width: " FontSize="24" Foreground="White" Margin="5,0,0,0"/>
                 <TextBlock x:Name="LeftMaxText" Text="Left Max: " FontSize="24" Foreground="White" Margin="5,0,0,0"/>
                 <TextBlock x:Name="MiddleMaxText" Text="Middle Max: " FontSize="24" Foreground="White" Margin="5,0,0,0"/>
+                <TextBlock x:Name="MousePosText" Text="Mouse Position: " FontSize="24" Foreground="White" Margin="5,0,0,0"/>
             </StackPanel>
             <TextBox Background="Black" Foreground="White" FontSize="16" AcceptsReturn="True"
                      x:Name="DebugConsole" Height="300"/>

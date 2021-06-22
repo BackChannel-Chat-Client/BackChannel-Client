@@ -10,7 +10,7 @@ namespace BackChannel.Classes
     {
         public UInt32 PacketSize { get; set; }
         public UInt32 PacketID { get; set; }
-        public string ResponseStatus { get; set; }
-        public string ResponseBody { get; set; }
+        public UInt32 ResponseStatus { get; set; }
+        public byte[] ResponseBody { get; set; }
     }
 }

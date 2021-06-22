@@ -10,7 +10,7 @@
         mc:Ignorable="d"
         Title="BackChannel" Height="900" Width="1600" 
         MinHeight="300" MinWidth="900" Icon="/BackChannelIcon.png" SizeChanged="window_SizeChanged">
-    <Grid x:Name="MainGrid" Background="#151515" 
+    <Grid x:Name="MainGrid" Background="#111111" 
           MaxWidth="{Binding ActualWidth, ElementName=window, Mode=OneWay}">
         <!--
             Defines the column Layout
@@ -27,6 +27,7 @@
 
         <!--
             Debugging / Error handling Popup
+            Displays when there is an error and is shown by using Debug.ShowError()
         -->
         <Grid x:Name="ErrorPopup" Panel.ZIndex="1000" Grid.ColumnSpan="5" Visibility="Collapsed" Background="#9F000000">
             <Border VerticalAlignment="Center" HorizontalAlignment="Center" Background="Black"
@@ -53,6 +54,9 @@
             </Border>
         </Grid>
 
+        <!--
+            This is the Server Joining menu.             
+        -->
         <Grid x:Name="ServerJoin" Panel.ZIndex="1000" Grid.ColumnSpan="5" Visibility="Collapsed" Background="#9F000000">
             <TextBlock Text="Join a Server" Foreground="White" FontSize="22"
                        HorizontalAlignment="Center" VerticalAlignment="Center" 
@@ -77,22 +81,24 @@
                             <TextBlock Text="Server Link/IP:" Foreground="White" FontSize="16"
                                        HorizontalAlignment="Center" Margin="10,0,0,5"/>
                             <TextBox Foreground="White" Background="Black" BorderThickness="0,0,0,1"
-                                     Margin="5,0,10,5" x:Name="ServerLinkJoinEntry" MinWidth="150" MaxWidth="150" FontSize="16"/>
+                                     Margin="5,0,10,5" MinWidth="150" MaxWidth="150" FontSize="16"
+                                     x:Name="ServerIPEntry"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Server Port:" Foreground="White" FontSize="16"
                                        HorizontalAlignment="Center" Margin="10,5,0,5"/>
                             <TextBox Foreground="White" Background="Black" BorderThickness="0,0,0,1"
-                                     Margin="5,5,10,45" x:Name="ServerPortJoinEntry" Text="3090" FontSize="16" 
-                                     MinWidth="45" MaxWidth="150"/>
+                                     Margin="5,5,10,45" Text="3090" FontSize="16" 
+                                     MinWidth="45" MaxWidth="150"
+                                     x:Name="ServerPortEntry"/>
                         </StackPanel>
                     </StackPanel>
                     <Button x:Name="CloseServerJoinButton" Style="{DynamicResource CloseServerJoinStyle}"
-                        Background="#1A1A1A" VerticalAlignment="Bottom" Foreground="White"
-                        HorizontalAlignment="Left" Click="CloseServerJoinButton_Click" Content="Cancel"/>
+                            Background="#1A1A1A" VerticalAlignment="Bottom" Foreground="White"
+                            HorizontalAlignment="Left" Click="CloseServerJoinButton_Click" Content="Cancel"/>
                     <Button x:Name="ServerJoinButton" Style="{DynamicResource ServerJoinStyle}"
-                        Background="#1A1A1A" VerticalAlignment="Bottom" Foreground="White"
-                        HorizontalAlignment="Right" Click="ServerJoinButton_Click" Content="Join Server"/>
+                             Background="#1A1A1A" VerticalAlignment="Bottom" Foreground="White"
+                             HorizontalAlignment="Right" Click="ServerJoinButton_Click" Content="Join Server"/>
                 </Grid>
             </Border>
         </Grid>
@@ -103,6 +109,7 @@
             The Add server button as well as the servers themselves do nothing currently. Use the debug dialog(Currently the Settings Button) to add and remove servers
         -->
         <StackPanel x:Name="LeftColumnStack" Background="#1E1E1E" Width="auto" SizeChanged="LeftColumnStack_SizeChanged">
+            
             <!-- 
                 This StackPanel contains the BackChannel Title/Logo
             -->
@@ -175,6 +182,7 @@
                       ResizeDirection="Columns"
                       ResizeBehavior="PreviousAndCurrent"
                       Width="5" Panel.ZIndex="10"/>
+        <Grid Background="#151515" Grid.Column="2"/>
         <Grid Grid.Column="2" x:Name="MiddleColumnStack" SizeChanged="MiddleColumnStack_SizeChanged"
               Background="#151515" Visibility="Collapsed">
             <Border BorderBrush="#1E1E1E"
@@ -361,6 +369,49 @@
                 </Grid>
             </Grid>
         </Border>
+
+        <Border x:Name="UserInfo" Background="#9F000000" 
+                Grid.Column="0" Grid.ColumnSpan="7" MouseDown="UserInfo_MouseDown"
+                Visibility="Collapsed" Panel.ZIndex="20">
+            <StackPanel x:Name="UserInfoPanel" Orientation="Vertical" Width="200" Background="#151515" 
+                        HorizontalAlignment="Right" VerticalAlignment="Top"  Height="auto">
+                <Image Source="/Icons/pfp.png" Height="80" Margin="10,10,10,5" 
+                       RenderOptions.BitmapScalingMode="HighQuality"
+                       HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <TextBlock Text="Epsi" Foreground="White" FontSize="24" Margin="10,0,0,0" 
+                           HorizontalAlignment="Left" TextWrapping="Wrap" Width="200" 
+                           TextAlignment="Left"/>
+                <TextBlock Text="Grab life by the crack and lick the shit out of it" 
+                           Foreground="White" FontSize="12" Margin="10,0,0,10" 
+                           TextAlignment="Left"
+                           TextWrapping="Wrap" Width="190"/>
+                <TextBlock Text="Roles:" TextAlignment="Left"
+                           Foreground="White" FontSize="18" Margin="10,0,10,10"  
+                           TextWrapping="Wrap" Width="190"/>
+                <ListView x:Name="RolesListView" ItemContainerStyle="{DynamicResource MemberListItemStyle}"
+                          Background="Transparent" Margin="0,60,0,10" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                          ScrollViewer.VerticalScrollBarVisibility="Hidden" SelectedIndex="-1" 
+                          ItemsSource="{Binding}" SelectionChanged="MemberListView_SelectionChanged">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0,2,0,2" HorizontalAlignment="Right">
+                                <TextBlock Text="{Binding Role}" Foreground="White" FontSize="20"
+                                       TextTrimming="CharacterEllipsis" Margin="36,2,20,0"
+                                       Width="180"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.Template>
+                        <ControlTemplate>
+                            <ScrollViewer>
+                                <ItemsPresenter/>
+                            </ScrollViewer>
+                        </ControlTemplate>
+                    </ListView.Template>
+                </ListView>
+            </StackPanel>
+        </Border>
+
         <!--
             Code for the Member panel
         -->
@@ -376,7 +427,8 @@
             </Grid>
             <ListView x:Name="MemberListView" ItemContainerStyle="{DynamicResource MemberListItemStyle}"
                       Background="Transparent" Margin="0,60,0,10" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                      ScrollViewer.VerticalScrollBarVisibility="Hidden" SelectedIndex="-1" ItemsSource="{Binding}" >
+                      ScrollViewer.VerticalScrollBarVisibility="Hidden" SelectedIndex="-1" 
+                      ItemsSource="{Binding}" SelectionChanged="MemberListView_SelectionChanged">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="0,2,0,2" HorizontalAlignment="Right">
@@ -514,7 +566,7 @@
                                 </StackPanel>
                                 <Grid MouseMove="Grid_MouseMove" HorizontalAlignment="Left" Background="Transparent">
                                     <Slider x:Name="FontSizeSlider" Margin="28,20,30,30" HorizontalAlignment="Left" Width="300" Value="16"
-                                    TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" Maximum="20" Minimum="11" Opacity="1"/>
+                                            TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" Maximum="20" Minimum="11" Opacity="1"/>
                                 </Grid>
                             </StackPanel>
                         </Border>
@@ -525,27 +577,27 @@
                         <StackPanel x:Name="ThemeStack">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="Left Panel Color:" Foreground="White" FontSize="25"
-                                       TextTrimming="CharacterEllipsis" Margin="30,25,0,0"
-                                       HorizontalAlignment="Left"/>
+                                           TextTrimming="CharacterEllipsis" Margin="30,25,0,0"
+                                           HorizontalAlignment="Left"/>
                                 <xctk:ColorPicker Name="LeftPanelClrPcker" Width="24" Height="24" SelectedColor="Red" HorizontalAlignment="Left" Background="Black" HeaderBackground="Black" DropDownBackground="Black"
-                                              SelectedColorChanged="LeftPanelClrPcker_SelectedColorChanged" Margin="10,0,0,2" VerticalAlignment="Bottom" BorderThickness="0" HeaderForeground="White"
-                                              Foreground="White" TabForeground="White" TabBackground="Black" ShowDropDownButton="False" TabIndex="1"/>
+                                                  SelectedColorChanged="LeftPanelClrPcker_SelectedColorChanged" Margin="10,0,0,2" VerticalAlignment="Bottom" BorderThickness="0" HeaderForeground="White"
+                                                  Foreground="White" TabForeground="White" TabBackground="Black" ShowDropDownButton="False" TabIndex="1"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="Middle Panel Color:" Foreground="White" FontSize="25"
-                                       TextTrimming="CharacterEllipsis" Margin="30,25,0,0"
-                                       HorizontalAlignment="Left"/>
+                                           TextTrimming="CharacterEllipsis" Margin="30,25,0,0"
+                                           HorizontalAlignment="Left"/>
                                 <xctk:ColorPicker Name="MiddlePanelClrPcker" Width="24" Height="24" SelectedColor="Red" HorizontalAlignment="Left" Background="Black" HeaderBackground="Black" DropDownBackground="Black"
-                                              SelectedColorChanged="LeftPanelClrPcker_SelectedColorChanged" Margin="10,0,0,2" VerticalAlignment="Bottom" BorderThickness="0" HeaderForeground="White"
-                                              Foreground="White" TabForeground="White" TabBackground="Black" ShowDropDownButton="False" TabIndex="1"/>
+                                                  SelectedColorChanged="LeftPanelClrPcker_SelectedColorChanged" Margin="10,0,0,2" VerticalAlignment="Bottom" BorderThickness="0" HeaderForeground="White"
+                                                  Foreground="White" TabForeground="White" TabBackground="Black" ShowDropDownButton="False" TabIndex="1"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="Right Panel Color:" Foreground="White" FontSize="25"
                                        TextTrimming="CharacterEllipsis" Margin="30,25,0,0"
                                        HorizontalAlignment="Left"/>
                                 <xctk:ColorPicker Name="RightPanelClrPcker" Width="24" Height="24" SelectedColor="Red" HorizontalAlignment="Left" Background="Black" HeaderBackground="Black" DropDownBackground="Black"
-                                              SelectedColorChanged="LeftPanelClrPcker_SelectedColorChanged" Margin="10,0,0,2" VerticalAlignment="Bottom" BorderThickness="0" HeaderForeground="White"
-                                              Foreground="White" TabForeground="White" TabBackground="Black" ShowDropDownButton="False" TabIndex="1"/>
+                                                  SelectedColorChanged="LeftPanelClrPcker_SelectedColorChanged" Margin="10,0,0,2" VerticalAlignment="Bottom" BorderThickness="0" HeaderForeground="White"
+                                                  Foreground="White" TabForeground="White" TabBackground="Black" ShowDropDownButton="False" TabIndex="1"/>
                             </StackPanel>
                         </StackPanel>
                     </StackPanel>

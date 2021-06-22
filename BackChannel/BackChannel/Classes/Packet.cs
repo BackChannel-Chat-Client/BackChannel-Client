@@ -22,12 +22,23 @@ namespace BackChannel.Classes
         public string ServerIP { get; set; }
         public int ServerPort { get; set; }
 
-
+        public static byte[] None = { 0x0 };
         public static List<Packet> PacketQueue { get; set; }
 
         public static byte[] ToByteArray(string data)
         {
-            return Encoding.ASCII.GetBytes(data);
+            return Encoding.ASCII.GetBytes($"{data}\x0");
+        }
+
+        public void GeneratePID()
+        {
+            uint ID = (uint)new Random().Next(sizeof(UInt32));
+            PacketID = ID;
+        }
+
+        public void SetRequestType(RequestType type)
+        {
+            RequestType = (byte)type;
         }
 
         public void GetPacketSize()
@@ -76,17 +87,15 @@ namespace BackChannel.Classes
             PacketSocket.Receive(ID);
             byte[] Status = new byte[sizeof(UInt32)];
             PacketSocket.Receive(Status);
-            byte[] Body = new byte[sizeof(UInt32)];
+            byte[] Body = new byte[BitConverter.ToUInt32(Size) - 12];
             PacketSocket.Receive(Body);
             //PacketQueue.Remove(this);
 
             Response res = new Response();
             res.PacketSize = (UInt32)BitConverter.ToUInt32(Size);
             res.PacketID = (UInt32)BitConverter.ToUInt32(ID);
-            Array.Reverse(Status, 0, Status.Length);
-            res.ResponseStatus = BitConverter.ToString(Status);
-            Array.Reverse(Body, 0, Body.Length);
-            res.ResponseBody = BitConverter.ToString(Body);
+            res.ResponseStatus = (UInt32)BitConverter.ToUInt32(Status);
+            res.ResponseBody = Body;
 
             return res;
         }

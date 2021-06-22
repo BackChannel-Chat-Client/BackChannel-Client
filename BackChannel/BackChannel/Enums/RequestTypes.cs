@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BackChannel.Enums
 {
-    public enum RequestTypes : uint
+    public enum RequestType : uint
     {
         /// <summary>
         /// Get the last error

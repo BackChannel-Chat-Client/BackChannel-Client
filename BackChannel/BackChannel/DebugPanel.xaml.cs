@@ -46,6 +46,11 @@ namespace BackChannel
             MiddleMaxText.Text = $"Middle Max: {mm}";
         }
 
+        public void UpdateMousePos(string pos)
+        {
+            MousePosText.Text = pos;
+        }
+
         private void AddServerButton_Click(object sender, RoutedEventArgs e)
         {
             try

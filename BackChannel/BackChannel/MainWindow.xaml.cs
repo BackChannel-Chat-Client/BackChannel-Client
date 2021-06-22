@@ -9,6 +9,8 @@ using System.Windows.Media;
 using BackChannel.ViewModels;
 using BackChannel.Classes;
 using System.Threading;
+using BackChannel.Enums;
+using System.Text;
 
 namespace BackChannel
 {
@@ -31,6 +33,13 @@ namespace BackChannel
         public MainWindow()
         {
             InitializeComponent();
+            DeclareVars();
+            GetSettings();
+            GetServers();
+            Debug.CreateSessionID();
+        }
+        private void DeclareVars()
+        {
             serverViewModel = new ServerViewModel(); // Instantiates the ViewModel
             channelViewModel = new ChannelViewModel(); // Instantiates the ViewModel
             chatViewModel = new ChatViewModel(); // Instantiates the ViewModel
@@ -39,7 +48,15 @@ namespace BackChannel
             ChannelListView.ItemsSource = channelViewModel.Channels; // Set the Channel List's Source to the ViewModel
             ChatListView.ItemsSource = chatViewModel.Messages; // Set the Cannel List's Source to the ViewModel
             MemberListView.ItemsSource = memberViewModel.Members; // Set the Cannel List's Source to the ViewModel
-            Debug.CreateSessionID();
+            Packet.PacketQueue = new List<Packet>();
+        }
+        private void GetSettings()
+        {
+            // Not Implemented
+        }
+        private void GetServers()
+        {
+
         }
 
         // Column resizing handlers
@@ -50,6 +67,7 @@ namespace BackChannel
             */
             try
             {
+                UserInfo.Visibility = Visibility.Collapsed;
                 LeftGridDef.MaxWidth = MainGrid.MaxWidth - (MiddleGridDef.Width.Value) - 800;
                 MiddleGridDef.MaxWidth = MainGrid.MaxWidth - (LeftGridDef.Width.Value) - 800;
                 ServerTitle.Width += (MiddleGridDef.Width.Value - ServerTitle.Width) - 20;
@@ -67,6 +85,7 @@ namespace BackChannel
             */
             try
             {
+                UserInfo.Visibility = Visibility.Collapsed;
                 LeftGridDef.MaxWidth = MainGrid.MaxWidth - (MiddleGridDef.Width.Value) - 800;
                 MiddleGridDef.MaxWidth = MainGrid.MaxWidth - (LeftGridDef.Width.Value) - 800;
                 ServerTitle.Width += (MiddleGridDef.Width.Value - ServerTitle.Width) - 20;
@@ -84,6 +103,7 @@ namespace BackChannel
            */
             try
             {
+                UserInfo.Visibility = Visibility.Collapsed;
                 LeftGridDef.MaxWidth = MainGrid.MaxWidth - (MiddleGridDef.Width.Value) - 800;
                 MiddleGridDef.MaxWidth = MainGrid.MaxWidth - (LeftGridDef.Width.Value) - 800;
                 ServerTitle.Width += (MiddleGridDef.Width.Value - ServerTitle.Width) - 20;
@@ -172,36 +192,59 @@ namespace BackChannel
         {
             ServerJoin.Visibility = Visibility.Collapsed;
         }
-        private async void ServerJoinButton_Click(object sender, RoutedEventArgs e)
+        private void ServerJoinButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                await Task.Run(() =>
+                Packet GetChannels = new Packet();
+
+                GetChannels.AuthKey = Packet.ToByteArray("TestKey");
+                GetChannels.ChannelID = 0;
+                GetChannels.GeneratePID();
+                GetChannels.SetRequestType(RequestType.GetChannelList);
+                GetChannels.RequestBody = Packet.None;
+                GetChannels.GetPacketSize();
+                GetChannels.ServerIP = ServerIPEntry.Text;
+                GetChannels.ServerPort = Convert.ToInt16(ServerPortEntry.Text);
+
+                GetChannels.SendPacket();
+                var response = GetChannels.RecvResponse();
+
+                Server newServer = new Server();
+                newServer.Name = "Test Server";
+                newServer.Channels = new List<Channel>();
+                while (true)
                 {
-                    Random rnd = new Random();
-                    //var mainwnd = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
-                    Server s = new Server();
-                    s.Name = CreateRandomName();
-                    s.Channels = new List<Channel>();
-                    int numOfChannels = rnd.Next(5, 40);
-                    for (int i = 0; i < numOfChannels; i++)
+                    uint ChannelID = (UInt32)BitConverter.ToUInt32(new byte[] { response.ResponseBody[0], response.ResponseBody[1], response.ResponseBody[2], response.ResponseBody[3], });
+
+                    uint MaxMessages = (UInt32)BitConverter.ToUInt32(new byte[] { response.ResponseBody[4], response.ResponseBody[5], response.ResponseBody[6], response.ResponseBody[7], });
+
+                    byte[] ChannelName = new byte[response.ResponseBody.Length - 8];
+
+                    Buffer.BlockCopy(response.ResponseBody, 8, ChannelName, 0, response.ResponseBody.Length - 8);
+
+                    Channel newChannel = new Channel();
+                    newChannel.ID = (int)Convert.ToUInt32(ChannelID);
+                    newChannel.MaxMessages = (int)Convert.ToUInt32(MaxMessages);
+                    newChannel.IsText = Visibility.Visible;
+                    newChannel.Name = Encoding.UTF8.GetString(ChannelName, 0, ChannelName.Length);
+
+                    newServer.Channels.Add(newChannel);
+                    if (response.ResponseStatus != (uint)ResponseStatus.MoreData)
                     {
-                        if (rnd.Next(0, 2) == 1)
-                        {
-                            s.Channels.Add(new Channel { Name = CreateRandomName(), IsVoice = Visibility.Visible });
-                        }
-                        else
-                        {
-                            s.Channels.Add(new Channel { Name = CreateRandomName(), IsText = Visibility.Visible });
-                        }
+                        break;
                     }
-                    serverViewModel.AddServer(s);
-                });
+                    response = GetChannels.RecvResponse();
+
+                }
+
+                serverViewModel.AddServer(newServer);
                 ServerJoin.Visibility = Visibility.Collapsed;
             }
-            catch (Exception)
+            catch (Exception err)
             {
-
+                Debug.ShowError("Connection", err.Message, new byte[] { 1, 1 });
+                ServerJoin.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -210,6 +253,7 @@ namespace BackChannel
         {
             try
             {
+                UserInfo.Visibility = Visibility.Collapsed;
                 var item = (Channel)ChannelListView.SelectedItem;
                 if (item.IsText == Visibility.Visible)
                 {
@@ -235,7 +279,14 @@ namespace BackChannel
                 }
                 else
                 {
-                    ChannelListView.SelectedItem = null;
+                    try
+                    {
+                        ChannelListView.SelectedItem = e.RemovedItems[0];
+                    }
+                    catch (Exception)
+                    {
+                        ChannelListView.SelectedItem = null;
+                    }
                 }
             }
             catch (Exception)
@@ -408,6 +459,7 @@ namespace BackChannel
             if (MemberBar.Visibility == Visibility.Visible)
             {
                 MemberBar.Visibility = Visibility.Collapsed;
+                UserInfo.Visibility = Visibility.Collapsed;
                 ServerButtonsGrid.Visibility = Visibility.Visible;
             }
             else
@@ -420,6 +472,26 @@ namespace BackChannel
         {
             //Debug.ShowError("Test", "An error has occurred in some random bullshit\nTry doing something about it idk.", new byte[3] {1,1,1 });
             //Debug.WriteLog("Test", "An error has occurred in some random bullshit\nTry doing something about it idk.");
+        }
+        private void MemberListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(UserInfo.Visibility == Visibility.Visible)
+            {
+                UserInfo.Visibility = Visibility.Collapsed;
+                return;
+            }
+            try
+            {
+                var point = Mouse.GetPosition(MemberListView);
+                UserInfoPanel.Margin = new Thickness(10, 50+point.Y, MemberBar.ActualWidth, 10);
+                UserInfo.Visibility = Visibility.Visible;
+                //debugPanel.UpdateMousePos($"({point.X},{point.Y})");
+                //MemberListView.SelectedItem = null;
+            }
+            catch (Exception)
+            {
+                UserInfo.Visibility = Visibility.Collapsed;
+            }
         }
 
         // Test functions
@@ -453,11 +525,14 @@ namespace BackChannel
         {
             Application.Current.Shutdown();
         }
-
         private void OpenLogButton_Click(object sender, RoutedEventArgs e)
         {
             System.Diagnostics.Process.Start("explorer.exe", Debug.CurrentFilePath);
         }
 
+        private void UserInfo_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MemberListView.SelectedItem = null;
+        }
     }
 }

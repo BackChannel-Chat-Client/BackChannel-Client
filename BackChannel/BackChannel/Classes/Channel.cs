@@ -14,6 +14,7 @@ namespace BackChannel.Classes
     public class Channel
     {
         public int ID { get; set; }
+        public int MaxMessages { get; set; }
         public string Name { get; set; }
         public Visibility IsText { get; set; }
         public Visibility IsVoice { get; set; }
