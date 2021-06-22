@@ -154,7 +154,7 @@ namespace BackChannel.Classes
         /// </summary>
         /// <param name="type">The type of error.</param>
         /// <param name="info">The error message/info.</param>
-        /// <param name="Buttons">A bitmask of the butons to show.<br></br>[0] = Close Popup<br></br>[1] = Close App</param>
+        /// <param name="Buttons">A bitmask of the butons to show.<br></br>[0] = Close Popup<br></br>[1] = Close App<br></br>[2] = Cancel<br></br>[3] = Allow</param>
         public static void ShowError(string type, string info, byte[] Buttons)
         {
             Application.Current.Dispatcher.Invoke(new Action(() =>
@@ -183,6 +183,23 @@ namespace BackChannel.Classes
                 else
                 {
                     wnd.CloseAppButton.Visibility = Visibility.Collapsed;
+                }
+
+                if (Buttons[2] == 1)
+                {
+                    wnd.CanelButton.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    wnd.CanelButton.Visibility = Visibility.Collapsed;
+                }
+                if (Buttons[3] == 1)
+                {
+                    wnd.AllowButton.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    wnd.AllowButton.Visibility = Visibility.Collapsed;
                 }
 
             }));

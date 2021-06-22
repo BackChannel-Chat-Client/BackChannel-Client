@@ -194,24 +194,32 @@ namespace BackChannel
         }
         private void ServerJoinButton_Click(object sender, RoutedEventArgs e)
         {
+            Thread t = new Thread(ConnectToNewServer);
+            t.Start(false);
+        }
+        private void ConnectToNewServer(object AllowSelfSigned)
+        {
+            Packet GetChannels = new Packet();
+            GetChannels.AllowSelfSigned = (bool)AllowSelfSigned;
             try
             {
-                Packet GetChannels = new Packet();
+                Application.Current.Dispatcher.Invoke(new Action(() =>
+                {
+                    GetChannels.AuthKey = Packet.ToByteArray("TestKey");
+                    GetChannels.ChannelID = 0;
+                    GetChannels.GeneratePID();
+                    GetChannels.SetRequestType(RequestType.GetChannelList);
+                    GetChannels.RequestBody = Packet.None;
+                    GetChannels.GetPacketSize();
+                    GetChannels.ServerIP = ServerIPEntry.Text;
+                    GetChannels.ServerPort = Convert.ToInt16(ServerPortEntry.Text);
+                }));
 
-                GetChannels.AuthKey = Packet.ToByteArray("TestKey");
-                GetChannels.ChannelID = 0;
-                GetChannels.GeneratePID();
-                GetChannels.SetRequestType(RequestType.GetChannelList);
-                GetChannels.RequestBody = Packet.None;
-                GetChannels.GetPacketSize();
-                GetChannels.ServerIP = ServerIPEntry.Text;
-                GetChannels.ServerPort = Convert.ToInt16(ServerPortEntry.Text);
-
-                GetChannels.SendPacket();
+                var check = GetChannels.SendPacket();
                 var response = GetChannels.RecvResponse();
 
                 Server newServer = new Server();
-                newServer.Name = "Test Server";
+                newServer.Name = GetChannels.ServerIP;
                 newServer.Channels = new List<Channel>();
                 while (true)
                 {
@@ -239,13 +247,44 @@ namespace BackChannel
                 }
 
                 serverViewModel.AddServer(newServer);
-                ServerJoin.Visibility = Visibility.Collapsed;
+                Application.Current.Dispatcher.Invoke(new Action(() =>
+                {
+                    ServerJoin.Visibility = Visibility.Collapsed;
+                    ErrorPopup.Visibility = Visibility.Collapsed;
+                }));
             }
             catch (Exception err)
             {
-                Debug.ShowError("Connection", err.Message, new byte[] { 1, 1 });
-                ServerJoin.Visibility = Visibility.Collapsed;
+                if (GetChannels.connectionError == ConnectionError.SelfSigned)
+                {
+                    Application.Current.Dispatcher.Invoke(new Action(() =>
+                    {
+                        Debug.ShowError("Authentication", "This server's certificate is self signed.", new byte[] { 0, 0, 1, 1 });
+                        ServerJoin.Visibility = Visibility.Collapsed;
+                    }));
+                }
+                else if (GetChannels.connectionError == ConnectionError.SelfSigned)
+                {
+                    Application.Current.Dispatcher.Invoke(new Action(() =>
+                    {
+                        Debug.ShowError("Authentication", "Could't verify server auth", new byte[] { 1, 1, 0, 0 });
+                        ServerJoin.Visibility = Visibility.Collapsed;
+                    }));
+                }
+                else
+                {
+                    Application.Current.Dispatcher.Invoke(new Action(() =>
+                    {
+                        Debug.ShowError("Connection", $"Could't connect to the server\n{err.Message}", new byte[] { 1, 1, 0, 0 });
+                        ServerJoin.Visibility = Visibility.Collapsed;
+                    }));
+                }
             }
+        }
+        private void AllowButton_Click(object sender, RoutedEventArgs e)
+        {
+            Thread t = new Thread(ConnectToNewServer);
+            t.Start(true);
         }
 
         // Channel column functions
@@ -493,6 +532,10 @@ namespace BackChannel
                 UserInfo.Visibility = Visibility.Collapsed;
             }
         }
+        private void UserInfo_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MemberListView.SelectedItem = null;
+        }
 
         // Test functions
         public static string CreateRandomName()
@@ -530,9 +573,6 @@ namespace BackChannel
             System.Diagnostics.Process.Start("explorer.exe", Debug.CurrentFilePath);
         }
 
-        private void UserInfo_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            MemberListView.SelectedItem = null;
-        }
+
     }
 }

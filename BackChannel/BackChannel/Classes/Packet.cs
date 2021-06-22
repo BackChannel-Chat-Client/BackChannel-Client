@@ -7,6 +7,8 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Buffers.Binary;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 
 namespace BackChannel.Classes
 {
@@ -18,34 +20,35 @@ namespace BackChannel.Classes
         public byte RequestType { get; set; }
         public byte[] AuthKey { get; set; }
         public byte[] RequestBody { get; set; }
-        public Socket PacketSocket { get; set; }
+        public SslStream PacketStream { get; set; }
         public string ServerIP { get; set; }
+        public bool AllowSelfSigned { get; set; }
+        public ConnectionError connectionError { get; set; }
         public int ServerPort { get; set; }
 
         public static byte[] None = { 0x0 };
         public static List<Packet> PacketQueue { get; set; }
 
+        // Helper functions
         public static byte[] ToByteArray(string data)
         {
             return Encoding.ASCII.GetBytes($"{data}\x0");
         }
 
+        // Creation Functions
         public void GeneratePID()
         {
             uint ID = (uint)new Random().Next(sizeof(UInt32));
             PacketID = ID;
         }
-
         public void SetRequestType(RequestType type)
         {
             RequestType = (byte)type;
         }
-
         public void GetPacketSize()
         {
             PacketSize = (uint)(13 + AuthKey.Length + RequestBody.Length + 1);
         }
-
         public byte[] GetPacketAsByteArray()
         {
             IEnumerable<byte> packet = BitConverter.GetBytes(PacketSize)
@@ -57,38 +60,53 @@ namespace BackChannel.Classes
             return packet.ToArray();
         }
 
-        public void SendPacket()
+        // Send / Receive
+        public bool SendPacket()
         {
-            IPAddress ip = IPAddress.Parse(ServerIP);
-            IPEndPoint localEndPoint = new IPEndPoint(ip, ServerPort);
-            PacketSocket.Connect(localEndPoint);
-            PacketSocket.Send(GetPacketAsByteArray());
+            TcpClient client = new TcpClient(ServerIP, ServerPort);
+            //client.Connect(ServerIP, ServerPort);
+
+            PacketStream = new SslStream(client.GetStream(), false, new RemoteCertificateValidationCallback(ValidateServerCertificate), null);
+
+            PacketStream.AuthenticateAsClient(ServerIP);
+            if (!PacketStream.IsAuthenticated)
+            {
+                return false;
+            }
+
+            PacketStream.Write(GetPacketAsByteArray());
+
+            return true;
         }
+        private bool ValidateServerCertificate(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
+        {
+            if(sslPolicyErrors != SslPolicyErrors.None)
+            {
+                if(sslPolicyErrors == SslPolicyErrors.RemoteCertificateChainErrors)
+                {
+                    if (!AllowSelfSigned)
+                    {
+                        connectionError = ConnectionError.SelfSigned;
+                        return false;
+                    }
+                    return true;
+                }
+                connectionError = ConnectionError.CertError;
+                return false;
+            }
 
-        //public static ServerError GetLastError(string AuthKey)
-        //{
-        //    Packet pack = new Packet();
-        //    pack.ChannelID = 0;
-        //    pack.RequestType = 0x00;
-        //    pack.AuthKey = Packet.ToByteArray($"{AuthKey}\x00");
-        //    pack.RequestBody = Packet.ToByteArray("\x00");
-        //    pack.GetPacketSize();
-        //    PacketQueue.Add(pack);
-        //    pack.SendPacket();
-        //    string res = pack.RecvResponse();
-        //    return (ServerError)uint.Parse(res, System.Globalization.NumberStyles.AllowHexSpecifier);
-        //}
-
+            return true;
+        }
         public Response RecvResponse()
         {
             byte[] Size = new byte[sizeof(UInt32)];
-            PacketSocket.Receive(Size);
+            PacketStream.Read(Size);
             byte[] ID = new byte[sizeof(UInt32)];
-            PacketSocket.Receive(ID);
+            PacketStream.Read(ID);
             byte[] Status = new byte[sizeof(UInt32)];
-            PacketSocket.Receive(Status);
+            PacketStream.Read(Status);
             byte[] Body = new byte[BitConverter.ToUInt32(Size) - 12];
-            PacketSocket.Receive(Body);
+            PacketStream.Read(Body);
             //PacketQueue.Remove(this);
 
             Response res = new Response();
@@ -102,10 +120,7 @@ namespace BackChannel.Classes
 
         public Packet()
         {
-            PacketSocket = new Socket(SocketType.Stream, ProtocolType.Tcp);
-            Random rand = new Random();
 
-            PacketID = (uint)rand.Next(sizeof(UInt32));
         }
     }
 }

@@ -48,6 +48,12 @@
                             <Button x:Name="CloseAppButton" Content="Close BackChannel" FontSize="14" Background="Transparent" Margin="0,0,0,5"
                                     Foreground="White" BorderBrush="Gray" BorderThickness="0,2,0,2" HorizontalAlignment="Center" 
                                     Click="CloseAppButton_Click" Style="{DynamicResource ErrorButtonsStyle}"/>
+                            <Button x:Name="CanelButton" Content="Cancel" FontSize="14" Background="Transparent" Margin="0,0,10,5"
+                                    Foreground="White" BorderBrush="Gray" BorderThickness="0,2,0,2" HorizontalAlignment="Center" 
+                                    Click="ClosePopupButton_Click" Style="{DynamicResource ErrorButtonsStyle}"/>
+                            <Button x:Name="AllowButton" Content="Allow" FontSize="14" Background="Transparent" Margin="0,0,0,5"
+                                    Foreground="White" BorderBrush="Gray" BorderThickness="0,2,0,2" HorizontalAlignment="Center" 
+                                    Click="AllowButton_Click" Style="{DynamicResource ErrorButtonsStyle}"/>
                         </StackPanel>
                     </StackPanel>
                 </ScrollViewer>
@@ -82,7 +88,7 @@
                                        HorizontalAlignment="Center" Margin="10,0,0,5"/>
                             <TextBox Foreground="White" Background="Black" BorderThickness="0,0,0,1"
                                      Margin="5,0,10,5" MinWidth="150" MaxWidth="150" FontSize="16"
-                                     x:Name="ServerIPEntry"/>
+                                     x:Name="ServerIPEntry" Text="127.0.0.1"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Server Port:" Foreground="White" FontSize="16"
