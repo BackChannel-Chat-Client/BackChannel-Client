@@ -44,4 +44,8 @@
     <Resource Include="Icons\Voice.png" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <ServerGarbageCollection>false</ServerGarbageCollection>
+  </PropertyGroup>
+
 </Project>
