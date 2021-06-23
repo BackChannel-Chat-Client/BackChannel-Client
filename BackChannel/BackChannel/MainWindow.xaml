@@ -77,6 +77,12 @@
                     </LinearGradientBrush>
                 </TextBlock.Background>
             </TextBlock>
+            <ProgressBar HorizontalAlignment="Center" VerticalAlignment="Center" 
+                         Margin="40,8,0,100" Panel.ZIndex="19"
+                         Height="3" IsIndeterminate="True"
+                         Foreground="Black" Background="Transparent"
+                         BorderThickness="0"
+                         Width="300"/>
             <Border BorderBrush="White" BorderThickness="2" Background="Black"
                     HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Visible"
                     Margin="0,66,0,0" Grid.Column="0" Grid.ColumnSpan="5" Width="350" Height="160">

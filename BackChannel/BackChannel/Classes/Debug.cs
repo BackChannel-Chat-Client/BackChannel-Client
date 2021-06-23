@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BackChannel.Enums;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -155,54 +156,60 @@ namespace BackChannel.Classes
         /// <param name="type">The type of error.</param>
         /// <param name="info">The error message/info.</param>
         /// <param name="Buttons">A bitmask of the butons to show.<br></br>[0] = Close Popup<br></br>[1] = Close App<br></br>[2] = Cancel<br></br>[3] = Allow</param>
-        public static void ShowError(string type, string info, byte[] Buttons)
+        public static void ShowError(string type, string info, DebugPopupType layout)
         {
+            MainWindow wnd = null;
             Application.Current.Dispatcher.Invoke(new Action(() =>
             {
                 // Get a reference to the main window
-                var wnd = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
-
-                // Set the info popup properties
+                wnd = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            }));
+            Application.Current.Dispatcher.Invoke(new Action(() =>
+            {          
                 wnd.ErrorTextTitle.Text = $"{type} Error";
                 wnd.ErrorTextDescription.Text = info;
                 wnd.ErrorPopup.Visibility = Visibility.Visible;
-
-                if (Buttons[0] == 1)
-                {
-                    wnd.ClosePopupButton.Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    wnd.ClosePopupButton.Visibility = Visibility.Collapsed;
-                }
-
-                if (Buttons[1] == 1)
-                {
-                    wnd.CloseAppButton.Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    wnd.CloseAppButton.Visibility = Visibility.Collapsed;
-                }
-
-                if (Buttons[2] == 1)
-                {
-                    wnd.CanelButton.Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    wnd.CanelButton.Visibility = Visibility.Collapsed;
-                }
-                if (Buttons[3] == 1)
-                {
-                    wnd.AllowButton.Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    wnd.AllowButton.Visibility = Visibility.Collapsed;
-                }
-
             }));
+            // Set the info popup properties
+            switch (layout)
+            {
+                case DebugPopupType.Notify:
+                    Application.Current.Dispatcher.Invoke(new Action(() =>
+                    {
+                        wnd.ClosePopupButton.Visibility = Visibility.Visible;
+                        wnd.CloseAppButton.Visibility = Visibility.Collapsed;
+                        wnd.CanelButton.Visibility = Visibility.Collapsed;
+                        wnd.AllowButton.Visibility = Visibility.Collapsed;
+                    }));
+                    break;
+                case DebugPopupType.PossiblyFatal:
+                    Application.Current.Dispatcher.Invoke(new Action(() =>
+                    {
+                        wnd.ClosePopupButton.Visibility = Visibility.Visible;
+                        wnd.CloseAppButton.Visibility = Visibility.Visible;
+                        wnd.CanelButton.Visibility = Visibility.Collapsed;
+                        wnd.AllowButton.Visibility = Visibility.Collapsed;
+                    }));
+                    break;
+                case DebugPopupType.Fatal:
+                    Application.Current.Dispatcher.Invoke(new Action(() =>
+                    {
+                        wnd.ClosePopupButton.Visibility = Visibility.Collapsed;
+                        wnd.CloseAppButton.Visibility = Visibility.Visible;
+                        wnd.CanelButton.Visibility = Visibility.Collapsed;
+                        wnd.AllowButton.Visibility = Visibility.Collapsed;
+                    }));
+                    break;
+                case DebugPopupType.Security:
+                    Application.Current.Dispatcher.Invoke(new Action(() =>
+                    {
+                        wnd.ClosePopupButton.Visibility = Visibility.Collapsed;
+                        wnd.CloseAppButton.Visibility = Visibility.Collapsed;
+                        wnd.CanelButton.Visibility = Visibility.Visible;
+                        wnd.AllowButton.Visibility = Visibility.Visible;
+                    }));
+                    break;
+            }
         }
     }
 }

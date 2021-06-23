@@ -259,15 +259,15 @@ namespace BackChannel
                 {
                     Application.Current.Dispatcher.Invoke(new Action(() =>
                     {
-                        Debug.ShowError("Authentication", "This server's certificate is self signed.", new byte[] { 0, 0, 1, 1 });
+                        Debug.ShowError("Authentication", "This server's certificate is self signed.", DebugPopupType.Security);
                         ServerJoin.Visibility = Visibility.Collapsed;
                     }));
                 }
-                else if (GetChannels.connectionError == ConnectionError.SelfSigned)
+                else if (GetChannels.connectionError == ConnectionError.CertError)
                 {
                     Application.Current.Dispatcher.Invoke(new Action(() =>
                     {
-                        Debug.ShowError("Authentication", "Could't verify server auth", new byte[] { 1, 1, 0, 0 });
+                        Debug.ShowError("Authentication", "Could't verify server auth", DebugPopupType.Notify);
                         ServerJoin.Visibility = Visibility.Collapsed;
                     }));
                 }
@@ -275,7 +275,7 @@ namespace BackChannel
                 {
                     Application.Current.Dispatcher.Invoke(new Action(() =>
                     {
-                        Debug.ShowError("Connection", $"Could't connect to the server\n{err.Message}", new byte[] { 1, 1, 0, 0 });
+                        Debug.ShowError("Connection", $"Could't connect to the server\n{err.Message}", DebugPopupType.PossiblyFatal);
                         ServerJoin.Visibility = Visibility.Collapsed;
                     }));
                 }
