@@ -78,11 +78,59 @@
                 </TextBlock.Background>
             </TextBlock>
             <ProgressBar HorizontalAlignment="Center" VerticalAlignment="Center" 
-                         Margin="40,8,0,100" Panel.ZIndex="19"
-                         Height="3" IsIndeterminate="True"
+                         Margin="0,8,0,100" Panel.ZIndex="19"
+                         Height="3" IsIndeterminate="False"
                          Foreground="Black" Background="Transparent"
                          BorderThickness="0"
-                         Width="300"/>
+                         Width="350"
+                         x:Name="PBOne"
+                         Visibility="Collapsed"/>
+            <ProgressBar HorizontalAlignment="Center" VerticalAlignment="Center" 
+                         Margin="349,65,0,0" Panel.ZIndex="25"
+                         Height="3" IsIndeterminate="False"
+                         Foreground="Black" Background="Transparent"
+                         BorderThickness="0"
+                         Width="160"
+                         RenderTransformOrigin="0.5,0.5"
+                         x:Name="PBTwo"
+                         Visibility="Collapsed">
+                <ProgressBar.RenderTransform>
+                    <TransformGroup>
+                        <RotateTransform Angle="90"/>
+                    </TransformGroup>
+                </ProgressBar.RenderTransform>
+            </ProgressBar>
+            <ProgressBar HorizontalAlignment="Center" VerticalAlignment="Center" 
+                         Margin="0,224,0,0" Panel.ZIndex="25"
+                         Height="3" IsIndeterminate="False"
+                         Foreground="Black" Background="Transparent"
+                         BorderThickness="0"
+                         Width="350"
+                         RenderTransformOrigin="0.5,0.5"
+                         x:Name="PBThree"
+                         Visibility="Collapsed">
+                <ProgressBar.RenderTransform>
+                    <TransformGroup>
+                        <RotateTransform Angle="180"/>
+                    </TransformGroup>
+                </ProgressBar.RenderTransform>
+            </ProgressBar>
+            <ProgressBar HorizontalAlignment="Center" VerticalAlignment="Center" 
+                         Margin="0,65,349,0" Panel.ZIndex="25"
+                         Height="3" IsIndeterminate="False"
+                         Foreground="Black" Background="Transparent"
+                         BorderThickness="0"
+                         Width="160"
+                         RenderTransformOrigin="0.5,0.5"
+                         x:Name="PBFour"
+                         Visibility="Collapsed">
+                <ProgressBar.RenderTransform>
+                    <TransformGroup>
+                        <RotateTransform Angle="270"/>
+                    </TransformGroup>
+                </ProgressBar.RenderTransform>
+            </ProgressBar>
+
             <Border BorderBrush="White" BorderThickness="2" Background="Black"
                     HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Visible"
                     Margin="0,66,0,0" Grid.Column="0" Grid.ColumnSpan="5" Width="350" Height="160">

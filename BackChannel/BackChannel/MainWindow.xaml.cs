@@ -11,6 +11,8 @@ using BackChannel.Classes;
 using System.Threading;
 using BackChannel.Enums;
 using System.Text;
+using System.Windows.Data;
+using System.Globalization;
 
 namespace BackChannel
 {
@@ -26,6 +28,7 @@ namespace BackChannel
         public MemberViewModel memberViewModel; // Members in a server
         public Thread LowerOpacityThread; // Thread for lowering settings opacity when changing font size
         public Thread RaiseOpacityThread;// Thread for raising settings opacity on mouse leave
+        public bool JoinProgress;
 
         // A reference to the debug panel when open for debug logging 
         DebugPanel debugPanel;
@@ -191,11 +194,15 @@ namespace BackChannel
         private void CloseServerJoinButton_Click(object sender, RoutedEventArgs e)
         {
             ServerJoin.Visibility = Visibility.Collapsed;
+            JoinProgress = false;
         }
         private void ServerJoinButton_Click(object sender, RoutedEventArgs e)
         {
-            Thread t = new Thread(ConnectToNewServer);
-            t.Start(false);
+            JoinProgress = true;
+            Thread t = new Thread(StartProgressBars);
+            t.Start();
+            Thread b = new Thread(ConnectToNewServer);
+            b.Start(false);
         }
         private void ConnectToNewServer(object AllowSelfSigned)
         {
@@ -247,6 +254,7 @@ namespace BackChannel
                 }
 
                 serverViewModel.AddServer(newServer);
+                JoinProgress = false;
                 Application.Current.Dispatcher.Invoke(new Action(() =>
                 {
                     ServerJoin.Visibility = Visibility.Collapsed;
@@ -279,12 +287,84 @@ namespace BackChannel
                         ServerJoin.Visibility = Visibility.Collapsed;
                     }));
                 }
+                JoinProgress = false;
             }
         }
         private void AllowButton_Click(object sender, RoutedEventArgs e)
         {
+            ServerJoin.Visibility = Visibility.Visible;
+            ErrorPopup.Visibility = Visibility.Collapsed;
             Thread t = new Thread(ConnectToNewServer);
             t.Start(true);
+        }
+        // This function does not exist
+        private void StartProgressBars()
+        {
+            try
+            {
+                while (JoinProgress)
+                {
+                    Application.Current.Dispatcher.Invoke(new Action(() =>
+                    {
+                        PBOne.IsIndeterminate = true;
+                        PBOne.Visibility = Visibility.Visible;
+                    }));
+                    Thread.Sleep(400);
+                    Application.Current.Dispatcher.Invoke(new Action(() =>
+                    {
+                        PBFour.Visibility = Visibility.Visible;
+                        PBFour.IsIndeterminate = false;
+                    }));
+                    Thread.Sleep(1000);
+                    Application.Current.Dispatcher.Invoke(new Action(() =>
+                    {
+                        PBTwo.IsIndeterminate = true;
+                        PBTwo.Visibility = Visibility.Visible;
+                    }));
+                    Thread.Sleep(400);
+                    Application.Current.Dispatcher.Invoke(new Action(() =>
+                    {
+                        PBOne.Visibility = Visibility.Visible;
+                        PBOne.IsIndeterminate = false;
+                    }));
+                    Thread.Sleep(1000);
+                    Application.Current.Dispatcher.Invoke(new Action(() =>
+                    {
+                        PBThree.IsIndeterminate = true;
+                        PBThree.Visibility = Visibility.Visible;
+                    }));
+                    Thread.Sleep(400);
+                    Application.Current.Dispatcher.Invoke(new Action(() =>
+                    {
+                        PBTwo.Visibility = Visibility.Visible;
+                        PBTwo.IsIndeterminate = false;
+                    }));
+                    Thread.Sleep(1000);
+                    Application.Current.Dispatcher.Invoke(new Action(() =>
+                    {
+                        PBFour.IsIndeterminate = true;
+                        PBFour.Visibility = Visibility.Visible;
+                    }));
+                    Thread.Sleep(400);
+                    Application.Current.Dispatcher.Invoke(new Action(() =>
+                    {
+                        PBThree.Visibility = Visibility.Visible;
+                        PBThree.IsIndeterminate = false;
+                    }));
+                    Thread.Sleep(1000);
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            Application.Current.Dispatcher.Invoke(new Action(() =>
+            {
+                PBOne.Visibility = Visibility.Collapsed;
+                PBTwo.Visibility = Visibility.Collapsed;
+                PBThree.Visibility = Visibility.Collapsed;
+                PBFour.Visibility = Visibility.Collapsed;
+            }));
         }
 
         // Channel column functions
@@ -563,6 +643,7 @@ namespace BackChannel
         private void ClosePopupButton_Click(object sender, RoutedEventArgs e)
         {
             ErrorPopup.Visibility = Visibility.Collapsed;
+            JoinProgress = false;
         }
         private void CloseAppButton_Click(object sender, RoutedEventArgs e)
         {
@@ -572,7 +653,5 @@ namespace BackChannel
         {
             System.Diagnostics.Process.Start("explorer.exe", Debug.CurrentFilePath);
         }
-
-
     }
 }
