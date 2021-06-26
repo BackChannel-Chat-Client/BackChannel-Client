@@ -1,25 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using BackChannel.Classes;
 
 namespace BackChannel.ViewModels
 {
-    
-
     /// <summary>
     /// Holds and handles updating of the list of channels on the middle panel
     /// </summary>
     public class ChannelViewModel : INotifyPropertyChanged
     {
+        // UI notification functions
         public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged([CallerMemberName] string name = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        // The collections of channels
         private ObservableCollection<Channel> channels = new ObservableCollection<Channel>();
         public ObservableCollection<Channel> Channels
         {
@@ -30,11 +30,8 @@ namespace BackChannel.ViewModels
                 this.OnPropertyChanged("Channels");
             }
         }
-        protected void OnPropertyChanged([CallerMemberName] string name = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
 
+        // Helper functions
         public void AddChannel(Channel c)
         {
             Application.Current.Dispatcher.Invoke(new Action(() =>
@@ -42,7 +39,6 @@ namespace BackChannel.ViewModels
                 Channels.Add(c);
             }));
         }
-
         public void RemoveChannel(Channel c)
         {
             Application.Current.Dispatcher.Invoke(new Action(() =>

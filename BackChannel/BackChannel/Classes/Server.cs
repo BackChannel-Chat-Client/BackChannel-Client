@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace BackChannel.Classes
 {
@@ -11,8 +7,14 @@ namespace BackChannel.Classes
     /// </summary>
     public class Server
     {
-        public int ID { get; set; }
+        /// <summary>
+        /// The name of the server, this is defaulted to the ip/domain but can be set by the user.
+        /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// All of the channels in the server viewable by the user.
+        /// </summary>
         public List<Channel> Channels { get; set; }
     }
 }

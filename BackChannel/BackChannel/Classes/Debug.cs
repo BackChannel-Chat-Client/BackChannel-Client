@@ -5,7 +5,6 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -21,8 +20,6 @@ namespace BackChannel.Classes
         /// Used to identify and seperate logs.
         /// </summary>
         public static string SessionID { get; set; }
-
-        public static string CurrentFilePath { get; set; }
 
         /// <summary>
         /// Creates the SessionId for this run of the application
@@ -48,17 +45,19 @@ namespace BackChannel.Classes
             Task.Run(() => WriteLogAsync(type, infoToWrite, filePath, lineNumber));
         }
 
+        /// <summary>
+        /// Actuall writes the log on a seperate thread.
+        /// </summary>
+        /// <param name="type">The severity of the info to tag.</param>
+        /// <param name="infoToWrite">The string to write to the log file</param>
+        /// <param name="filePath"></param>
+        /// <param name="lineNumber"></param>
         private static void WriteLogAsync(string type, string infoToWrite, string filePath, int lineNumber)
         {
+            // Get the file and the folder names/path.
             var fileName = "Logs.txt";
-
-            // The folder for the roaming current user 
             string folder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-
-            // Combine the appdata folder with the settings location
             var settingsDirectory = $"{folder}\\BackChannel\\Logs";
-
-            CurrentFilePath = settingsDirectory;
 
             // Create Directory if it doesn't exist. 
             Directory.CreateDirectory(settingsDirectory);
@@ -81,6 +80,7 @@ namespace BackChannel.Classes
                 }
             }
 
+            // Get the current logs from the log file.
             StreamReader sr = null;
             while (true)
             {
@@ -94,17 +94,13 @@ namespace BackChannel.Classes
 
                 }
             }
-
             var logs = new List<string>();
-
-            var line = sr.ReadLine();
-
+            var line = sr.ReadLine(); // Get the first line
             if (line != null)
             {
                 logs.Add(line);
             }
-
-            while (line != null)
+            while (line != null) // Get the rest of the line
             {
                 line = sr.ReadLine();
                 if (line != null)
@@ -112,11 +108,9 @@ namespace BackChannel.Classes
                     logs.Add(line);
                 }
             }
+            sr.Close(); // Close the file
 
-            //close the file
-            sr.Close();
-
-            if (logs.Count > 2000)
+            if (logs.Count > 2000) // If the file gets to fat, delete old info
             {
                 logs.Clear();
             }
@@ -146,7 +140,6 @@ namespace BackChannel.Classes
             {
                 sw.WriteLine(s);
             }
-
             sw.Close();
         }
 
@@ -155,7 +148,7 @@ namespace BackChannel.Classes
         /// </summary>
         /// <param name="type">The type of error.</param>
         /// <param name="info">The error message/info.</param>
-        /// <param name="Buttons">A bitmask of the butons to show.<br></br>[0] = Close Popup<br></br>[1] = Close App<br></br>[2] = Cancel<br></br>[3] = Allow</param>
+        /// <param name="layout">The layout of the panel, aka the buttons to show at the bottom</param>
         public static void ShowError(string type, string info, DebugPopupType layout)
         {
             MainWindow wnd = null;

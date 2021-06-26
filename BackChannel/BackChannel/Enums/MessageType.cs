@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BackChannel.Enums
+﻿namespace BackChannel.Enums
 {
+    /// <summary>
+    /// The type of message.
+    /// </summary>
     public enum MessageType
     {
         IsText = 0,

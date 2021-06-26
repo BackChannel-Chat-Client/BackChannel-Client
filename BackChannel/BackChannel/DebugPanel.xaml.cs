@@ -7,7 +7,7 @@ using BackChannel.Classes;
 namespace BackChannel
 {
     /// <summary>
-    /// Interaction logic for Window1.xaml
+    /// The debug panel.
     /// </summary>
     public partial class DebugPanel : Window
     {
@@ -16,7 +16,8 @@ namespace BackChannel
             InitializeComponent();
         }
 
-        public static string CreateRandomName()
+        // Helper functions
+        private static string CreateRandomName()
         {
             Random rnd = new Random();
             //Dictionary of strings
@@ -37,6 +38,7 @@ namespace BackChannel
 
         }
 
+        // Public functions for updating debugging logs
         public void UpdateText(string lw, string mw, string rw, string lm, string mm)
         {
             LeftWidthText.Text = $"Left Width: {lw}";
@@ -45,12 +47,22 @@ namespace BackChannel
             LeftMaxText.Text = $"Left Max: {lm}";
             MiddleMaxText.Text = $"Middle Max: {mm}";
         }
-
         public void UpdateMousePos(string pos)
         {
             MousePosText.Text = pos;
         }
+        public void AddTextToConsole(string text)
+        {
+            Application.Current.Dispatcher.Invoke(new Action(() =>
+            {
+                DebugConsole.AppendText(text + "\n");
+                DebugConsole.Focus();
+                DebugConsole.CaretIndex = DebugConsole.Text.Length;
+                DebugConsole.ScrollToEnd();
+            }));
+        }
 
+        // UI Events
         private void AddServerButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -79,7 +91,6 @@ namespace BackChannel
 
             }
         }
-
         private void RemoveServerButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -92,7 +103,6 @@ namespace BackChannel
 
             }
         }
-
         private void AddChannelButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -113,7 +123,6 @@ namespace BackChannel
 
             }
         }
-
         private void RemoveChannelButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -125,36 +134,6 @@ namespace BackChannel
             {
 
             }
-        }
-
-        public void AddTextToConsole(string text)
-        {
-            Application.Current.Dispatcher.Invoke(new Action(() =>
-            {
-                DebugConsole.AppendText(text + "\n");
-                DebugConsole.Focus();
-                DebugConsole.CaretIndex = DebugConsole.Text.Length;
-                DebugConsole.ScrollToEnd();
-            }));
-        }
-
-        private void TestRQButton_Click(object sender, RoutedEventArgs e)
-        {
-            PacketTester tester = new PacketTester();
-            tester.Show();
-            //Packet TestPacket = new Packet();
-            //TestPacket.PacketID = 11111;
-            //TestPacket.RequestType = 2;
-            //TestPacket.RequestBody = Encoding.ASCII.GetBytes("\x0");
-            //TestPacket.ChannelID = 001100;
-            //TestPacket.AuthKey = Encoding.ASCII.GetBytes("TestAuth"); ;
-            //TestPacket.GetPacketSize();
-            //TestPacket.SendPacket();
-            //
-            //Response res = TestPacket.RecvResponse();
-            //
-            //AddTextToConsole($"[+] New Server Response:");
-            //AddTextToConsole($"[Size] {res.PacketSize}\n[ID] {res.PacketID}\n[Status] {res.ResponseStatus}\n[Body] {res.ResponseBody}");
         }
     }
 }

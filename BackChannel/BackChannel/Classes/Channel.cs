@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Media;
 
 namespace BackChannel.Classes
 {
@@ -13,85 +8,43 @@ namespace BackChannel.Classes
     /// </summary>
     public class Channel
     {
+        /// <summary>
+        /// The Channel ID.<br></br>
+        /// Used for BCAPI calls
+        /// </summary>
         public int ID { get; set; }
+
+        /// <summary>
+        /// The Max number of messages a channel allows.<br></br>
+        /// May be removed in the future as it may not need to be sent to the client.
+        /// </summary>
         public int MaxMessages { get; set; }
+
+        /// <summary>
+        /// The name of the channel
+        /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// IsText and IsVoice are set based on what type the channel is.<br></br>
+        /// This may be changed in the future
+        /// </summary>
         public Visibility IsText { get; set; }
+
+        /// <summary>
+        /// IsVoice and IsText are set based on what type the channel is.<br></br>
+        /// This may be changed in the future
+        /// </summary>
         public Visibility IsVoice { get; set; }
+
+        /// <summary>
+        /// This is the list of loaded messages
+        /// </summary>
         public List<Message> Messages { get; set; }
+
+        /// <summary>
+        /// This is the list of members that can view the current channel
+        /// </summary>
         public List<Member> Members { get; set; }
-
-        public static string CreateRandomMessage(int numofwrds)
-        {
-            Random rnd = new Random();
-            //Dictionary of strings
-            string[] words = {"lorem", "ipsum", "dolor", "sit", "amet", "consectetuer",
-                                "adipiscing", "elit", "sed", "diam", "nonummy", "nibh", "euismod",
-                                "tincidunt", "ut", "laoreet", "dolore", "magna", "aliquam", "erat"};
-
-            int numberOfWords = rnd.Next(1, numofwrds);
-
-            string randomString = words[rnd.Next(0, words.Length)];
-            for (int i = 0; i < numberOfWords; i++)
-            {
-                //Create combination of word + number
-                randomString += $" {words[rnd.Next(0, words.Length)]}";
-            }
-
-            return randomString;
-
-        }
-
-        public Channel()
-        {
-            IsText = Visibility.Collapsed;
-            IsVoice = Visibility.Collapsed;
-
-            Random rnd = new Random();
-            Messages = new List<Message>();
-            int numOfChannels = rnd.Next(5, 20);
-            ID = rnd.Next(100, 200000);
-            string[] words = { "lorem", "ipsum", "dolor", "sit", "amet", "consectetuer" };
-            for (int i = 0; i < numOfChannels; i++)
-            {
-                Message m = new Message { Username = words[rnd.Next(0, words.Length)], Content = CreateRandomMessage(30) };
-                try
-                {
-                    if (m.Username == Messages[Messages.Count() - 1].Username)
-                    {
-                        m.IsSolo = Visibility.Collapsed;
-                        m.TextMargin = new Thickness(0, -20, 0, 0);
-                    }
-                }
-                catch (Exception) { }
-                Messages.Add(m);
-            }
-            Members = new List<Member>();
-            numOfChannels = rnd.Next(5, 20);
-            for (int i = 0; i < numOfChannels; i++)
-            {
-                Member m = new Member { Name = words[rnd.Next(0, words.Length)]};
-                try
-                {
-                    Application.Current.Dispatcher.Invoke(new Action(() =>
-                    {
-                        switch (rnd.Next(1, 4))
-                        {
-                            case 1:
-                                m.OnlineStatus = new System.Windows.Media.SolidColorBrush(Color.FromArgb(255, 0xED, 0x42, 0x45));
-                                break;
-                            case 2:
-                                m.OnlineStatus = new System.Windows.Media.SolidColorBrush(Color.FromArgb(255, 0xFA, 0xA6, 0x1A));
-                                break;
-                            case 3:
-                                m.OnlineStatus = new System.Windows.Media.SolidColorBrush(Color.FromArgb(255, 0x3B, 0xA5, 0x5C));
-                                break;
-                        }
-                    }));
-                }
-                catch (Exception) { }
-                Members.Add(m);
-            }
-        }
     }
 }
