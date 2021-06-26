@@ -503,14 +503,13 @@
                                Height="50" 
                                HorizontalAlignment="Left" 
                                VerticalAlignment="Center"
-                               Source="/Icons/pfp.png" 
                                RenderOptions.BitmapScalingMode="HighQuality"/>
                         <StackPanel>
-                            <TextBlock Text="Epsi" 
+                            <TextBlock Text="" 
                                        Margin="0,15,0,0"  
                                        Foreground="White" 
                                        FontSize="24"/>
-                            <TextBlock Text="Grab life by the crack and lick the shit out of it" 
+                            <TextBlock Text="" 
                                        Margin="0,0,0,0"  
                                        Width="100"
                                        Foreground="White" 
