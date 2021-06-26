@@ -135,23 +135,5 @@ namespace BackChannel
 
             }
         }
-        private void TestRQButton_Click(object sender, RoutedEventArgs e)
-        {
-            PacketTester tester = new PacketTester();
-            tester.Show();
-            //Packet TestPacket = new Packet();
-            //TestPacket.PacketID = 11111;
-            //TestPacket.RequestType = 2;
-            //TestPacket.RequestBody = Encoding.ASCII.GetBytes("\x0");
-            //TestPacket.ChannelID = 001100;
-            //TestPacket.AuthKey = Encoding.ASCII.GetBytes("TestAuth"); ;
-            //TestPacket.GetPacketSize();
-            //TestPacket.SendPacket();
-            //
-            //Response res = TestPacket.RecvResponse();
-            //
-            //AddTextToConsole($"[+] New Server Response:");
-            //AddTextToConsole($"[Size] {res.PacketSize}\n[ID] {res.PacketID}\n[Status] {res.ResponseStatus}\n[Body] {res.ResponseBody}");
-        }
     }
 }

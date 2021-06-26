@@ -16,7 +16,6 @@
     <None Remove="Fonts\RobotoMono-VariableFont_wght.ttf" />
     <None Remove="Fonts\UbuntuMono-Regular.ttf" />
     <None Remove="Icons\BackChannelIcon.png" />
-    <None Remove="Icons\banner.png" />
     <None Remove="Icons\Chat.png" />
     <None Remove="Icons\Error.png" />
     <None Remove="Icons\Members.png" />
@@ -35,7 +34,6 @@
     <Resource Include="Fonts\RobotoMono-VariableFont_wght.ttf" />
     <Resource Include="Fonts\UbuntuMono-Regular.ttf" />
     <Resource Include="Icons\BackChannelIcon.png" />
-    <Resource Include="Icons\banner.png" />
     <Resource Include="Icons\Chat.png" />
     <Resource Include="Icons\Error.png" />
     <Resource Include="Icons\Members.png" />

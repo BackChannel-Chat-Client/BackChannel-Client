@@ -65,49 +65,49 @@
             The main stack.
             Keeps controls stacked vertically.
         -->
-        <StackPanel HorizontalAlignment="Center" 
-                    Width="350" 
-                    Margin="10">
+        <StackPanel Margin="10"
+                    Width="350"
+                    HorizontalAlignment="Center"> 
             <!--
                 Holds the add/remove server buttons 
             -->
             <Grid>
-                <Button Style="{DynamicResource DebugButtonStyle}" 
-                        HorizontalAlignment="Left" 
-                        Width="155"
+                <Button x:Name="AddServerButton" 
                         Content="Add Server" 
-                        Background="#111111" 
-                        Foreground="White"
-                        x:Name="AddServerButton" 
-                        Click="AddServerButton_Click"/>
-                <Button Style="{DynamicResource DebugButtonStyle}" 
-                        HorizontalAlignment="Right" 
                         Width="155"
-                        Content="Remove Server" 
-                        Background="#111111" 
+                        HorizontalAlignment="Left" 
                         Foreground="White"
-                        x:Name="RemoveServerButton" 
+                        Background="#111111" 
+                        Style="{DynamicResource DebugButtonStyle}" 
+                        Click="AddServerButton_Click"/>
+                <Button x:Name="RemoveServerButton" 
+                        Content="Remove Server" 
+                        Width="155"
+                        HorizontalAlignment="Right" 
+                        Foreground="White"
+                        Background="#111111" 
+                        Style="{DynamicResource DebugButtonStyle}" 
                         Click="RemoveServerButton_Click"/>
             </Grid>
             <!--
                 Holds the add/remove channel buttons 
             -->
             <Grid>
-                <Button Style="{DynamicResource DebugButtonStyle}" 
-                        HorizontalAlignment="Left" 
-                        Width="155"
+                <Button x:Name="AddChannelButton" 
                         Content="Add Channel" 
-                        Background="#111111" 
-                        Foreground="White"
-                        x:Name="AddChannelButton" 
-                        Click="AddChannelButton_Click"/>
-                <Button Style="{DynamicResource DebugButtonStyle}" 
-                        HorizontalAlignment="Right" 
                         Width="155"
-                        Content="Remove Channel" 
-                        Background="#111111" 
+                        HorizontalAlignment="Left" 
                         Foreground="White"
-                        x:Name="RemoveChannelButton" 
+                        Background="#111111" 
+                        Style="{DynamicResource DebugButtonStyle}" 
+                        Click="AddChannelButton_Click"/>
+                <Button x:Name="RemoveChannelButton" 
+                        Content="Remove Channel" 
+                        Width="155"
+                        HorizontalAlignment="Right" 
+                        Foreground="White"
+                        Background="#111111" 
+                        Style="{DynamicResource DebugButtonStyle}" 
                         Click="RemoveChannelButton_Click"/>
             </Grid>
             <!--
@@ -117,44 +117,44 @@
             <StackPanel>
                 <TextBlock x:Name="LeftWidthText" 
                            Text="Left Width: " 
-                           FontSize="24" 
+                           Margin="5,0,0,0"
                            Foreground="White" 
-                           Margin="5,0,0,0"/>
+                           FontSize="24"/>
                 <TextBlock x:Name="MiddleWidthText" 
                            Text="Middle Width: " 
-                           FontSize="24" 
-                           Foreground="White" 
-                           Margin="5,0,0,0"/>
+                           Margin="5,0,0,0"
+                           Foreground="White"
+                           FontSize="24"/>
                 <TextBlock x:Name="RightWidthText" 
                            Text="Right Width: " 
-                           FontSize="24" 
+                           Margin="5,0,0,0"
                            Foreground="White" 
-                           Margin="5,0,0,0"/>
+                           FontSize="24"/>
                 <TextBlock x:Name="LeftMaxText" 
-                           Text="Left Max: " 
-                           FontSize="24" 
+                           Text="Left Max: "
+                           Margin="5,0,0,0"
                            Foreground="White" 
-                           Margin="5,0,0,0"/>
+                           FontSize="24"/>
                 <TextBlock x:Name="MiddleMaxText" 
                            Text="Middle Max: " 
-                           FontSize="24" 
+                           Margin="5,0,0,0"
                            Foreground="White" 
-                           Margin="5,0,0,0"/>
+                           FontSize="24" />
                 <TextBlock x:Name="MousePosText" 
                            Text="Mouse Position: " 
-                           FontSize="24" 
+                           Margin="5,0,0,0"
                            Foreground="White" 
-                           Margin="5,0,0,0"/>
+                           FontSize="24" />
             </StackPanel>
             <!--
                 The debug console, shows logging info for testing purposes 
             -->
-            <TextBox Background="Black" 
+            <TextBox x:Name="DebugConsole"
+                     Height="300"
                      Foreground="White" 
+                     Background="Black" 
                      FontSize="16" 
-                     AcceptsReturn="True"
-                     x:Name="DebugConsole" 
-                     Height="300"/>
+                     AcceptsReturn="True"/>
         </StackPanel>
     </Grid>
 </Window>

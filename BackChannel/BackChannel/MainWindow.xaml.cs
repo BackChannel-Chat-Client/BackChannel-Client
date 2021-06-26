@@ -33,6 +33,7 @@ namespace BackChannel
         // A reference to the debug panel when open for debug logging 
         DebugPanel debugPanel;
 
+        // Initialization 
         public MainWindow()
         {
             InitializeComponent();
@@ -297,7 +298,7 @@ namespace BackChannel
             Thread t = new Thread(ConnectToNewServer);
             t.Start(true);
         }
-        // This function does not exist
+        
         private void StartProgressBars()
         {
             try
@@ -566,11 +567,6 @@ namespace BackChannel
             debugPanel = new DebugPanel();
             debugPanel.Show();
         }
-        private void OpenPacketTesterButton_Click(object sender, RoutedEventArgs e)
-        {
-            PacketTester tester = new PacketTester();
-            tester.Show();
-        }
 
         // Messaging column functions
         private void MembersButton_Click(object sender, RoutedEventArgs e)
@@ -617,28 +613,6 @@ namespace BackChannel
             MemberListView.SelectedItem = null;
         }
 
-        // Test functions
-        public static string CreateRandomName()
-        {
-            Random rnd = new Random();
-            //Dictionary of strings
-            string[] words = {"lorem", "ipsum", "dolor", "sit", "amet", "consectetuer",
-                                "adipiscing", "elit", "sed", "diam", "nonummy", "nibh", "euismod",
-                                "tincidunt", "ut", "laoreet", "dolore", "magna", "aliquam", "erat"};
-
-            int numberOfWords = rnd.Next(1, 5);
-
-            string randomString = words[rnd.Next(0, words.Length)];
-            for (int i = 0; i < numberOfWords; i++)
-            {
-                //Create combination of word + number
-                randomString += $" {words[rnd.Next(0, words.Length)]}";
-            }
-
-            return randomString;
-
-        }
-
         // Error Popup Functions
         private void ClosePopupButton_Click(object sender, RoutedEventArgs e)
         {
@@ -648,10 +622,6 @@ namespace BackChannel
         private void CloseAppButton_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
-        }
-        private void OpenLogButton_Click(object sender, RoutedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("explorer.exe", Debug.CurrentFilePath);
         }
     }
 }
