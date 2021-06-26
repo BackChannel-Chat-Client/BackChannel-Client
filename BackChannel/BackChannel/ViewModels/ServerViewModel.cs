@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using BackChannel.Classes;
 
 namespace BackChannel.ViewModels
@@ -17,7 +12,14 @@ namespace BackChannel.ViewModels
     /// </summary>
     public class ServerViewModel : INotifyPropertyChanged
     {
+        // UI Notifications functions
         public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged([CallerMemberName] string name = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        // The collection of servers
         private ObservableCollection<Server> servers = new ObservableCollection<Server>();
         public ObservableCollection<Server> Servers
         {
@@ -28,11 +30,8 @@ namespace BackChannel.ViewModels
                 this.OnPropertyChanged("Servers");
             }
         }
-        protected void OnPropertyChanged([CallerMemberName] string name = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
 
+        // Helper functions
         public void AddServer(Server s)
         {
             Application.Current.Dispatcher.Invoke(new Action(() =>
@@ -40,7 +39,6 @@ namespace BackChannel.ViewModels
                 Servers.Add(s);
             }));
         }
-
         public void RemoveServer(Server s)
         {
             Application.Current.Dispatcher.Invoke(new Action(() =>

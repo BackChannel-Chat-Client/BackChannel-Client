@@ -1,19 +1,22 @@
 ﻿using BackChannel.Classes;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace BackChannel.ViewModels
 {
     public class MemberViewModel : INotifyPropertyChanged
     {
+        // UI Notification functions
         public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged([CallerMemberName] string name = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        // Member collection
         private ObservableCollection<Member> members = new ObservableCollection<Member>();
         public ObservableCollection<Member> Members
         {
@@ -24,11 +27,8 @@ namespace BackChannel.ViewModels
                 this.OnPropertyChanged("Members");
             }
         }
-        protected void OnPropertyChanged([CallerMemberName] string name = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
 
+        // Helper functions
         public void AddMember(Member m)
         {
             Application.Current.Dispatcher.Invoke(new Action(() =>
@@ -36,7 +36,6 @@ namespace BackChannel.ViewModels
                 Members.Add(m);
             }));
         }
-
         public void RemoveMember(Member m)
         {
             Application.Current.Dispatcher.Invoke(new Action(() =>

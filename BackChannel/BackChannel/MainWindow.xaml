@@ -8,9 +8,15 @@
         xmlns:c="clr-namespace:CalcBinding;assembly=CalcBinding"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="BackChannel" Height="900" Width="1600" 
-        MinHeight="300" MinWidth="900" Icon="/BackChannelIcon.png" SizeChanged="window_SizeChanged">
-    <Grid x:Name="MainGrid" Background="#111111" 
+        Title="BackChannel" 
+        Height="900" 
+        Width="1600" 
+        MinHeight="300" 
+        MinWidth="900" 
+        Icon="/BackChannelIcon.png" 
+        SizeChanged="window_SizeChanged">
+    <Grid x:Name="MainGrid" 
+          Background="#111111" 
           MaxWidth="{Binding ActualWidth, ElementName=window, Mode=OneWay}">
         <!--
             Defines the column Layout
@@ -29,31 +35,87 @@
             Debugging / Error handling Popup
             Displays when there is an error and is shown by using Debug.ShowError()
         -->
-        <Grid x:Name="ErrorPopup" Panel.ZIndex="1000" Grid.ColumnSpan="5" Visibility="Collapsed" Background="#9F000000">
-            <Border VerticalAlignment="Center" HorizontalAlignment="Center" Background="Black"
-                    BorderBrush="White" BorderThickness="2">
+        <Grid x:Name="ErrorPopup" 
+              Panel.ZIndex="1000" 
+              Grid.ColumnSpan="5" 
+              Visibility="Collapsed" 
+              Background="#9F000000">
+            <Border VerticalAlignment="Center" 
+                    HorizontalAlignment="Center" 
+                    Background="Black"
+                    BorderBrush="White" 
+                    BorderThickness="2">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel>
-                        <TextBlock x:Name="ErrorTextTitle" Text="Application Error" Foreground="White" Margin="10,10,10,0" FontSize="24"
+                        <TextBlock x:Name="ErrorTextTitle" 
+                                   Text="Application Error" 
+                                   Foreground="White" 
+                                   Margin="10,10,10,0" 
+                                   FontSize="24"
                                    HorizontalAlignment="Center"/>
-                        <TextBlock Text="BackChannel has encountered an error" Foreground="White" Margin="10,0,10,0" 
-                                   FontSize="18" HorizontalAlignment="Center"/>
-                        <TextBox Style="{DynamicResource SimpleTextBox}" x:Name="ErrorTextDescription" Text="fuck" Foreground="White" Margin="8,15,10,25" FontSize="16"
-                                 AcceptsReturn="True" IsReadOnly="True" BorderThickness="0" BorderBrush="White" Background="Transparent">
+                        <TextBlock Text="BackChannel has encountered an error" 
+                                   Foreground="White" 
+                                   Margin="10,0,10,0" 
+                                   FontSize="18" 
+                                   HorizontalAlignment="Center"/>
+                        <TextBox Style="{DynamicResource SimpleTextBox}" 
+                                 x:Name="ErrorTextDescription" 
+                                 Foreground="White" 
+                                 Margin="8,15,10,25" 
+                                 FontSize="16"
+                                 AcceptsReturn="True" 
+                                 IsReadOnly="True" 
+                                 BorderThickness="0" 
+                                 BorderBrush="White" 
+                                 Background="Transparent">
                         </TextBox>
-                        <StackPanel Orientation="Horizontal" Margin="10" HorizontalAlignment="Center">
-                            <Button x:Name="ClosePopupButton" Content="Close this popup" FontSize="14" Background="Transparent" 
-                                    Click="ClosePopupButton_Click" Foreground="White" BorderBrush="Gray" BorderThickness="0,2,0,2" 
-                                    HorizontalAlignment="Center" Margin="0,0,10,5" Style="{DynamicResource ErrorButtonsStyle}"/>
-                            <Button x:Name="CloseAppButton" Content="Close BackChannel" FontSize="14" Background="Transparent" Margin="0,0,0,5"
-                                    Foreground="White" BorderBrush="Gray" BorderThickness="0,2,0,2" HorizontalAlignment="Center" 
-                                    Click="CloseAppButton_Click" Style="{DynamicResource ErrorButtonsStyle}"/>
-                            <Button x:Name="CanelButton" Content="Cancel" FontSize="14" Background="Transparent" Margin="0,0,10,5"
-                                    Foreground="White" BorderBrush="Gray" BorderThickness="0,2,0,2" HorizontalAlignment="Center" 
-                                    Click="ClosePopupButton_Click" Style="{DynamicResource ErrorButtonsStyle}"/>
-                            <Button x:Name="AllowButton" Content="Allow" FontSize="14" Background="Transparent" Margin="0,0,0,5"
-                                    Foreground="White" BorderBrush="Gray" BorderThickness="0,2,0,2" HorizontalAlignment="Center" 
-                                    Click="AllowButton_Click" Style="{DynamicResource ErrorButtonsStyle}"/>
+                        <StackPanel Orientation="Horizontal" 
+                                    Margin="10" 
+                                    HorizontalAlignment="Center">
+                            <Button x:Name="ClosePopupButton" 
+                                    Content="Close this popup" 
+                                    FontSize="14" 
+                                    Background="Transparent" 
+                                    Click="ClosePopupButton_Click" 
+                                    Foreground="White" 
+                                    BorderBrush="Gray" 
+                                    BorderThickness="0,2,0,2" 
+                                    HorizontalAlignment="Center" 
+                                    Margin="0,0,10,5" 
+                                    Style="{DynamicResource ErrorButtonsStyle}"/>
+                            <Button x:Name="CloseAppButton" 
+                                    Content="Close BackChannel" 
+                                    FontSize="14" 
+                                    Background="Transparent" 
+                                    Margin="0,0,0,5"
+                                    Foreground="White" 
+                                    BorderBrush="Gray" 
+                                    BorderThickness="0,2,0,2" 
+                                    HorizontalAlignment="Center" 
+                                    Click="CloseAppButton_Click" 
+                                    Style="{DynamicResource ErrorButtonsStyle}"/>
+                            <Button x:Name="CanelButton" 
+                                    Content="Cancel" 
+                                    FontSize="14" 
+                                    Background="Transparent" 
+                                    Margin="0,0,10,5"
+                                    Foreground="White" 
+                                    BorderBrush="Gray" 
+                                    BorderThickness="0,2,0,2" 
+                                    HorizontalAlignment="Center" 
+                                    Click="ClosePopupButton_Click" 
+                                    Style="{DynamicResource ErrorButtonsStyle}"/>
+                            <Button x:Name="AllowButton" 
+                                    Content="Allow" 
+                                    FontSize="14" 
+                                    Background="Transparent" 
+                                    Margin="0,0,0,5"
+                                    Foreground="White" 
+                                    BorderBrush="Gray" 
+                                    BorderThickness="0,2,0,2" 
+                                    HorizontalAlignment="Center" 
+                                    Click="AllowButton_Click" 
+                                    Style="{DynamicResource ErrorButtonsStyle}"/>
                         </StackPanel>
                     </StackPanel>
                 </ScrollViewer>
@@ -63,10 +125,18 @@
         <!--
             This is the Server Joining menu.             
         -->
-        <Grid x:Name="ServerJoin" Panel.ZIndex="1000" Grid.ColumnSpan="5" Visibility="Collapsed" Background="#9F000000">
-            <TextBlock Text="Join a Server" Foreground="White" FontSize="22"
-                       HorizontalAlignment="Center" VerticalAlignment="Center" 
-                       Margin="10,3,200,100" Panel.ZIndex="20">
+        <Grid x:Name="ServerJoin" 
+              Panel.ZIndex="1000" 
+              Grid.ColumnSpan="5" 
+              Visibility="Collapsed" 
+              Background="#9F000000">
+            <TextBlock Text="Join a Server" 
+                       Foreground="White" 
+                       FontSize="22"
+                       HorizontalAlignment="Center" 
+                       VerticalAlignment="Center" 
+                       Margin="10,3,200,100" 
+                       Panel.ZIndex="20">
                 <TextBlock.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="#0F000000"/>
@@ -77,18 +147,26 @@
                     </LinearGradientBrush>
                 </TextBlock.Background>
             </TextBlock>
-            <ProgressBar HorizontalAlignment="Center" VerticalAlignment="Center" 
-                         Margin="0,8,0,100" Panel.ZIndex="19"
-                         Height="3" IsIndeterminate="False"
-                         Foreground="Black" Background="Transparent"
+            <ProgressBar HorizontalAlignment="Center" 
+                         VerticalAlignment="Center" 
+                         Margin="0,8,0,100" 
+                         Panel.ZIndex="19"
+                         Height="3" 
+                         IsIndeterminate="False"
+                         Foreground="Black" 
+                         Background="Transparent"
                          BorderThickness="0"
                          Width="350"
                          x:Name="PBOne"
                          Visibility="Collapsed"/>
-            <ProgressBar HorizontalAlignment="Center" VerticalAlignment="Center" 
-                         Margin="349,65,0,0" Panel.ZIndex="25"
-                         Height="3" IsIndeterminate="False"
-                         Foreground="Black" Background="Transparent"
+            <ProgressBar HorizontalAlignment="Center" 
+                         VerticalAlignment="Center" 
+                         Margin="349,65,0,0" 
+                         Panel.ZIndex="25"
+                         Height="3" 
+                         IsIndeterminate="False"
+                         Foreground="Black" 
+                         Background="Transparent"
                          BorderThickness="0"
                          Width="160"
                          RenderTransformOrigin="0.5,0.5"
@@ -100,10 +178,14 @@
                     </TransformGroup>
                 </ProgressBar.RenderTransform>
             </ProgressBar>
-            <ProgressBar HorizontalAlignment="Center" VerticalAlignment="Center" 
-                         Margin="0,224,0,0" Panel.ZIndex="25"
-                         Height="3" IsIndeterminate="False"
-                         Foreground="Black" Background="Transparent"
+            <ProgressBar HorizontalAlignment="Center" 
+                         VerticalAlignment="Center" 
+                         Margin="0,224,0,0" 
+                         Panel.ZIndex="25"
+                         Height="3" 
+                         IsIndeterminate="False"
+                         Foreground="Black" 
+                         Background="Transparent"
                          BorderThickness="0"
                          Width="350"
                          RenderTransformOrigin="0.5,0.5"
@@ -115,10 +197,14 @@
                     </TransformGroup>
                 </ProgressBar.RenderTransform>
             </ProgressBar>
-            <ProgressBar HorizontalAlignment="Center" VerticalAlignment="Center" 
-                         Margin="0,65,349,0" Panel.ZIndex="25"
-                         Height="3" IsIndeterminate="False"
-                         Foreground="Black" Background="Transparent"
+            <ProgressBar HorizontalAlignment="Center" 
+                         VerticalAlignment="Center" 
+                         Margin="0,65,349,0" 
+                         Panel.ZIndex="25"
+                         Height="3" 
+                         IsIndeterminate="False"
+                         Foreground="Black" 
+                         Background="Transparent"
                          BorderThickness="0"
                          Width="160"
                          RenderTransformOrigin="0.5,0.5"
@@ -131,34 +217,70 @@
                 </ProgressBar.RenderTransform>
             </ProgressBar>
 
-            <Border BorderBrush="White" BorderThickness="2" Background="Black"
-                    HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Visible"
-                    Margin="0,66,0,0" Grid.Column="0" Grid.ColumnSpan="5" Width="350" Height="160">
+            <Border BorderBrush="White" 
+                    BorderThickness="2" 
+                    Background="Black"
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    Visibility="Visible"
+                    Margin="0,66,0,0" 
+                    Grid.Column="0" 
+                    Grid.ColumnSpan="5" 
+                    Width="350" 
+                    Height="160">
                 <Grid Background="Black" 
-                      HorizontalAlignment="Center" VerticalAlignment="Center">
+                      HorizontalAlignment="Center" 
+                      VerticalAlignment="Center">
                     <StackPanel VerticalAlignment="Center">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Server Link/IP:" Foreground="White" FontSize="16"
-                                       HorizontalAlignment="Center" Margin="10,0,0,5"/>
-                            <TextBox Foreground="White" Background="Black" BorderThickness="0,0,0,1"
-                                     Margin="5,0,10,5" MinWidth="150" MaxWidth="150" FontSize="16"
-                                     x:Name="ServerIPEntry" Text="127.0.0.1"/>
+                            <TextBlock Text="Server Link/IP:" 
+                                       Foreground="White" 
+                                       FontSize="16"
+                                       HorizontalAlignment="Center" 
+                                       Margin="10,0,0,5"/>
+                            <TextBox Foreground="White"
+                                     Background="Black"
+                                     BorderThickness="0,0,0,1"
+                                     Margin="5,0,10,5" 
+                                     MinWidth="150"
+                                     MaxWidth="150" 
+                                     FontSize="16"
+                                     x:Name="ServerIPEntry" 
+                                     Text="127.0.0.1"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Server Port:" Foreground="White" FontSize="16"
-                                       HorizontalAlignment="Center" Margin="10,5,0,5"/>
-                            <TextBox Foreground="White" Background="Black" BorderThickness="0,0,0,1"
-                                     Margin="5,5,10,45" Text="3090" FontSize="16" 
-                                     MinWidth="45" MaxWidth="150"
+                            <TextBlock Text="Server Port:" 
+                                       Foreground="White" 
+                                       FontSize="16"
+                                       HorizontalAlignment="Center"
+                                       Margin="10,5,0,5"/>
+                            <TextBox Foreground="White" 
+                                     Background="Black" 
+                                     BorderThickness="0,0,0,1"
+                                     Margin="5,5,10,45" 
+                                     Text="3090" 
+                                     FontSize="16" 
+                                     MinWidth="45" 
+                                     MaxWidth="150"
                                      x:Name="ServerPortEntry"/>
                         </StackPanel>
                     </StackPanel>
-                    <Button x:Name="CloseServerJoinButton" Style="{DynamicResource CloseServerJoinStyle}"
-                            Background="#1A1A1A" VerticalAlignment="Bottom" Foreground="White"
-                            HorizontalAlignment="Left" Click="CloseServerJoinButton_Click" Content="Cancel"/>
-                    <Button x:Name="ServerJoinButton" Style="{DynamicResource ServerJoinStyle}"
-                             Background="#1A1A1A" VerticalAlignment="Bottom" Foreground="White"
-                             HorizontalAlignment="Right" Click="ServerJoinButton_Click" Content="Join Server"/>
+                    <Button x:Name="CloseServerJoinButton" 
+                            Style="{DynamicResource CloseServerJoinStyle}"
+                            Background="#1A1A1A" 
+                            VerticalAlignment="Bottom" 
+                            Foreground="White"
+                            HorizontalAlignment="Left" 
+                            Click="CloseServerJoinButton_Click" 
+                            Content="Cancel"/>
+                    <Button x:Name="ServerJoinButton" 
+                            Style="{DynamicResource ServerJoinStyle}"
+                            Background="#1A1A1A" 
+                            VerticalAlignment="Bottom" 
+                            Foreground="White"
+                            HorizontalAlignment="Right"
+                            Click="ServerJoinButton_Click" 
+                            Content="Join Server"/>
                 </Grid>
             </Border>
         </Grid>
@@ -168,20 +290,35 @@
             Holds the Title/Logo and the server list, as well as the button to add servers
             The Add server button as well as the servers themselves do nothing currently. Use the debug dialog(Currently the Settings Button) to add and remove servers
         -->
-        <StackPanel x:Name="LeftColumnStack" Background="#1E1E1E" Width="auto" SizeChanged="LeftColumnStack_SizeChanged">
+        <StackPanel x:Name="LeftColumnStack" 
+                    Background="#1E1E1E" 
+                    Width="auto" 
+                    SizeChanged="LeftColumnStack_SizeChanged">
             
             <!-- 
                 This StackPanel contains the BackChannel Title/Logo
             -->
-            <StackPanel x:Name="TitleLogo" Background="#1E1E1E" Margin="4,10,0,0" Panel.ZIndex="1">
-                <Border BorderBrush="#1E1E1E" BorderThickness="0">
+            <StackPanel x:Name="TitleLogo" 
+                        Background="#1E1E1E" 
+                        Margin="4,10,0,0" 
+                        Panel.ZIndex="1">
+                <Border BorderBrush="#1E1E1E" 
+                        BorderThickness="0">
                     <Border.Effect>
                         <DropShadowEffect ShadowDepth="8"/>
                     </Border.Effect>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Image Source="/BackChannelIcon.png" Width="40" Height="40" RenderOptions.BitmapScalingMode="HighQuality"/>
-                        <TextBlock Text="BackChannel" Foreground="White" Margin="0,0,5,0"
-                                   FontSize="18" VerticalAlignment="Center"  />
+                    <StackPanel Orientation="Horizontal" 
+                                HorizontalAlignment="Center" 
+                                VerticalAlignment="Center">
+                        <Image Source="/BackChannelIcon.png" 
+                               Width="40" 
+                               Height="40" 
+                               RenderOptions.BitmapScalingMode="HighQuality"/>
+                        <TextBlock Text="BackChannel" 
+                                   Foreground="White" 
+                                   Margin="0,0,5,0"
+                                   FontSize="18" 
+                                   VerticalAlignment="Center"  />
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -195,13 +332,23 @@
                 This Grid shows the "Server" text and the Add Server Button                
             -->
             <Grid Panel.ZIndex="10">
-                <TextBlock Text="Servers" Foreground="White" HorizontalAlignment="Center" 
-                           FontSize="18" Margin="0,0,0,2"  />
-                <Button x:Name="AddServerButton" Style="{DynamicResource AddButtonStyle}" 
-                        Background="Transparent" BorderThickness="0" VerticalAlignment="Center" 
-                        HorizontalAlignment="Right" Click="AddServerButton_Click">
-                    <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xF8AA;" Foreground="White"
-                               TextOptions.TextRenderingMode="Grayscale" RenderOptions.BitmapScalingMode="HighQuality"/>
+                <TextBlock Text="Servers" 
+                           Foreground="White" 
+                           HorizontalAlignment="Center" 
+                           FontSize="18" 
+                           Margin="0,0,0,2"/>
+                <Button x:Name="AddServerButton" 
+                        Style="{DynamicResource AddButtonStyle}" 
+                        Background="Transparent" 
+                        BorderThickness="0" 
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Right" 
+                        Click="AddServerButton_Click">
+                    <TextBlock FontFamily="Segoe MDL2 Assets" 
+                               Text="&#xF8AA;" 
+                               Foreground="White"
+                               TextOptions.TextRenderingMode="Grayscale" 
+                               RenderOptions.BitmapScalingMode="HighQuality"/>
                 </Button>
             </Grid>
         </StackPanel>
@@ -209,15 +356,30 @@
         <!-- 
             This is the list of servers
         -->
-        <ListView x:Name="ServerListView" Background="Transparent" BorderThickness="0" ItemsSource="{Binding}" Width="auto" Margin="0,88,18,0" ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemContainerStyle="{DynamicResource ServerListItemStyle}" MouseEnter="ServerListView_MouseEnter"
-                  SelectionChanged="ServerListView_SelectionChanged" MouseLeave="ServerListView_MouseLeave">
+        <ListView x:Name="ServerListView" 
+                  Background="Transparent" 
+                  BorderThickness="0" 
+                  ItemsSource="{Binding}" 
+                  Width="auto" 
+                  Margin="0,88,18,0" 
+                  ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                  ItemContainerStyle="{DynamicResource ServerListItemStyle}" 
+                  MouseEnter="ServerListView_MouseEnter"
+                  SelectionChanged="ServerListView_SelectionChanged" 
+                  MouseLeave="ServerListView_MouseLeave">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
-                        <Image Source="/Icons/Error.png" Height="30" HorizontalAlignment="Left" RenderOptions.BitmapScalingMode="HighQuality"/>
-                        <TextBlock Text="{Binding Name}" Foreground="White"  
-                                   TextTrimming="CharacterEllipsis" Margin="35,3,0,0" FontSize="22"/>
+                        <Image Source="/Icons/Error.png" 
+                               Height="30" 
+                               HorizontalAlignment="Left" 
+                               RenderOptions.BitmapScalingMode="HighQuality"/>
+                        <TextBlock Text="{Binding Name}" 
+                                   Foreground="White"  
+                                   TextTrimming="CharacterEllipsis"
+                                   Margin="35,3,0,0" 
+                                   FontSize="22"/>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
@@ -242,9 +404,13 @@
                       ResizeDirection="Columns"
                       ResizeBehavior="PreviousAndCurrent"
                       Width="5" Panel.ZIndex="10"/>
-        <Grid Background="#151515" Grid.Column="2"/>
-        <Grid Grid.Column="2" x:Name="MiddleColumnStack" SizeChanged="MiddleColumnStack_SizeChanged"
-              Background="#151515" Visibility="Collapsed">
+        <Grid Background="#151515" 
+              Grid.Column="2"/>
+        <Grid Grid.Column="2" 
+              x:Name="MiddleColumnStack" 
+              SizeChanged="MiddleColumnStack_SizeChanged"
+              Background="#151515" 
+              Visibility="Collapsed">
             <Border BorderBrush="#1E1E1E"
                     BorderThickness="2,0,0,0" >
                 <Border.Effect>
@@ -255,9 +421,14 @@
                         This is the Server Info Section.
                         Holds the server name and possibly banner image.
                     -->
-                    <TextBlock x:Name="ServerTitle" TextTrimming="CharacterEllipsis" FontSize="24"
-                               Text="Test Community Server" Foreground="White" Margin="20,17,0,0"
-                               HorizontalAlignment="Left" Width="230"/>
+                    <TextBlock x:Name="ServerTitle" 
+                               TextTrimming="CharacterEllipsis" 
+                               FontSize="24"
+                               Text="Test Community Server" 
+                               Foreground="White" 
+                               Margin="20,17,0,0"
+                               HorizontalAlignment="Left"
+                               Width="230"/>
 
                     <!-- 
                         Seperator Line 
@@ -267,18 +438,35 @@
                     <!--
                         The List of Channels in a server
                     -->
-                    <ListView x:Name="ChannelListView" ItemContainerStyle="{DynamicResource ServerListItemStyle}" MouseLeave="ChannelListView_MouseLeave"
-                              Background="Transparent" Margin="10,65,18,70" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MouseEnter="ChannelListView_MouseEnter"
-                              ScrollViewer.VerticalScrollBarVisibility="Hidden" SelectionChanged="ChannelListView_SelectionChanged">
+                    <ListView x:Name="ChannelListView" 
+                              ItemContainerStyle="{DynamicResource ServerListItemStyle}" 
+                              MouseLeave="ChannelListView_MouseLeave"
+                              Background="Transparent"
+                              Margin="10,65,18,70" 
+                              ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                              MouseEnter="ChannelListView_MouseEnter"
+                              ScrollViewer.VerticalScrollBarVisibility="Hidden" 
+                              SelectionChanged="ChannelListView_SelectionChanged">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
-                                    <Image Source="/Icons/Chat.png"  Height="18" HorizontalAlignment="Left" Margin="0,3,0,3"
-                                           RenderOptions.BitmapScalingMode="HighQuality" Visibility="{Binding IsText}"/>
-                                    <Image Source="/Icons/Voice.png" Height="18" HorizontalAlignment="Left" Margin="0,3,0,3"
-                                           RenderOptions.BitmapScalingMode="HighQuality" Visibility="{Binding IsVoice}"/>
-                                    <TextBlock Text="{Binding Name}" Foreground="White" FontSize="18"
-                                               TextTrimming="CharacterEllipsis" Margin="35,0,0,0"/>
+                                    <Image Source="/Icons/Chat.png"  
+                                           Height="18" 
+                                           HorizontalAlignment="Left" 
+                                           Margin="0,3,0,3"
+                                           RenderOptions.BitmapScalingMode="HighQuality" 
+                                           Visibility="{Binding IsText}"/>
+                                    <Image Source="/Icons/Voice.png" 
+                                           Height="18" 
+                                           HorizontalAlignment="Left" 
+                                           Margin="0,3,0,3"
+                                           RenderOptions.BitmapScalingMode="HighQuality" 
+                                           Visibility="{Binding IsVoice}"/>
+                                    <TextBlock Text="{Binding Name}" 
+                                               Foreground="White" 
+                                               FontSize="18"
+                                               TextTrimming="CharacterEllipsis" 
+                                               Margin="35,0,0,0"/>
                                 </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>
@@ -301,8 +489,11 @@
             Displays your current pfp, username, and status.
             Also hosts the settings button, which will lead to a page where you can change profiles settings as well as app settings
         -->
-        <Grid Grid.Column="2" Background="#151515" Height="70"
-              VerticalAlignment="Bottom" Margin="10,0,0,0">
+        <Grid Grid.Column="2" 
+              Background="#151515" 
+              Height="70"
+              VerticalAlignment="Bottom" 
+              Margin="10,0,0,0">
             <Border BorderBrush="#1E1E1E"
                     BorderThickness="0,0,0,0" >
                 <Border.Effect>
@@ -313,24 +504,41 @@
                         User Info
                     -->
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="/Icons/pfp.png" Height="50" Margin="10" RenderOptions.BitmapScalingMode="HighQuality"
-                               HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        <Image Source="/Icons/pfp.png" 
+                               Height="50" 
+                               Margin="10" 
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                               HorizontalAlignment="Left" 
+                               VerticalAlignment="Center"/>
                         <StackPanel>
-                            <TextBlock Text="Epsi" Foreground="White" FontSize="24" Margin="0,15,0,0"  />
+                            <TextBlock Text="Epsi" 
+                                       Foreground="White" 
+                                       FontSize="24" 
+                                       Margin="0,15,0,0"  />
                             <TextBlock Text="Grab life by the crack and lick the shit out of it" 
-                                       Foreground="White" FontSize="12" Margin="0,0,0,0"  
-                                       TextTrimming="CharacterEllipsis" Width="100"/>
+                                       Foreground="White" 
+                                       FontSize="12" 
+                                       Margin="0,0,0,0"  
+                                       TextTrimming="CharacterEllipsis" 
+                                       Width="100"/>
                         </StackPanel>
                     </StackPanel>
 
                     <!--
                         Settings Button
                     -->
-                    <Button x:Name="SettingsButton" Style="{DynamicResource SettingsButtonStyle}" 
-                            Background="Transparent" BorderThickness="0" Click="SettingsButton_Click"
-                            VerticalAlignment="Center" HorizontalAlignment="Right">
-                        <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE713;" Foreground="White"
-                                   TextOptions.TextRenderingMode="Grayscale" RenderOptions.BitmapScalingMode="HighQuality"/>
+                    <Button x:Name="SettingsButton" 
+                            Style="{DynamicResource SettingsButtonStyle}" 
+                            Background="Transparent" 
+                            BorderThickness="0" 
+                            Click="SettingsButton_Click"
+                            VerticalAlignment="Center" 
+                            HorizontalAlignment="Right">
+                        <TextBlock FontFamily="Segoe MDL2 Assets" 
+                                   Text="&#xE713;" 
+                                   Foreground="White"
+                                   TextOptions.TextRenderingMode="Grayscale" 
+                                   RenderOptions.BitmapScalingMode="HighQuality"/>
                     </Button>
                 </Grid>
             </Border>
@@ -348,32 +556,57 @@
                       ResizeDirection="Columns"
                       ResizeBehavior="PreviousAndNext"
                       Width="5" Panel.ZIndex="10"/>
-        <Border BorderBrush="#151515" Grid.Column="4"
+        <Border BorderBrush="#151515" 
+                Grid.Column="4"
                 BorderThickness="2,0,0,0" >
             <Border.Effect>
                 <DropShadowEffect ShadowDepth="4"/>
             </Border.Effect>
-            <Grid x:Name="RightColumnStack" Background="#111111" Visibility="Collapsed">
+            <Grid x:Name="RightColumnStack" 
+                  Background="#111111" 
+                  Visibility="Collapsed">
                 <!--
                     This is the top bar showing the channel name and controls
                     Controls: Show Channel Members, Search, 
                 -->
-                <Grid x:Name="TextChannelGrid" Background="#171717" Height="60" VerticalAlignment="Top">
-                    <Image Source="/Icons/Chat.png"  Height="32" HorizontalAlignment="Left" Margin="20,15,0,0"
-                           RenderOptions.BitmapScalingMode="HighQuality" Visibility="{Binding IsText}"
+                <Grid x:Name="TextChannelGrid" 
+                      Background="#171717" 
+                      Height="60" 
+                      VerticalAlignment="Top">
+                    <Image Source="/Icons/Chat.png"  
+                           Height="32" 
+                           HorizontalAlignment="Left" 
+                           Margin="20,15,0,0"
+                           RenderOptions.BitmapScalingMode="HighQuality" 
+                           Visibility="{Binding IsText}"
                            VerticalAlignment="Top"/>
-                    <TextBlock x:Name="ChannelTitle" Text="amet elit" Foreground="White" FontSize="32"
-                               Margin="70,10,10,10" VerticalAlignment="Top"  />
-                    <Grid x:Name="ServerButtonsGrid" HorizontalAlignment="Right">
-                        <Button x:Name="SearchButton" Style="{DynamicResource SearchButtonStyle}" 
-                                Background="Transparent" BorderThickness="0" Click="SearchButton_Click"
-                                VerticalAlignment="Top" HorizontalAlignment="Right">
-                            <Image Source="/Icons/Search.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                    <TextBlock x:Name="ChannelTitle" 
+                               Foreground="White" 
+                               FontSize="32"
+                               Margin="70,10,10,10" 
+                               VerticalAlignment="Top"/>
+                    <Grid x:Name="ServerButtonsGrid" 
+                          HorizontalAlignment="Right">
+                        <Button x:Name="SearchButton" 
+                                Style="{DynamicResource SearchButtonStyle}" 
+                                Background="Transparent" 
+                                BorderThickness="0" 
+                                Click="SearchButton_Click"
+                                VerticalAlignment="Top" 
+                                HorizontalAlignment="Right">
+                            <Image Source="/Icons/Search.png" 
+                                   RenderOptions.BitmapScalingMode="HighQuality"/>
                         </Button>
-                        <Button x:Name="MembersButton" Style="{DynamicResource MemberButtonStyle}" Panel.ZIndex="25"
-                                Background="Transparent" BorderThickness="0" Click="MembersButton_Click"
-                                VerticalAlignment="Top" HorizontalAlignment="Right">
-                            <Image Source="/Icons/Members.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                        <Button x:Name="MembersButton" 
+                                Style="{DynamicResource MemberButtonStyle}" 
+                                Panel.ZIndex="25"
+                                Background="Transparent" 
+                                BorderThickness="0" 
+                                Click="MembersButton_Click"
+                                VerticalAlignment="Top"
+                                HorizontalAlignment="Right">
+                            <Image Source="/Icons/Members.png" 
+                                   RenderOptions.BitmapScalingMode="HighQuality"/>
                         </Button>
                     </Grid>
                 </Grid>
@@ -381,22 +614,47 @@
                 <!--
                     This is the chat handler 
                 -->
-                <ListView x:Name="ChatListView" VerticalAlignment="Bottom" ItemContainerStyle="{DynamicResource ChatListItemStyle}"
-                          Background="Transparent" Margin="10,65,18,40" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                          ScrollViewer.VerticalScrollBarVisibility="Hidden" SelectedIndex="-1" ItemsSource="{Binding}" MouseEnter="ChatListView_MouseEnter" MouseLeave="ChatListView_MouseLeave">
+                <ListView x:Name="ChatListView" 
+                          VerticalAlignment="Bottom" 
+                          ItemContainerStyle="{DynamicResource ChatListItemStyle}"
+                          Background="Transparent" 
+                          Margin="10,65,18,40" 
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                          ScrollViewer.VerticalScrollBarVisibility="Hidden" 
+                          SelectedIndex="-1" 
+                          ItemsSource="{Binding}" 
+                          MouseEnter="ChatListView_MouseEnter" 
+                          MouseLeave="ChatListView_MouseLeave">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid Margin="0,0,0,0">
-                                <Image Source="/Icons/pfp.png" Height="50" HorizontalAlignment="Left" Margin="0,0,0,0"
-                                       RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Top" Visibility="{Binding IsSolo}"/>
+                                <Image Source="/Icons/pfp.png" 
+                                       Height="50" 
+                                       HorizontalAlignment="Left" 
+                                       Margin="0,0,0,0"
+                                       RenderOptions.BitmapScalingMode="HighQuality" 
+                                       VerticalAlignment="Top" 
+                                       Visibility="{Binding IsSolo}"/>
                                 <StackPanel Orientation="Vertical">
-                                    <TextBlock Text="{Binding Username}" Foreground="White" FontSize="{c:Binding ElementName=FontSizeSlider, Path=Value+4, UpdateSourceTrigger=PropertyChanged}"
-                                               TextTrimming="CharacterEllipsis" Margin="60,0,10,0"  Visibility="{Binding IsSolo}"
+                                    <TextBlock Text="{Binding Username}" 
+                                               Foreground="White" 
+                                               FontSize="{c:Binding ElementName=FontSizeSlider, Path=Value+4, UpdateSourceTrigger=PropertyChanged}"
+                                               TextTrimming="CharacterEllipsis" 
+                                               Margin="60,0,10,0"  
+                                               Visibility="{Binding IsSolo}"
                                                TextDecorations="None"/>
-                                    <TextBlock Text="01/21/21 6:21pm" Foreground="Gray" FontSize="{c:Binding ElementName=FontSizeSlider, Path=Value-4, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top"
-                                               TextTrimming="CharacterEllipsis" Margin="60,0,0,0" Visibility="{Binding IsSolo}"/>
-                                    <TextBlock Text="{Binding Content}" Foreground="White" FontSize="{Binding ElementName=FontSizeSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}"
-                                               TextWrapping="Wrap" Margin="60,5,10,0"/>
+                                    <TextBlock Text="01/21/21 6:21pm" 
+                                               Foreground="Gray" 
+                                               FontSize="{c:Binding ElementName=FontSizeSlider, Path=Value-4, UpdateSourceTrigger=PropertyChanged}" 
+                                               VerticalAlignment="Top"
+                                               TextTrimming="CharacterEllipsis" 
+                                               Margin="60,0,0,0" 
+                                               Visibility="{Binding IsSolo}"/>
+                                    <TextBlock Text="{Binding Content}" 
+                                               Foreground="White" 
+                                               FontSize="{Binding ElementName=FontSizeSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}"
+                                               TextWrapping="Wrap"
+                                               Margin="60,5,10,0"/>
                                 </StackPanel>
                             </Grid>
                         </DataTemplate>
@@ -415,49 +673,93 @@
                     This will hold the Message Box and the send button
                     It will also need to have buttons for sending images and files
                 -->
-                <Grid Background="#151515" VerticalAlignment="Bottom">
-                    <Button x:Name="SendImageButton" Style="{DynamicResource SendImageButtonStyle}" 
-                            Background="Transparent" BorderThickness="0"
-                            HorizontalAlignment="Left" VerticalAlignment="Bottom">
-                        <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE7C5;" Foreground="White"
-                                   TextOptions.TextRenderingMode="Grayscale" RenderOptions.BitmapScalingMode="HighQuality"/>
+                <Grid Background="#151515" 
+                      VerticalAlignment="Bottom">
+                    <Button x:Name="SendImageButton" 
+                            Style="{DynamicResource SendImageButtonStyle}" 
+                            Background="Transparent" 
+                            BorderThickness="0"
+                            HorizontalAlignment="Left" 
+                            VerticalAlignment="Bottom">
+                        <TextBlock FontFamily="Segoe MDL2 Assets" 
+                                   Text="&#xE7C5;" 
+                                   Foreground="White"
+                                   TextOptions.TextRenderingMode="Grayscale" 
+                                   RenderOptions.BitmapScalingMode="HighQuality"/>
                     </Button>
-                    <Grid x:Name="InputFooter" VerticalAlignment="Bottom" >
-                        <TextBox Background="#171717" Foreground="White" Margin="65,10,10,10"
-                                 FontSize="16"   TextWrapping="Wrap"/>
+                    <Grid x:Name="InputFooter" 
+                          VerticalAlignment="Bottom" >
+                        <TextBox Background="#171717" 
+                                 Foreground="White" 
+                                 Margin="65,10,10,10"
+                                 FontSize="16"   
+                                 TextWrapping="Wrap"/>
                     </Grid>
                 </Grid>
             </Grid>
         </Border>
 
-        <Border x:Name="UserInfo" Background="#9F000000" 
-                Grid.Column="0" Grid.ColumnSpan="7" MouseDown="UserInfo_MouseDown"
-                Visibility="Collapsed" Panel.ZIndex="20">
-            <StackPanel x:Name="UserInfoPanel" Orientation="Vertical" Width="200" Background="#151515" 
-                        HorizontalAlignment="Right" VerticalAlignment="Top"  Height="auto">
-                <Image Source="/Icons/pfp.png" Height="80" Margin="10,10,10,5" 
+        <Border x:Name="UserInfo" 
+                Background="#9F000000" 
+                Grid.Column="0" 
+                Grid.ColumnSpan="7" 
+                MouseDown="UserInfo_MouseDown"
+                Visibility="Collapsed" 
+                Panel.ZIndex="20">
+            <StackPanel x:Name="UserInfoPanel" 
+                        Orientation="Vertical" 
+                        Width="200" 
+                        Background="#151515" 
+                        HorizontalAlignment="Right" 
+                        VerticalAlignment="Top"  
+                        Height="auto">
+                <Image Source="/Icons/pfp.png" 
+                       Height="80" 
+                       Margin="10,10,10,5" 
                        RenderOptions.BitmapScalingMode="HighQuality"
-                       HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <TextBlock Text="Epsi" Foreground="White" FontSize="24" Margin="10,0,0,0" 
-                           HorizontalAlignment="Left" TextWrapping="Wrap" Width="200" 
+                       HorizontalAlignment="Left" 
+                       VerticalAlignment="Top"/>
+                <TextBlock Text="Epsi" 
+                           Foreground="White" 
+                           FontSize="24" 
+                           Margin="10,0,0,0" 
+                           HorizontalAlignment="Left" 
+                           TextWrapping="Wrap" 
+                           Width="200" 
                            TextAlignment="Left"/>
                 <TextBlock Text="Grab life by the crack and lick the shit out of it" 
-                           Foreground="White" FontSize="12" Margin="10,0,0,10" 
+                           Foreground="White" 
+                           FontSize="12" 
+                           Margin="10,0,0,10" 
                            TextAlignment="Left"
-                           TextWrapping="Wrap" Width="190"/>
-                <TextBlock Text="Roles:" TextAlignment="Left"
-                           Foreground="White" FontSize="18" Margin="10,0,10,10"  
-                           TextWrapping="Wrap" Width="190"/>
-                <ListView x:Name="RolesListView" ItemContainerStyle="{DynamicResource MemberListItemStyle}"
-                          Background="Transparent" Margin="0,60,0,10" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                          ScrollViewer.VerticalScrollBarVisibility="Hidden" SelectedIndex="-1" 
-                          ItemsSource="{Binding}" SelectionChanged="MemberListView_SelectionChanged">
+                           TextWrapping="Wrap" 
+                           Width="190"/>
+                <TextBlock Text="Roles:" 
+                           TextAlignment="Left"
+                           Foreground="White" 
+                           FontSize="18"
+                           Margin="10,0,10,10"  
+                           TextWrapping="Wrap"
+                           Width="190"/>
+                <ListView x:Name="RolesListView" 
+                          ItemContainerStyle="{DynamicResource MemberListItemStyle}"
+                          Background="Transparent" 
+                          Margin="0,60,0,10"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                          ScrollViewer.VerticalScrollBarVisibility="Hidden" 
+                          SelectedIndex="-1" 
+                          ItemsSource="{Binding}" 
+                          SelectionChanged="MemberListView_SelectionChanged">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Grid Margin="0,2,0,2" HorizontalAlignment="Right">
-                                <TextBlock Text="{Binding Role}" Foreground="White" FontSize="20"
-                                       TextTrimming="CharacterEllipsis" Margin="36,2,20,0"
-                                       Width="180"/>
+                            <Grid Margin="0,2,0,2" 
+                                  HorizontalAlignment="Right">
+                                <TextBlock Text="{Binding Role}" 
+                                           Foreground="White" 
+                                           FontSize="20"
+                                           TextTrimming="CharacterEllipsis" 
+                                           Margin="36,2,20,0"
+                                           Width="180"/>
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -475,31 +777,64 @@
         <!--
             Code for the Member panel
         -->
-        <Grid x:Name="MemberBar" Background="Black" Grid.Column="5" Visibility="Collapsed"
-              Width="auto" HorizontalAlignment="Right" MaxWidth="300">
-            <Grid Background="Black" VerticalAlignment="Top">
-                <TextBlock Text="Members" Foreground="White" FontSize="24" Margin="10,14,60,19"/>
-                <Button x:Name="MButton" Style="{DynamicResource MemberButtonStyle}" Panel.ZIndex="15"
-                        Background="Transparent" BorderThickness="0" Click="MembersButton_Click"
-                        VerticalAlignment="Top" HorizontalAlignment="Right">
-                    <Image Source="/Icons/Members.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+        <Grid x:Name="MemberBar" 
+              Background="Black" 
+              Grid.Column="5" 
+              Visibility="Collapsed"
+              Width="auto" 
+              HorizontalAlignment="Right" 
+              MaxWidth="300">
+            <Grid Background="Black" 
+                  VerticalAlignment="Top">
+                <TextBlock Text="Members" 
+                           Foreground="White" 
+                           FontSize="24" 
+                           Margin="10,14,60,19"/>
+                <Button x:Name="MButton" 
+                        Style="{DynamicResource MemberButtonStyle}" 
+                        Panel.ZIndex="15"
+                        Background="Transparent" 
+                        BorderThickness="0" 
+                        Click="MembersButton_Click"
+                        VerticalAlignment="Top" 
+                        HorizontalAlignment="Right">
+                    <Image Source="/Icons/Members.png" 
+                           RenderOptions.BitmapScalingMode="HighQuality"/>
                 </Button>
             </Grid>
-            <ListView x:Name="MemberListView" ItemContainerStyle="{DynamicResource MemberListItemStyle}"
-                      Background="Transparent" Margin="0,60,0,10" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                      ScrollViewer.VerticalScrollBarVisibility="Hidden" SelectedIndex="-1" 
-                      ItemsSource="{Binding}" SelectionChanged="MemberListView_SelectionChanged">
+            <ListView x:Name="MemberListView" 
+                      ItemContainerStyle="{DynamicResource MemberListItemStyle}"
+                      Background="Transparent"
+                      Margin="0,60,0,10" 
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                      ScrollViewer.VerticalScrollBarVisibility="Hidden" 
+                      SelectedIndex="-1" 
+                      ItemsSource="{Binding}" 
+                      SelectionChanged="MemberListView_SelectionChanged">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Margin="0,2,0,2" HorizontalAlignment="Right">
-                            <Image Source="/Icons/pfp.png" Height="30" HorizontalAlignment="Left" Margin="0,0,0,0"
-                                   RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Top"/>
-                            <TextBlock Text="{Binding Name}" Foreground="White" FontSize="20"
-                                       TextTrimming="CharacterEllipsis" Margin="36,2,20,0"
+                        <Grid Margin="0,2,0,2" 
+                              HorizontalAlignment="Right">
+                            <Image Source="/Icons/pfp.png" 
+                                   Height="30" 
+                                   HorizontalAlignment="Left" 
+                                   Margin="0,0,0,0"
+                                   RenderOptions.BitmapScalingMode="HighQuality" 
+                                   VerticalAlignment="Top"/>
+                            <TextBlock Text="{Binding Name}" 
+                                       Foreground="White" 
+                                       FontSize="20"
+                                       TextTrimming="CharacterEllipsis" 
+                                       Margin="36,2,20,0"
                                        Width="180"/>
-                            <TextBlock Text="•" Foreground="{Binding OnlineStatus}" FontSize="30" Height="30"
-                                       TextTrimming="CharacterEllipsis" Margin="35,-10,0,0"
-                                       HorizontalAlignment="Right" RenderOptions.BitmapScalingMode="HighQuality"/>
+                            <TextBlock Text="•" 
+                                       Foreground="{Binding OnlineStatus}" 
+                                       FontSize="30" 
+                                       Height="30"
+                                       TextTrimming="CharacterEllipsis" 
+                                       Margin="35,-10,0,0"
+                                       HorizontalAlignment="Right" 
+                                       RenderOptions.BitmapScalingMode="HighQuality"/>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
@@ -517,8 +852,12 @@
         <!--
             The Settings grid, covers the whole MainGrid
         -->
-        <Grid x:Name="SettingsGrid" Grid.Column="0" Grid.ColumnSpan="6" Background="Transparent"
-              Panel.ZIndex="15" Visibility="Collapsed">
+        <Grid x:Name="SettingsGrid" 
+              Grid.Column="0" 
+              Grid.ColumnSpan="6" 
+              Background="Transparent"
+              Panel.ZIndex="15" 
+              Visibility="Collapsed">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200"/>
                 <ColumnDefinition Width="*"/>
@@ -526,107 +865,201 @@
             <!--
                 The Button that closes the settings
             -->
-            <Button x:Name="CloseSettingsButton" Style="{DynamicResource CloseSettingsButtonStyle}" Panel.ZIndex="25"
-                    Background="Transparent" BorderThickness="0" Click="CloseSettingsButton_Click"
-                    VerticalAlignment="Top" HorizontalAlignment="Left">
-                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE711;" Foreground="White"
-                           TextOptions.TextRenderingMode="Grayscale" RenderOptions.BitmapScalingMode="HighQuality"/>
+            <Button x:Name="CloseSettingsButton" 
+                    Style="{DynamicResource CloseSettingsButtonStyle}" 
+                    Panel.ZIndex="25"
+                    Background="Transparent" 
+                    BorderThickness="0" 
+                    Click="CloseSettingsButton_Click"
+                    VerticalAlignment="Top" 
+                    HorizontalAlignment="Left">
+                <TextBlock FontFamily="Segoe MDL2 Assets" 
+                           Text="&#xE711;" 
+                           Foreground="White"
+                           TextOptions.TextRenderingMode="Grayscale" 
+                           RenderOptions.BitmapScalingMode="HighQuality"/>
             </Button>
 
             <!--
                 The Button that opens the debug menu
             -->
-            <Button x:Name="OpenDebugButton" Style="{DynamicResource OpenDebugButtonStyle}" Panel.ZIndex="25"
-                    Background="Transparent" BorderThickness="0" Click="OpenDebugButton_Click"
-                    VerticalAlignment="Top" HorizontalAlignment="Right">
-                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE15E;" Foreground="White"
-                           TextOptions.TextRenderingMode="Grayscale" RenderOptions.BitmapScalingMode="HighQuality"/>
+            <Button x:Name="OpenDebugButton" 
+                    Style="{DynamicResource OpenDebugButtonStyle}" 
+                    Panel.ZIndex="25"
+                    Background="Transparent" 
+                    BorderThickness="0" 
+                    Click="OpenDebugButton_Click"
+                    VerticalAlignment="Top" 
+                    HorizontalAlignment="Right">
+                <TextBlock FontFamily="Segoe MDL2 Assets" 
+                           Text="&#xE15E;" 
+                           Foreground="White"
+                           TextOptions.TextRenderingMode="Grayscale" 
+                           RenderOptions.BitmapScalingMode="HighQuality"/>
             </Button>
-            <Button x:Name="OpenPacketTesterButton" Style="{DynamicResource OpenPacketTesterStyle}" Panel.ZIndex="25"
-                    Background="Transparent" BorderThickness="0" Click="OpenPacketTesterButton_Click"
-                    VerticalAlignment="Top" HorizontalAlignment="Right">
-                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE969;" Foreground="White"
-                           TextOptions.TextRenderingMode="Grayscale" RenderOptions.BitmapScalingMode="HighQuality"/>
+            <Button x:Name="OpenPacketTesterButton" 
+                    Style="{DynamicResource OpenPacketTesterStyle}" 
+                    Panel.ZIndex="25"
+                    Background="Transparent" 
+                    BorderThickness="0" 
+                    Click="OpenPacketTesterButton_Click"
+                    VerticalAlignment="Top" 
+                    HorizontalAlignment="Right">
+                <TextBlock FontFamily="Segoe MDL2 Assets" 
+                           Text="&#xE969;" 
+                           Foreground="White"
+                           TextOptions.TextRenderingMode="Grayscale" 
+                           RenderOptions.BitmapScalingMode="HighQuality"/>
             </Button>
 
             <!--
                 This is the settings pane
                 This is where the actual settings show
             -->
-            <Border BorderBrush="White" BorderThickness="1,0,0,0" Margin="0,0,0,0" Grid.Column="1">
+            <Border BorderBrush="White" 
+                    BorderThickness="1,0,0,0" 
+                    Margin="0,0,0,0" 
+                    Grid.Column="1">
                 <Grid>
                     <!--
                         The Profile Settings
                     -->
-                    <StackPanel x:Name="ProfileStack" Visibility="Collapsed" Background="Black">
+                    <StackPanel x:Name="ProfileStack" 
+                                Visibility="Collapsed" 
+                                Background="Black">
                         <StackPanel>
-                            <TextBlock Text="Profile Settings" Foreground="White" FontSize="30"
-                                           TextTrimming="CharacterEllipsis" Margin="30,25,0,0"
-                                           HorizontalAlignment="Left"/>
-                            <TextBlock Text="This is different for each server." Foreground="White" FontSize="16"
-                                           TextTrimming="CharacterEllipsis" Margin="30,5,0,0"
-                                           HorizontalAlignment="Left"/>
-                            <TextBlock x:Name="ProfileServerText"  Text="Currently editing settings for {}" Foreground="White" FontSize="16"
-                                           TextTrimming="CharacterEllipsis" Margin="30,5,0,0"
-                                           HorizontalAlignment="Left"/>
+                            <TextBlock Text="Profile Settings" 
+                                       Foreground="White" 
+                                       FontSize="30"
+                                       TextTrimming="CharacterEllipsis" 
+                                       Margin="30,25,0,0"
+                                       HorizontalAlignment="Left"/>
+                            <TextBlock Text="This is different for each server." 
+                                       Foreground="White" 
+                                       FontSize="16"
+                                       TextTrimming="CharacterEllipsis" 
+                                       Margin="30,5,0,0"
+                                       HorizontalAlignment="Left"/>
+                            <TextBlock x:Name="ProfileServerText"  
+                                       Text="Currently editing settings for {}" 
+                                       Foreground="White" 
+                                       FontSize="16"
+                                       TextTrimming="CharacterEllipsis" 
+                                       Margin="30,5,0,0"
+                                       HorizontalAlignment="Left"/>
                         </StackPanel>
                         <!--
                             PFP Setting
                         -->
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="User Icon" Foreground="White" FontSize="25"
-                                       TextTrimming="CharacterEllipsis" Margin="30,25,0,0"
+                            <TextBlock Text="User Icon" 
+                                       Foreground="White" 
+                                       FontSize="25"
+                                       TextTrimming="CharacterEllipsis" 
+                                       Margin="30,25,0,0"
                                        HorizontalAlignment="Left"/>
-                            <Button x:Name="EditPFPButton" Style="{DynamicResource CloseSettingsButtonStyle}"
-                                    Background="Transparent" BorderThickness="0"
-                                    VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,35,0,0">
-                                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE70F;" Foreground="White"
-                                           TextOptions.TextRenderingMode="Grayscale" RenderOptions.BitmapScalingMode="HighQuality"/>
+                            <Button x:Name="EditPFPButton" 
+                                    Style="{DynamicResource CloseSettingsButtonStyle}"
+                                    Background="Transparent" 
+                                    BorderThickness="0"
+                                    VerticalAlignment="Top" 
+                                    HorizontalAlignment="Left" 
+                                    Margin="10,35,0,0">
+                                <TextBlock FontFamily="Segoe MDL2 Assets" 
+                                           Text="&#xE70F;" 
+                                           Foreground="White"
+                                           TextOptions.TextRenderingMode="Grayscale" 
+                                           RenderOptions.BitmapScalingMode="HighQuality"/>
                             </Button>
                         </StackPanel>
-                        <Image Source="/Icons/pfp.png" Height="100" HorizontalAlignment="Left" Margin="30,5,0,0"
-                               RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Top"/>
+                        <Image Source="/Icons/pfp.png" 
+                               Height="100" 
+                               HorizontalAlignment="Left" 
+                               Margin="30,5,0,0"
+                               RenderOptions.BitmapScalingMode="HighQuality" 
+                               VerticalAlignment="Top"/>
                         <!--
                             Name Setting
                         -->
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Display Name" Foreground="White" FontSize="25"
-                                       TextTrimming="CharacterEllipsis" Margin="30,25,0,0"
+                            <TextBlock Text="Display Name" 
+                                       Foreground="White" 
+                                       FontSize="25"
+                                       TextTrimming="CharacterEllipsis" 
+                                       Margin="30,25,0,0"
                                        HorizontalAlignment="Left"/>
-                            <Button x:Name="EditNameButton" Style="{DynamicResource CloseSettingsButtonStyle}"
-                                    Background="Transparent" BorderThickness="0"
-                                    VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,35,0,0">
-                                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE70F;" Foreground="White"
-                                           TextOptions.TextRenderingMode="Grayscale" RenderOptions.BitmapScalingMode="HighQuality"/>
+                            <Button x:Name="EditNameButton" 
+                                    Style="{DynamicResource CloseSettingsButtonStyle}"
+                                    Background="Transparent" 
+                                    BorderThickness="0"
+                                    VerticalAlignment="Top" 
+                                    HorizontalAlignment="Left" 
+                                    Margin="10,35,0,0">
+                                <TextBlock FontFamily="Segoe MDL2 Assets" 
+                                           Text="&#xE70F;" 
+                                           Foreground="White"
+                                           TextOptions.TextRenderingMode="Grayscale" 
+                                           RenderOptions.BitmapScalingMode="HighQuality"/>
                             </Button>
                         </StackPanel>
-                        <TextBlock Text="Epsi" Foreground="White" FontSize="25"
-                                   TextTrimming="CharacterEllipsis" Margin="30,5,0,0"
-                                   HorizontalAlignment="Left" FontStyle="Italic"/>
+                        <TextBlock Text="Epsi" 
+                                   Foreground="White" 
+                                   FontSize="25"
+                                   TextTrimming="CharacterEllipsis" 
+                                   Margin="30,5,0,0"
+                                   HorizontalAlignment="Left"
+                                   FontStyle="Italic"/>
                     </StackPanel>
                     <!--
                         The Appearance Settings
                     -->
-                    <StackPanel x:Name="AppearanceStack" Visibility="Collapsed" Background="Black">
-                        <TextBlock x:Name="AppearanceTitle" Text="Appearance Settings" Foreground="White" FontSize="30"
-                                   TextTrimming="CharacterEllipsis" Margin="30,25,0,0"
+                    <StackPanel x:Name="AppearanceStack" 
+                                Visibility="Collapsed" 
+                                Background="Black">
+                        <TextBlock x:Name="AppearanceTitle" 
+                                   Text="Appearance Settings" 
+                                   Foreground="White" 
+                                   FontSize="30"
+                                   TextTrimming="CharacterEllipsis" 
+                                   Margin="30,25,0,0"
                                    HorizontalAlignment="Left"/>
                         <!--
                             Font Size Setting
                         -->
-                        <Border HorizontalAlignment="Left" Background="Black">
+                        <Border HorizontalAlignment="Left" 
+                                Background="Black">
                             <StackPanel>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Font Size:" Foreground="White" FontSize="25"
-                                       TextTrimming="CharacterEllipsis" Margin="30,25,0,0" Opacity="1"
-                                       HorizontalAlignment="Left"/>
-                                    <TextBlock Text="{Binding ElementName=FontSizeSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" Foreground="White" FontSize="25" VerticalAlignment="Center"
-                                       TextTrimming="CharacterEllipsis" Margin="5,25,0,0" Opacity="1"
-                                       HorizontalAlignment="Left"/>
+                                    <TextBlock Text="Font Size:" 
+                                               Foreground="White" 
+                                               FontSize="25"
+                                               TextTrimming="CharacterEllipsis"
+                                               Margin="30,25,0,0" 
+                                               Opacity="1"
+                                               HorizontalAlignment="Left"/>
+                                    <TextBlock Text="{Binding ElementName=FontSizeSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" 
+                                               Foreground="White" 
+                                               FontSize="25" 
+                                               VerticalAlignment="Center"
+                                               TextTrimming="CharacterEllipsis" 
+                                               Margin="5,25,0,0" 
+                                               Opacity="1"
+                                               HorizontalAlignment="Left"/>
                                 </StackPanel>
-                                <Grid MouseMove="Grid_MouseMove" HorizontalAlignment="Left" Background="Transparent">
-                                    <Slider x:Name="FontSizeSlider" Margin="28,20,30,30" HorizontalAlignment="Left" Width="300" Value="16"
-                                            TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" Maximum="20" Minimum="11" Opacity="1"/>
+                                <Grid MouseMove="Grid_MouseMove" 
+                                      HorizontalAlignment="Left" 
+                                      Background="Transparent">
+                                    <Slider x:Name="FontSizeSlider" 
+                                            Margin="28,20,30,30" 
+                                            HorizontalAlignment="Left" 
+                                            Width="300" 
+                                            Value="16"
+                                            TickPlacement="BottomRight" 
+                                            TickFrequency="1" 
+                                            IsSnapToTickEnabled="True" 
+                                            Maximum="20" 
+                                            Minimum="11" 
+                                            Opacity="1"/>
                                 </Grid>
                             </StackPanel>
                         </Border>
@@ -636,53 +1069,122 @@
                         -->
                         <StackPanel x:Name="ThemeStack">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Left Panel Color:" Foreground="White" FontSize="25"
-                                           TextTrimming="CharacterEllipsis" Margin="30,25,0,0"
+                                <TextBlock Text="Left Panel Color:" 
+                                           Foreground="White" 
+                                           FontSize="25"
+                                           TextTrimming="CharacterEllipsis" 
+                                           Margin="30,25,0,0"
                                            HorizontalAlignment="Left"/>
-                                <xctk:ColorPicker Name="LeftPanelClrPcker" Width="24" Height="24" SelectedColor="Red" HorizontalAlignment="Left" Background="Black" HeaderBackground="Black" DropDownBackground="Black"
-                                                  SelectedColorChanged="LeftPanelClrPcker_SelectedColorChanged" Margin="10,0,0,2" VerticalAlignment="Bottom" BorderThickness="0" HeaderForeground="White"
-                                                  Foreground="White" TabForeground="White" TabBackground="Black" ShowDropDownButton="False" TabIndex="1"/>
+                                <xctk:ColorPicker Name="LeftPanelClrPcker" 
+                                                  Width="24" 
+                                                  Height="24" 
+                                                  SelectedColor="Red" 
+                                                  HorizontalAlignment="Left" 
+                                                  Background="Black" 
+                                                  HeaderBackground="Black" 
+                                                  DropDownBackground="Black"
+                                                  SelectedColorChanged="LeftPanelClrPcker_SelectedColorChanged" 
+                                                  Margin="10,0,0,2" 
+                                                  VerticalAlignment="Bottom" 
+                                                  BorderThickness="0" 
+                                                  HeaderForeground="White"
+                                                  Foreground="White" 
+                                                  TabForeground="White" 
+                                                  TabBackground="Black" 
+                                                  ShowDropDownButton="False" 
+                                                  TabIndex="1"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Middle Panel Color:" Foreground="White" FontSize="25"
-                                           TextTrimming="CharacterEllipsis" Margin="30,25,0,0"
+                                <TextBlock Text="Middle Panel Color:" 
+                                           Foreground="White"
+                                           FontSize="25"
+                                           TextTrimming="CharacterEllipsis" 
+                                           Margin="30,25,0,0"
                                            HorizontalAlignment="Left"/>
-                                <xctk:ColorPicker Name="MiddlePanelClrPcker" Width="24" Height="24" SelectedColor="Red" HorizontalAlignment="Left" Background="Black" HeaderBackground="Black" DropDownBackground="Black"
-                                                  SelectedColorChanged="LeftPanelClrPcker_SelectedColorChanged" Margin="10,0,0,2" VerticalAlignment="Bottom" BorderThickness="0" HeaderForeground="White"
-                                                  Foreground="White" TabForeground="White" TabBackground="Black" ShowDropDownButton="False" TabIndex="1"/>
+                                <xctk:ColorPicker Name="MiddlePanelClrPcker" 
+                                                  Width="24" 
+                                                  Height="24" 
+                                                  SelectedColor="Red" 
+                                                  HorizontalAlignment="Left" 
+                                                  Background="Black" 
+                                                  HeaderBackground="Black" 
+                                                  DropDownBackground="Black"
+                                                  SelectedColorChanged="LeftPanelClrPcker_SelectedColorChanged" 
+                                                  Margin="10,0,0,2" 
+                                                  VerticalAlignment="Bottom" 
+                                                  BorderThickness="0" 
+                                                  HeaderForeground="White"
+                                                  Foreground="White" 
+                                                  TabForeground="White" 
+                                                  TabBackground="Black" 
+                                                  ShowDropDownButton="False" 
+                                                  TabIndex="1"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Right Panel Color:" Foreground="White" FontSize="25"
-                                       TextTrimming="CharacterEllipsis" Margin="30,25,0,0"
-                                       HorizontalAlignment="Left"/>
-                                <xctk:ColorPicker Name="RightPanelClrPcker" Width="24" Height="24" SelectedColor="Red" HorizontalAlignment="Left" Background="Black" HeaderBackground="Black" DropDownBackground="Black"
-                                                  SelectedColorChanged="LeftPanelClrPcker_SelectedColorChanged" Margin="10,0,0,2" VerticalAlignment="Bottom" BorderThickness="0" HeaderForeground="White"
-                                                  Foreground="White" TabForeground="White" TabBackground="Black" ShowDropDownButton="False" TabIndex="1"/>
+                                <TextBlock Text="Right Panel Color:" 
+                                           Foreground="White" 
+                                           FontSize="25"
+                                           TextTrimming="CharacterEllipsis" 
+                                           Margin="30,25,0,0"
+                                           HorizontalAlignment="Left"/>
+                                <xctk:ColorPicker Name="RightPanelClrPcker"
+                                                  Width="24" 
+                                                  Height="24" 
+                                                  SelectedColor="Red" 
+                                                  HorizontalAlignment="Left" 
+                                                  Background="Black" 
+                                                  HeaderBackground="Black" 
+                                                  DropDownBackground="Black"
+                                                  SelectedColorChanged="LeftPanelClrPcker_SelectedColorChanged" 
+                                                  Margin="10,0,0,2" 
+                                                  VerticalAlignment="Bottom" 
+                                                  BorderThickness="0" 
+                                                  HeaderForeground="White"
+                                                  Foreground="White" 
+                                                  TabForeground="White" 
+                                                  TabBackground="Black" 
+                                                  ShowDropDownButton="False" 
+                                                  TabIndex="1"/>
                             </StackPanel>
                         </StackPanel>
                     </StackPanel>
                     <!--
                         The Notifications Settings
                     -->
-                    <StackPanel x:Name="NotificationsStack" Visibility="Collapsed" Background="Black">
-                        <TextBlock Text="Notification Settings" Foreground="White" FontSize="30"
-                                   TextTrimming="CharacterEllipsis" Margin="30,25,0,0"
+                    <StackPanel x:Name="NotificationsStack" 
+                                Visibility="Collapsed" 
+                                Background="Black">
+                        <TextBlock Text="Notification Settings" 
+                                   Foreground="White" 
+                                   FontSize="30"
+                                   TextTrimming="CharacterEllipsis" 
+                                   Margin="30,25,0,0"
                                    HorizontalAlignment="Left"/>
                     </StackPanel>
                     <!--
                         The Privacy Settings
                     -->
-                    <StackPanel x:Name="PrivacyStack" Visibility="Collapsed" Background="Black">
-                        <TextBlock Text="Privacy Settings" Foreground="White" FontSize="30"
-                                   TextTrimming="CharacterEllipsis" Margin="30,25,0,0"
+                    <StackPanel x:Name="PrivacyStack"
+                                Visibility="Collapsed" 
+                                Background="Black">
+                        <TextBlock Text="Privacy Settings" 
+                                   Foreground="White" 
+                                   FontSize="30"
+                                   TextTrimming="CharacterEllipsis" 
+                                   Margin="30,25,0,0"
                                    HorizontalAlignment="Left"/>
                     </StackPanel>
                     <!--
                         The Voice / Video Settings
                     -->
-                    <StackPanel x:Name="VoiceVideoStack" Visibility="Collapsed" Background="Black">
-                        <TextBlock Text="Voice/Video Settings" Foreground="White" FontSize="30"
-                                   TextTrimming="CharacterEllipsis" Margin="30,25,0,0"
+                    <StackPanel x:Name="VoiceVideoStack"
+                                Visibility="Collapsed" 
+                                Background="Black">
+                        <TextBlock Text="Voice/Video Settings" 
+                                   Foreground="White" 
+                                   FontSize="30"
+                                   TextTrimming="CharacterEllipsis" 
+                                   Margin="30,25,0,0"
                                    HorizontalAlignment="Left"/>
                     </StackPanel>
                 </Grid>
@@ -692,11 +1194,22 @@
                 This is the list of settings catagories
                 Switches which pane is shown
             -->
-            <Border Background="Black" BorderBrush="White" BorderThickness="0,0,0,0">
+            <Border Background="Black" 
+                    BorderBrush="White"
+                    BorderThickness="0,0,0,0">
             </Border>
-            <ListView x:Name="SettingsListView" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,50,0,0" Background="Transparent"
-                      Foreground="White" BorderThickness="0" ItemContainerStyle="{DynamicResource SettingsListItemStyle}" Grid.ColumnSpan="2"
-                      Width="200" SelectedIndex="0" SelectionChanged="SettingsListView_SelectionChanged">
+            <ListView x:Name="SettingsListView" 
+                      HorizontalAlignment="Left" 
+                      VerticalAlignment="Top" 
+                      Margin="0,50,0,0" 
+                      Background="Transparent"
+                      Foreground="White" 
+                      BorderThickness="0" 
+                      ItemContainerStyle="{DynamicResource SettingsListItemStyle}"
+                      Grid.ColumnSpan="2"
+                      Width="200"
+                      SelectedIndex="0"
+                      SelectionChanged="SettingsListView_SelectionChanged">
                 <ListViewItem Content="Profile"/>
                 <ListViewItem Content="Appearance"/>
                 <ListViewItem Content="Notifications"/>
