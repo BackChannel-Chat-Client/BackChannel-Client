@@ -1,4 +1,3 @@
-[<-Back](/Index.md)
 # Slate UI
 
 ## Main Colors
@@ -10,8 +9,7 @@
 **Border:** 
 - **Width:** <u>3,0,0,0</u>
 - **Selected Color:** <u>#FFFFFF</u>
-- **Hovering Color:** <u>#808080</u><br>
-
+- **Hovering Color:** <u>#808080</u>
 
 **Padding:** <u>8,5,5,5</u>
 **Margin:** <u>0,5,0,0</u>
