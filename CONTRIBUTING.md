@@ -28,7 +28,7 @@ The BackChannel Client was started and is managed by [one developer](https://git
 
 Issues that need help will be labeled [as such](https://github.com/BackChannel-Chat-Client/BackChannel-Client/labels/help%20wanted). If you're new to contributing to open source projects, try an issue labeled [good first issue](https://github.com/BackChannel-Chat-Client/BackChannel-Client/labels/good%20first%20issue). 
 
-When making your pull request, make sure to document your changes and why they were changed well.
+When making your pull request, make sure to use [this template](https://github.com/BackChannel-Chat-Client/BackChannel-Client/blob/master/.github/ISSUE_TEMPLATE/pull_request_template.md)
 
 # Reporting Bugs
 
