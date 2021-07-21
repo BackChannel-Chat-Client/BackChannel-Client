@@ -684,10 +684,12 @@
                     <Grid x:Name="InputFooter" 
                           VerticalAlignment="Bottom" >
                         <TextBox Margin="65,10,10,10"
+                                 x:Name="ChatEntry"
                                  Foreground="White" 
                                  Background="#171717" 
                                  FontSize="16"   
-                                 TextWrapping="Wrap"/>
+                                 TextWrapping="Wrap"
+                                 KeyDown="TextBox_KeyDown"/>
                     </Grid>
                 </Grid>
             </Grid>

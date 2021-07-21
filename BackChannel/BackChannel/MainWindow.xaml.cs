@@ -211,6 +211,7 @@ namespace BackChannel
             GetChannels.AllowSelfSigned = (bool)AllowSelfSigned;
             try
             {
+                int port = 0;
                 Application.Current.Dispatcher.Invoke(new Action(() =>
                 {
                     GetChannels.AuthKey = Packet.ToByteArray("TestKey");
@@ -221,6 +222,7 @@ namespace BackChannel
                     GetChannels.GetPacketSize();
                     GetChannels.ServerIP = ServerIPEntry.Text;
                     GetChannels.ServerPort = Convert.ToInt16(ServerPortEntry.Text);
+                    port = Convert.ToInt16(ServerPortEntry.Text);
                 }));
 
                 var check = GetChannels.SendPacket();
@@ -229,6 +231,8 @@ namespace BackChannel
                 Server newServer = new Server();
                 newServer.Name = GetChannels.ServerIP;
                 newServer.Channels = new List<Channel>();
+                newServer.Port = port;
+                newServer.AllowSelfSigned = (bool)AllowSelfSigned;
                 while (true)
                 {
                     uint ChannelID = (UInt32)BitConverter.ToUInt32(new byte[] { response.ResponseBody[0], response.ResponseBody[1], response.ResponseBody[2], response.ResponseBody[3], });
@@ -622,6 +626,27 @@ namespace BackChannel
         private void CloseAppButton_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void TextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                Packet p = new Packet();
+                p.AuthKey = Packet.None;
+                p.ChannelID = (uint)((Channel)ChannelListView.SelectedItem).ID;
+                p.GeneratePID();
+                p.RequestBody = Packet.ToByteArray(ChatEntry.Text);
+                p.SetRequestType(RequestType.SendMessage);
+                p.ServerIP = ((Server)ServerListView.SelectedItem).Name;
+                p.ServerPort = ((Server)ServerListView.SelectedItem).Port;
+                p.AllowSelfSigned = ((Server)ServerListView.SelectedItem).AllowSelfSigned;
+                p.GetPacketSize();
+
+                p.SendPacket();
+                var res = p.RecvResponse();
+
+            }
         }
     }
 }

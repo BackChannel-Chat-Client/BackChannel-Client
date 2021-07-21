@@ -16,5 +16,9 @@ namespace BackChannel.Classes
         /// All of the channels in the server viewable by the user.
         /// </summary>
         public List<Channel> Channels { get; set; }
+
+        public int Port { get; set; }
+
+        public bool AllowSelfSigned { get; set; }
     }
 }
